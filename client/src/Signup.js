@@ -1,7 +1,10 @@
 function Signup(){
   return(
     <div>
-      This is Signup.
+      <form>
+        <input></input>
+        
+      </form>
     </div>
   )
 }
