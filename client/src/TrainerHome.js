@@ -1,14 +1,20 @@
-function TrainerHome(){
+function TrainerHome({user, setUser}){
+
 
   function handleLogOut(){
-    console.log("logout")
+    console.log("handleLogOut")
     fetch("/logout",{
       method: 'DELETE'
-    })
+    }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
   }
 
   return(
-    <div>Trainer Home
+    <div>
+      <p>Welcome, {user.name}!</p>
       <button onClick={handleLogOut}>Log Out</button>
     </div>
   )

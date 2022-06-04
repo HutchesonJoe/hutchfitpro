@@ -22,14 +22,14 @@ function App() {
   <div>
     <Banner/>
     <Login onLogin={setUser}/>
-    <Signup/>
+    <Signup setUser={setUser}/>
   </div>
   )
 
   return (
     <div className="start-page">
       <Banner/>
-      <TrainerHome user={user}/>
+      <TrainerHome user={user} setUser={setUser}/>
     </div>
   );
 }
