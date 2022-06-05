@@ -20,13 +20,11 @@ class TrainersController < ApplicationController
   private
 
   def trainer_params
-    params.permit(:name, :username, :certifications, :password, :password_confirmation)
+    params.permit(:name, :username, :email, :certifications, :password, :password_confirmation)
   end
 
-  def render_invalid_response
-    def render_record_invalid_response(invalid) 
-      render json: { errors: invalid.record.errors.full_messages }, status: 422
-    end
+  def render_invalid_response(invalid)
+   render json: { errors: invalid.record.errors.full_messages }, status: 422
   end
 
 end

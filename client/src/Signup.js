@@ -7,6 +7,7 @@ function Signup({setUser}){
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
   const [passConf, setPassConf] = useState("")
+  const [email, setEmail] = useState("")
   const [errors, setErrors] = useState([])
   
   function handleSubmit(e){
@@ -15,6 +16,7 @@ function Signup({setUser}){
       name, 
       certifications: certs,
       username: userName,
+      email,
       password, 
       password_confirmation: passConf
     }
@@ -29,8 +31,7 @@ function Signup({setUser}){
       if (r.ok) {
         r.json().then((user) => setUser(user))
       } else {
-        console.log(r.ok)
-        r.json().then((err) => setErrors(err))
+        r.json().then((err) => setErrors(err.errors))
       }
     });
   }
@@ -39,9 +40,10 @@ function Signup({setUser}){
     <div className="signup" >
       <form onSubmit={handleSubmit}>
         <label>New to HutchFit PRO?</label>
-        <input placeholder="Your First and/or Last Name" onChange={(e)=>setName(e.target.value)}></input>
+        <input placeholder="Your First Name" onChange={(e)=>setName(e.target.value)}></input>
         <input placeholder="Certifications" onChange={(e)=>setCerts(e.target.value)}></input>
         <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input>
+        <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input>
         <input placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
         <input placeholder="Confirm Password" onChange={(e)=>setPassConf(e.target.value)}></input>
         <button type="Submit">submit</button>

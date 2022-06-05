@@ -48,3 +48,10 @@ button{
   border-width: 2px;
   border-style: inset;
 }
+
+.errors{
+  color: red;
+  font-size: small;
+  margin: 5px;
+  text-align: left;
+}

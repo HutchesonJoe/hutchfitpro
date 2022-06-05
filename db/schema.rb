@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_06_03_163656) do
   create_table "trainers", force: :cascade do |t|
     t.string "name"
     t.string "username"
+    t.string "email"
     t.string "certifications"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
