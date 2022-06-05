@@ -26,6 +26,7 @@ function Login({onLogin}){
   return(
     <div>
      <form className="login" onSubmit={handleSubmit}>
+       <label>Trainer Login</label>
       <input placeholder="Username" onChange={(e)=>setUsername(e.target.value)}></input>
       <input placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
       <button type="submit">submit</button>

@@ -2,7 +2,7 @@
 function Banner(){
   return (
     <div>
-      <h1>HutchFit PRO</h1>
+      <p className="header">HutchFit PRO</p>
     </div>
   )
 }

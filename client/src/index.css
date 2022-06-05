@@ -13,3 +13,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header{
+  font-size: xx-large;
+  margin: auto;
+  width: 200px;
+  /* display: inline-block; */
+}
+
+input{
+  margin: 5px;
+}
+
+button{
+  margin: 5px;
+}
+
+.login{
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 200px;
+  border-width: 2px;
+  border-style: inset;
+}
+
+.signup{
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 200px;
+  position: relative;
+  /* display: inline-block; */
+  border-width: 2px;
+  border-style: inset;
+}

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    resources :trainers, only: [:show, :create]
+    resources :trainers, only: [:show, :create, :index]
     resources :sessions, only: [:create]
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
