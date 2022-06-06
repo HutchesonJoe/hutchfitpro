@@ -30,6 +30,7 @@ button{
 }
 
 .login{
+  background-color: rgb(125, 181, 237);
   display: block;
   text-align: center;
   margin: auto;
@@ -39,6 +40,7 @@ button{
 }
 
 .signup{
+  background-color: rgb(125, 181, 237);
   display: block;
   text-align: center;
   margin: auto;

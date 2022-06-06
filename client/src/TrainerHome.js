@@ -2,7 +2,6 @@ function TrainerHome({user, setUser}){
 
 
   function handleLogOut(){
-    console.log("handleLogOut")
     fetch("/logout",{
       method: 'DELETE'
     }).then((r) => {

@@ -1,8 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+
+puts "Seeding..."
+
+#trainers
+
 hutch = Trainer.create(name: "Hutch", username: "JoeHutch", email: "hutcheson2001@yahoo.com", certifications: "ACE, Integral Yoga Institute, TRX, Prenatal/postpartum", password: "Hutch", password_confirmation: "Hutch")
+
+sophie = Trainer.create(name: "Sophie", username: "SoFit", email: "sofit@gmail.com", certifications: "NASM/TRX", password: "Sophie", password_confirmation: "Sophie")
+
+#clients
+
+charl = Client.create(name: "Charl", email: "Singnceb@gmail.com", age: 41, height: 6.4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id)
+
+jenn = Client.create(name: "Jenn", email: "jcolella@aol.com", age: 47, height: 5.4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
+
+fee = Client.create(name: "Felecia", email: "fharrelson@bmcc.cuny.edu", age: 49, height: 5.8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
+
+puts "SeedFit!"

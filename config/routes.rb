@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
     resources :trainers, only: [:show, :create, :index]
     resources :sessions, only: [:create]
+    resources :clients, only: [:create, :index]
     post "/login", to: "sessions#create"
+    get "/myclients", to: "sessions#index"
     delete "/logout", to: "sessions#destroy"
     get "/me", to: "trainers#show"
     post "/signup", to: "trainers#create"
