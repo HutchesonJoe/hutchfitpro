@@ -14,7 +14,6 @@ function AddClient({clients, setClients, trainer}){
 
   function handleSubmit(e){
     e.preventDefault()
-    console.log(trainer)
     const newClient = {
       name,
       email,

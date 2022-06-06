@@ -10,7 +10,7 @@ function TrainerHome({user, setUser}){
     fetch("/myclients").then(r=>r.json()).then(clients=>setClients(clients))
   },[])
 
-  const clientList = clients.map((client)=><ClientCard client={client} key={client.id}/>)
+  const clientList = clients.map((client)=><ClientCard client={client} key={client.id} clients ={clients} setClients={setClients}/>)
 
   function openAddClientForm(){
     setAddClient(!addClient)

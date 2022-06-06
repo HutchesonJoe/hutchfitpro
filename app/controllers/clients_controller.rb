@@ -7,9 +7,20 @@ class ClientsController < ApplicationController
     render json: clients
   end
 
+  def show
+    client = Client.find(params[:id])
+    render json: client
+  end
+
   def create
     client = Client.create!(client_params)
     render json: client, status: :created
+  end
+
+  def destroy
+    client = Client.find(params[:id])
+    client.destroy
+    head :no_content
   end
 
   private
