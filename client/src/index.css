@@ -57,3 +57,19 @@ button{
   margin: 5px;
   text-align: left;
 }
+
+.trainer-home{
+  margin: 10px;
+}
+
+.client-list{
+  border-width: 10px;
+}
+
+.client-card{
+  padding: 10px;
+  margin: 10px;
+  width: 40%;
+  color: black;
+  background-color: white;
+}

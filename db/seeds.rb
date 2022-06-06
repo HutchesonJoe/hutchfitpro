@@ -10,10 +10,10 @@ sophie = Trainer.create(name: "Sophie", username: "SoFit", email: "sofit@gmail.c
 
 #clients
 
-charl = Client.create(name: "Charl", email: "Singnceb@gmail.com", age: 41, height: 6.4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id)
+charl = Client.create(name: "Charl", email: "Singnceb@gmail.com", age: 41, feet: 6, inches: 4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id)
 
-jenn = Client.create(name: "Jenn", email: "jcolella@aol.com", age: 47, height: 5.4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
+jenn = Client.create(name: "Jenn", email: "jcolella@aol.com", age: 47, feet: 5, inches: 4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
 
-fee = Client.create(name: "Felecia", email: "fharrelson@bmcc.cuny.edu", age: 49, height: 5.8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
+fee = Client.create(name: "Felecia", email: "fharrelson@bmcc.cuny.edu", age: 49, feet: 5, inches: 8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
 
 puts "SeedFit!"

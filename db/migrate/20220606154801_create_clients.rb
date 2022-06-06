@@ -4,7 +4,8 @@ class CreateClients < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :email
       t.integer :age
-      t.float :height
+      t.integer :feet
+      t.integer :inches
       t.integer :weight
       t.string :fitness_level
       t.integer :workouts_per_week
