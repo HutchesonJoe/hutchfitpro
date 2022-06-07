@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Errors from './Errors';
 
-function AddClient({clients, setClients, trainer}){
+function AddClient({clients, setClients, trainer, addClient, setAddClient, setAddClientButtonText}){
   const[name, setName] = useState("")
   const[email, setEmail] = useState("")
   const[age, setAge] = useState()
@@ -14,6 +14,8 @@ function AddClient({clients, setClients, trainer}){
 
   function handleSubmit(e){
     e.preventDefault()
+    setAddClient(!addClient)
+    setAddClientButtonText(false)
     const newClient = {
       name,
       email,

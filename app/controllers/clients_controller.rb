@@ -17,7 +17,14 @@ class ClientsController < ApplicationController
     render json: client, status: :created
   end
 
+  def update
+    client = Client.find(params[:id])
+    client.update(client_params)
+    render json: client
+  end
+
   def destroy
+    #associated data?
     client = Client.find(params[:id])
     client.destroy
     head :no_content

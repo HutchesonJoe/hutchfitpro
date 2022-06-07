@@ -18,7 +18,6 @@ code {
   font-size: xx-large;
   margin: auto;
   width: 200px;
-  /* display: inline-block; */
 }
 
 input{
@@ -72,4 +71,16 @@ button{
   width: 40%;
   color: black;
   background-color: white;
+}
+
+.add-client-form{
+  margin: 10px;
+  color: black;
+  background-color: white;
+  display: inline-block;
+  width: 40%;
+}
+
+#logout-button{
+  float: left;
 }
