@@ -1,11 +1,12 @@
 
 // import './App.css';
+import { Route, Routes } from 'react-router-dom';
 import Banner from './Banner';
 import Login from './Login';
 import Signup from './Signup';
 import { useEffect, useState } from 'react';
 import TrainerHome from './TrainerHome';
-
+import SelectExercises from './NewWorkout/SelectExercises';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,9 @@ function App() {
     <div className="start-page">
       <Banner/>
       <TrainerHome user={user} setUser={setUser}/>
+      <Routes>
+        <Route exact path="/selectexercises" element={<SelectExercises/>}></Route>
+      </Routes>
     </div>
   );
 }

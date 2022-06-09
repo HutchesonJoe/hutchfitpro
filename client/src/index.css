@@ -1,7 +1,7 @@
 body {
   margin: 0;
   color: white;
-  background-color: rgb(84, 84, 211);
+  background-color: rgb(84, 124, 211);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -13,6 +13,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* input[type=submit]:hover {
+  background-color: #45a049;
+} */
+
 
 .header{
   font-size: xx-large;
@@ -84,3 +89,45 @@ button{
 #logout-button{
   float: left;
 }
+
+.client-workouts{
+  background-color: rgb(240, 242, 128);
+  padding: 10px;
+}
+
+.workout-options{
+  background-color: grey;
+  float: right;
+  width: 100%;
+  padding: 10px;
+}
+
+.workout{
+  width: 40%;
+}
+
+#exercise-name{
+  width: 250px;
+}
+
+#create-exercise-form{
+  background-color: white;
+  display: inline-block;
+  width: 100%;
+}
+
+.assign-workout{
+  float: right;
+  width: 50%;
+}
+
+#exercise-name{
+  width: 85%;
+}
+
+#exercise-instructions{
+  width: 90%
+}
+/* #create-workout{
+  width: 40%;
+} */
