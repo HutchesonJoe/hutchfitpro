@@ -1,6 +1,7 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import NewWorkoutForm from './NewWorkout/NewWorkoutForm'
+import NewWorkoutForm from './NewWorkout/NewWorkoutForm';
+import SelectExercises from './NewWorkout/SelectExercises';
 
 function WorkoutOptions(){
   const[workouts, setWorkouts] = useState([])
@@ -17,8 +18,7 @@ function WorkoutOptions(){
   
   const workoutOptions = workouts.map((w)=> <option id={w.id} key={w.id} >{w.title}</option>)
 
-  const navigate = useNavigate("./selectexercises")
-
+  
   function handleSubmit(e){
     e.preventDefault()
     if(nextWorkout){
@@ -27,11 +27,11 @@ function WorkoutOptions(){
   }
 
   function openCreateWorkout(){
-    navigate()
   }
 
   return(
     <div className="workout-options">
+      
       <p>Select your client's next workout:</p>
       <form onSubmit={handleSubmit}>
         <select onChange={(e)=>setNextWorkout(e.target.value)}>
@@ -42,9 +42,13 @@ function WorkoutOptions(){
       </form>
      
       <h3>OR</h3>
-      <p>Create a new workout for your client:</p>
+      <NavLink to = "/newworkoutform">Create a new workout for your client:</NavLink>
      <div id="create-workout">
-        <button onClick={openCreateWorkout}>{formOpen ? "Close" : "Create a New Workout"}</button>
+     <Routes>
+        <Route exact path="/newworkoutform" element={<NewWorkoutForm workouts={workouts} setWorkouts={setWorkouts}/>}>
+        {/* <button onClick={openCreateWorkout}>{formOpen ? "Close" : "Create a New Workout"}</button> */}
+        </Route>
+      </Routes>
         {formOpen ? <NewWorkoutForm workouts={workouts} setWorkouts={setWorkouts}/> : ""}
       </div>
 

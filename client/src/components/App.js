@@ -31,9 +31,7 @@ function App() {
     <div className="start-page">
       <Banner/>
       <TrainerHome user={user} setUser={setUser}/>
-      <Routes>
-        <Route exact path="/selectexercises" element={<SelectExercises/>}></Route>
-      </Routes>
+      
     </div>
   );
 }
