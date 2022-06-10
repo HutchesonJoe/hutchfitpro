@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// import { Routes, Route, NavLink } from 'react-router-dom;'
 import ClientCard from './ClientCard';
 import AddClient from './AddClient';
 import WorkoutOptions from './WorkoutOptions'
@@ -14,7 +15,8 @@ function TrainerHome({user, setUser}){
     fetch("/myclients").then(r=>r.json()).then(clients=>setClients(clients))
   },[])
 
-  const clientList = clients.map((client)=><ClientCard client={client} key={client.id} clients ={clients} setClients={setClients} openWorkouts={openWorkouts} setOpenWorkouts={setOpenWorkouts}/>)
+  const clientList = clients.map((client)=><NavLink to = "/clientcard">{client.name}</NavLink>)
+  // <ClientCard client={client} key={client.id} clients ={clients} setClients={setClients} openWorkouts={openWorkouts} setOpenWorkouts={setOpenWorkouts}/>
 
   function openAddClientForm(){
     setAddClientButtonText(!addClientButtonText)
@@ -33,10 +35,13 @@ function TrainerHome({user, setUser}){
 
   return(
     <div className='trainer-home'>
+      <Routes>
+        <Route exact path="/clientcard" element={<ClientCard/>}></Route>
+      </Routes>
       <h2>Welcome, {user.name}!</h2>
      
       <h3>Here's your current list of clients:</h3>
-      <div className="assign-workout">
+      <div className="client-list">
       {openWorkouts ? <WorkoutOptions/> : ""} 
       </div>
       

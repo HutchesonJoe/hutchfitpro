@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="start-page">
       <Banner/>
-      <TrainerHome user={user} setUser={setUser}/>
+      {/* <TrainerHome user={user} setUser={setUser}/> */}
       
     </div>
   );

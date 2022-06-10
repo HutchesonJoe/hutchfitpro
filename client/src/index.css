@@ -128,6 +128,12 @@ button{
 #exercise-instructions{
   width: 90%
 }
+
+.client-list{
+  background-color: white;
+  color: black;
+  width: 50%;
+}
 /* #create-workout{
   width: 40%;
 } */
