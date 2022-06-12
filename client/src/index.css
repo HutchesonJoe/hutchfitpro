@@ -75,7 +75,8 @@ button{
   margin: 10px;
   width: 40%;
   color: black;
-  background-color: white;
+  background-color: rgb(223, 160, 160);
+  float: right;
 }
 
 .add-client-form{
@@ -96,9 +97,7 @@ button{
 }
 
 .workout-options{
-  background-color: grey;
-  float: right;
-  width: 100%;
+  width: 90%;
   padding: 10px;
 }
 
@@ -130,9 +129,33 @@ button{
 }
 
 .client-list{
+  margin: 10px;
   background-color: white;
   color: black;
   width: 50%;
+  /* display: inline-block; */
+}
+
+.client-name{
+  margin: 10px;
+}
+
+.navbar{
+  background-color: blue;
+  font-size: large;
+  padding: 20px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.navlink{
+  color: white;
+  display: inline-block;
+  font-size: large;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 23%;
 }
 /* #create-workout{
   width: 40%;

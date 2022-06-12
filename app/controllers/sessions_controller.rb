@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     @trainer = Trainer.find_by(username: params[:username])
+    # byebug
     if @trainer&.authenticate(params[:password])
       session[:trainer_id] = @trainer.id
       render json: @trainer, status: :created
@@ -12,7 +13,6 @@ class SessionsController < ApplicationController
   end
 
   def index
-    #shouldn't I be able to access this with @trainer? 
     trainer = Trainer.find(session[:trainer_id])
     clients = trainer.clients
     render json: clients

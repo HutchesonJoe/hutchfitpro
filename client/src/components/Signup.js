@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Errors from './Errors';
 
-function Signup({setUser}){
+function Signup({setUser, signUpFormOn, setSignUpFormOn}){
   const [name, setName] = useState("")
   const [certs, setCerts] = useState("")
   const [userName, setUserName] = useState("")
@@ -12,6 +12,7 @@ function Signup({setUser}){
   
   function handleSubmit(e){
     e.preventDefault()
+    setSignUpFormOn(false)
     const newUser = {
       name, 
       certifications: certs,
@@ -28,9 +29,7 @@ function Signup({setUser}){
       },
       body: JSON.stringify(newUser)
     }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user))
-      } else {
+      if (!r.ok) {
         r.json().then((err) => setErrors(err.errors))
       }
     });

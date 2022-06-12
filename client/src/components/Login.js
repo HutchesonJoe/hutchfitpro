@@ -7,6 +7,7 @@ function Login({onLogin}){
   const[errors, setErrors] = useState([])
   
   function handleSubmit(e){
+    console.log("submit")
     e.preventDefault()
     fetch("/login", {
       method: "POST",

@@ -1,15 +1,19 @@
 
 // import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import Banner from './Banner';
 import Login from './Login';
 import Signup from './Signup';
 import { useEffect, useState } from 'react';
 import TrainerHome from './TrainerHome';
-import SelectExercises from './NewWorkout/SelectExercises';
+import NavBar from './Navbar'
+import NewWorkoutForm from './NewWorkout/NewWorkoutForm';
+import About from './About';
+import ConfirmWorkout from './ConfirmWorkout';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [signUpFormOn, setSignUpFormOn] = useState(true)
 
   useEffect(()=>{
     fetch("/me").then((r)=>{
@@ -19,21 +23,35 @@ function App() {
     })
   },[])
 
-  if (!user) return (
-  <div>
+  let landingPage 
+
+  if (!user){
+    landingPage = (
+      <div>
     <Banner/>
-    <Login onLogin={setUser}/>
-    <Signup setUser={setUser}/>
+    <Login onLogin={setUser} user={user}/>
+    {signUpFormOn ? <Signup setUser={setUser} setSignUpFormOn={setSignUpFormOn}/> : ""}
   </div>
-  )
+    )
+  } else {
+    landingPage = (
+      <div className="start-page">
+        <Banner/>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<TrainerHome user={user} setUser={setUser}/>}/>
+          <Route path="/confirmworkout" element={<ConfirmWorkout/>}/>
+          <Route path="/newworkout" element={<NewWorkoutForm/>}/>
+          <Route path="About" element={<About/>}/>
+          <Route path="/trainerhome" element={<TrainerHome user={user} setUser={setUser}/>}/>
+        </Routes>
+      </div>
+    )
+  }
 
   return (
-    <div className="start-page">
-      <Banner/>
-      {/* <TrainerHome user={user} setUser={setUser}/> */}
-      
-    </div>
-  );
+      landingPage
+    );
 }
 
 export default App;

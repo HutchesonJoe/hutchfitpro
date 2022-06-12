@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :clients, only: [:create, :index, :destroy, :show]
     resources :workouts, only: [:index, :create, :destroy, :show, :update]
     resources :exercises, only: [:index, :create, :show, :update]
-    resources :client_workouts, only: [:create]
+    resources :client_workouts, only: [:create, :index]
     resources :workout_exercises, only: [:create]
     post "/newclient", to: "clients#create"
     post "/login", to: "sessions#create"
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "/me", to: "trainers#show"
     post "/signup", to: "trainers#create"
+    # post "/nextworkout", to: "client_workouts#create"
 
   
   # Routing logic: fallback requests for React Router.

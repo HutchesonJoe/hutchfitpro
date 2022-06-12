@@ -1,23 +1,38 @@
 import { useState, useEffect } from 'react';
-// import { Routes, Route, NavLink } from 'react-router-dom;'
+import { Routes, Route, Link } from 'react-router-dom';
 import ClientCard from './ClientCard';
 import AddClient from './AddClient';
 import WorkoutOptions from './WorkoutOptions'
+import App from './App'
 
 function TrainerHome({user, setUser}){
+  const [thisClient, setThisClient] = useState()
   const [clients, setClients] = useState([])
+  const [clientCardOn, setClientCardOn] = useState(false)
   const [addClient, setAddClient] = useState(false)
   const [addClientButtonText, setAddClientButtonText] = useState(false)
   const [openWorkouts, setOpenWorkouts] = useState(false)
-  
 
   useEffect(()=>{
     fetch("/myclients").then(r=>r.json()).then(clients=>setClients(clients))
   },[])
 
-  const clientList = clients.map((client)=><NavLink to = "/clientcard">{client.name}</NavLink>)
-  // <ClientCard client={client} key={client.id} clients ={clients} setClients={setClients} openWorkouts={openWorkouts} setOpenWorkouts={setOpenWorkouts}/>
+  function handleOpenClientCard(e){
+    const client = clients.find((cl)=>cl.id===parseInt(e.target.id))
+    setThisClient(client)
+    setClientCardOn(!clientCardOn)
+  }
+  let clientList
 
+  if(clients){
+    clientList = clients.map((client)=>{
+      return(<div>
+        <h3 onClick={handleOpenClientCard} id={client.id} className="client-name">{client.name}</h3>
+      </div>
+      )
+  })
+  }
+ 
   function openAddClientForm(){
     setAddClientButtonText(!addClientButtonText)
     setAddClient(!addClient)
@@ -34,22 +49,21 @@ function TrainerHome({user, setUser}){
   }
 
   return(
+    
     <div className='trainer-home'>
-      <Routes>
-        <Route exact path="/clientcard" element={<ClientCard/>}></Route>
-      </Routes>
+      {clientCardOn ? <ClientCard client={thisClient} clients={clients} setClients={setClients}/> : ""}
       <h2>Welcome, {user.name}!</h2>
-     
       <h3>Here's your current list of clients:</h3>
-      <div className="client-list">
-      {openWorkouts ? <WorkoutOptions/> : ""} 
+      <div className='client-list'>
+        {clientList}
+      <button onClick={openAddClientForm}>{addClientButtonText ? "Close" : "Add Client"}</button>
       </div>
       
-      <div className='client-list'>{clientList}</div>
-      <button onClick={openAddClientForm}>{addClientButtonText ? "Close" : "Add Client"}</button>
       <div>{addClient ? <AddClient trainer={user} clients={clients} setClients={setClients} addClient={addClient} setAddClient={setAddClient} setAddClientButtonText={setAddClientButtonText}/> : ""}</div>
-      <div id="logout-button"><button onClick={handleLogOut}>Log Out</button></div>
-
+      
+      <div id="logout-button">
+        <button onClick={handleLogOut}>Log Out</button>
+      </div>
       
     </div>
   )

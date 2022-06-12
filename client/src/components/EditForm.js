@@ -14,6 +14,7 @@ function EditForm({client, clients, setClients, editForm, setEditForm}){
   
   function handleEdit(e){
     e.preventDefault()
+    console.log(client.id, clients)
     setEditForm(!editForm)
     const clientUpdate = {
       email: newEmail,
@@ -27,7 +28,7 @@ function EditForm({client, clients, setClients, editForm, setEditForm}){
     
     const clientIndex = clients.findIndex((cl) => cl.id===client.id)
     const filteredClients = clients.filter((cl) => cl.id!==client.id)
-
+    console.log(clientIndex, filteredClients)
     fetch (`/clients/${client.id}/edit`, {
       method: "PATCH",
       headers: {
