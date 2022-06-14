@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Errors from './Errors'
 
-function EditForm({client, clients, setClients, editForm, setEditForm}){
+function EditForm({client, clients, setClients, editForm, setEditForm, setClientInfo}){
   
   const[newEmail, setEmail] = useState(client.email)
   const[newAge, setAge] = useState(client.age)
@@ -25,6 +25,8 @@ function EditForm({client, clients, setClients, editForm, setEditForm}){
       fitness_level: newLevel,
       workouts_per_week: newWorkouts
     }
+
+    setClientInfo(clientUpdate)
     
     const clientIndex = clients.findIndex((cl) => cl.id===client.id)
     const filteredClients = clients.filter((cl) => cl.id!==client.id)

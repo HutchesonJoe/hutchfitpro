@@ -34,6 +34,7 @@ button{
 }
 
 .login{
+  text-align: center;
   background-color: rgb(125, 181, 237);
   display: block;
   text-align: center;
@@ -41,6 +42,18 @@ button{
   width: 200px;
   border-width: 2px;
   border-style: inset;
+}
+
+.login label{
+  width: 75%;
+}
+.login input{
+  width: 75%;
+}
+
+.radio{
+  width: 100%;
+  display: inline-block;
 }
 
 .signup{
@@ -140,6 +153,10 @@ button{
   margin: 10px;
 }
 
+.client-name:hover{
+  color: peru
+}
+
 .navbar{
   background-color: blue;
   font-size: large;
@@ -148,14 +165,51 @@ button{
   border-radius: 15px;
 }
 
+a{
+ text-decoration: none;
+}
+
+a​:hover { color: green; }
+
 .navlink{
   color: white;
   display: inline-block;
   font-size: large;
+  font-weight: bold;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  width: 23%;
+  width: 32%;
+}
+
+#confirm-workout{
+  background-color: white;
+}
+
+.workout-title{
+  color: red;
+  border-width: 2px;
+  border-radius: 15px;
+}
+
+#workout-title-input{
+  width: 300px;
+}
+
+#workout-pending{
+  color: red;
+}
+
+#workout-completed{
+  color: green;
+}
+.workout-card{
+  border-width: 2px;
+}
+
+.workout-title{
+  font-size: large;
+  font-weight: bold;
 }
 /* #create-workout{
   width: 40%;

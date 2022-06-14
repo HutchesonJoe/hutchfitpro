@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Errors from './Errors';
 
-function Signup({setUser, signUpFormOn, setSignUpFormOn}){
+function Signup({setSignUpFormOn}){
   const [name, setName] = useState("")
   const [certs, setCerts] = useState("")
   const [userName, setUserName] = useState("")

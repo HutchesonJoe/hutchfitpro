@@ -19,6 +19,6 @@ class ClientWorkoutsController < ApplicationController
   private
 
   def client_workout_params
-    params.permit(:client_id, :workout_id)
+    params.permit(:client_id, :workout_id, :workout_title, :completed)
   end
 end

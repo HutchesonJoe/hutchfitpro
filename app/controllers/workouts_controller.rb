@@ -1,4 +1,6 @@
 class WorkoutsController < ApplicationController
+  
+  rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
 
   def index
     workouts = Workout.all
@@ -11,7 +13,7 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    workout = Workout.create(workout_params)
+    workout = Workout.create!(workout_params)
     render json: workout, status: :created
   end
 
@@ -32,6 +34,11 @@ class WorkoutsController < ApplicationController
   def workout_params
     params.permit(:title)
   end
+
+
+  def render_invalid_response(invalid)
+    render json: { errors: invalid.record.errors.full_messages }, status: 422
+   end
 
   #associated data???
 end

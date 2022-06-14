@@ -10,11 +10,11 @@ sophie = Trainer.create(name: "Sophie", username: "SoFit", email: "sofit@gmail.c
 
 #clients
 
-charl = Client.create(name: "Charl", email: "Singnceb@gmail.com", age: 41, feet: 6, inches: 4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id)
+charl = Client.create(name: "Charl", email: "Singnceb@gmail.com", age: 41, feet: 6, inches: 4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id, username: "Charl", assigned_password: hutch.name)
 
-jenn = Client.create(name: "Jenn", email: "jcolella@aol.com", age: 47, feet: 5, inches: 4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
+jenn = Client.create(name: "Jenn", email: "jcolella@aol.com", age: 47, feet: 5, inches: 4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id, username: "Jenn", assigned_password: sophie.name)
 
-fee = Client.create(name: "Felecia", email: "fharrelson@bmcc.cuny.edu", age: 49, feet: 5, inches: 8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id)
+fee = Client.create(name: "Felecia", email: "fharrelson@bmcc.cuny.edu", age: 49, feet: 5, inches: 8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id, username: "Felecia", assigned_password: sophie.name)
 
 #exercises
 
@@ -37,11 +37,11 @@ pullHinge = Workout.create(title: "Upper Pull and Hip Hinge")
 
 #join tables
 
-clientWorkout1 = ClientWorkout.create(client_id: jenn.id, workout_id: upperbody.id)
-clientWorkout2 = ClientWorkout.create(client_id: charl.id, workout_id: pullHinge.id)
-clientWorkout3 = ClientWorkout.create(client_id: jenn.id, workout_id: cardioCore.id)
-clientWorkout4 = ClientWorkout.create(client_id: jenn.id, workout_id: pullHinge.id)
-clientWorkout5 = ClientWorkout.create(client_id: jenn.id, workout_id: upperbody.id)
+clientWorkout1 = ClientWorkout.create(client_id: jenn.id, workout_id: upperbody.id, workout_title: "Upper Body", completed: true)
+clientWorkout2 = ClientWorkout.create(client_id: charl.id, workout_id: pullHinge.id, workout_title: "Upper Pull and Hip Hinge", completed: true)
+clientWorkout3 = ClientWorkout.create(client_id: jenn.id, workout_id: cardioCore.id, workout_title: "Cardio Core", completed: true)
+clientWorkout4 = ClientWorkout.create(client_id: jenn.id, workout_id: pullHinge.id,  workout_title: "Upper Pull and Hip Hinge", completed: true)
+clientWorkout5 = ClientWorkout.create(client_id: jenn.id, workout_id: upperbody.id, workout_title: "Upper Body", completed: false)
 
 workoutExercise1 = WorkoutExercise.create(workout_id: pullHinge.id, exercise_id: deadlift.id)
 workoutExercise2 = WorkoutExercise.create(workout_id: pullHinge.id, exercise_id: gluteBridge.id)

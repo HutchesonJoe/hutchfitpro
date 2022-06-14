@@ -9,7 +9,7 @@ import TrainerHome from './TrainerHome';
 import NavBar from './Navbar'
 import NewWorkoutForm from './NewWorkout/NewWorkoutForm';
 import About from './About';
-import ConfirmWorkout from './ConfirmWorkout';
+import SelectExercises from './NewWorkout/SelectExercises';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +33,10 @@ function App() {
     {signUpFormOn ? <Signup setUser={setUser} setSignUpFormOn={setSignUpFormOn}/> : ""}
   </div>
     )
+  } else if(user.trainer_id){
+    landingPage=(<div>
+      Client Home
+    </div>)
   } else {
     landingPage = (
       <div className="start-page">
@@ -40,8 +44,9 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<TrainerHome user={user} setUser={setUser}/>}/>
-          <Route path="/confirmworkout" element={<ConfirmWorkout/>}/>
+          {/* <Route path="/confirmworkout" element={<ConfirmWorkout/>}/> */}
           <Route path="/newworkout" element={<NewWorkoutForm/>}/>
+          <Route path="/newworkout/selectexercises" element={<SelectExercises/>}/>
           <Route path="About" element={<About/>}/>
           <Route path="/trainerhome" element={<TrainerHome user={user} setUser={setUser}/>}/>
         </Routes>

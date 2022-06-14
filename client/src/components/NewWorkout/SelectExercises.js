@@ -1,17 +1,37 @@
-import CreateExerciseForm from './CreateExerciseForm';
+import CreateExerciseForm from '../CreateExerciseForm';
 import { useEffect, useState } from 'react';
 
-function SelectExercises({formOn, setFormOn}){
-  const[exercises, setExercises] = useState([])
+function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
 
-  function handleSelect(){
-    console.log("Handle Select")
-  }
+  const[exercises, setExercises] = useState([])
+  
+  
   useEffect(()=>{
     fetch("./exercises").then(r=>r.json()).then((data)=>setExercises(data))
   },[])
+  
+  function handleSelect(e){
+    fetch(`/exercises/${e.target.id}`)
+      .then(r=>r.json())
+      .then(ex=>{
+        let selectedExercise = newWorkoutExercises.find((exercise)=>exercise.id===ex.id)
+        
+        if(!selectedExercise){
+          setNewWorkoutExercises([...newWorkoutExercises, ex])
+          
+        } else {
+          const filteredExercises = newWorkoutExercises.filter((exercise)=>exercise.id!==ex.id)
+          setNewWorkoutExercises(filteredExercises)
+        }
+      })
+  }
 
-  let workout = []
+  function handleSubmit(e){
+    debugger
+    e.preventDefault()
+    console.log("Handle submit")
+  }
+
   const exerciseList = exercises.map((ex)=>{
     return (<div>
       <input type="checkbox" id={ex.id} name={ex.name} value={ex.instructions} key={ex.name} onChange={handleSelect}/>
@@ -21,8 +41,8 @@ function SelectExercises({formOn, setFormOn}){
   })
   return(
     <div>
-      <div>{exerciseList}</div>
-      <div>{formOn ? <CreateExerciseForm exercises={exercises} setExercises={setExercises} setFormOn={setFormOn}/> : ""}</div>
+      <p>Select exercises:</p>
+        <div>{exerciseList}</div>
     </div>
     
   )

@@ -1,4 +1,5 @@
 class WorkoutExercisesController < ApplicationController
+  skip_before_action :authorized
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
 
   def index
@@ -12,7 +13,7 @@ class WorkoutExercisesController < ApplicationController
   end
 
   def create
-    workout_exercise = WorkoutExercise.create!()
+    workout_exercise = WorkoutExercise.create!(workout_exercise_params)
     render json: workout_exercise, status: :created
   end
 

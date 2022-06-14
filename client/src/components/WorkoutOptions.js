@@ -1,9 +1,13 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Workout from './Workout'
 
-function WorkoutOptions({client, setConfirm, nextWorkout, setNextWorkout}){
+function WorkoutOptions({client, setWorkoutOptionsOn, workoutOptionsOn, clientWorkouts, setClientWorkouts, setConfirm}){
   const[workouts, setWorkouts] = useState([])
   const[nextWorkoutId, setNextWorkoutId] = useState()
+  const[nextWorkoutTitle, setNextWorkoutTitle] = useState()
+  const[clientNextWorkout, setClientNextWorkout] = useState()
+  const[showWorkoutOn, setShowWorkoutOn] = useState(false)
 
   useEffect(()=>{
     fetch("/workouts")
@@ -13,16 +17,29 @@ function WorkoutOptions({client, setConfirm, nextWorkout, setNextWorkout}){
     })
   },[])
   
-  const workoutOptions = workouts.map((w)=> <option id={w.id} key={w.id} value={w.id} >{w.title}</option>)
+  const workoutOptions = workouts.map((w)=><option id={w.id} key={w.id} value={w.id} >{w.title}</option>)
 
   
   function handleSubmit(e){
     e.preventDefault()
     setConfirm(true)
+
+    setWorkoutOptionsOn(!workoutOptionsOn)
+
+    fetch(`/workouts/${nextWorkoutId}`)
+      .then(r=>r.json())
+      .then(w=>{
+        setNextWorkoutTitle(w.title)
+        setClientNextWorkout(w)
+      })
+    
     if(nextWorkoutId){
+      const workout = workouts.find((w)=>w.id===parseInt(nextWorkoutId))
       const nextWorkout = {
         client_id: client.id,
-        workout_id: parseInt(nextWorkoutId)
+        workout_id: workout.id,
+        workout_title: workout.title,
+        completed: false
       }
       
       fetch("/client_workouts",{
@@ -32,15 +49,18 @@ function WorkoutOptions({client, setConfirm, nextWorkout, setNextWorkout}){
         },
         body: JSON.stringify(nextWorkout)
       })
-      .then(r=>r.json()).then((data)=>setNextWorkout(data))
+      .then(r=>r.json()).then((data)=>{
+
+        setClientWorkouts([...clientWorkouts, data])
+      })
     }
   }
-
 
   return(
     <div className="workout-options">
       <form onSubmit={handleSubmit}>
-        <select onChange={(e)=>setNextWorkoutId(e.target.value)}>
+        <select 
+        onChange={(e)=>setNextWorkoutId(e.target.value)}>
           <option>Select Workout</option>
           {workoutOptions}
         </select>

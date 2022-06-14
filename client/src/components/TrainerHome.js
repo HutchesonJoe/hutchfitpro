@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
 import ClientCard from './ClientCard';
 import AddClient from './AddClient';
-import WorkoutOptions from './WorkoutOptions'
-import App from './App'
 
 function TrainerHome({user, setUser}){
   const [thisClient, setThisClient] = useState()
@@ -11,7 +8,6 @@ function TrainerHome({user, setUser}){
   const [clientCardOn, setClientCardOn] = useState(false)
   const [addClient, setAddClient] = useState(false)
   const [addClientButtonText, setAddClientButtonText] = useState(false)
-  const [openWorkouts, setOpenWorkouts] = useState(false)
 
   useEffect(()=>{
     fetch("/myclients").then(r=>r.json()).then(clients=>setClients(clients))
@@ -27,7 +23,7 @@ function TrainerHome({user, setUser}){
   if(clients){
     clientList = clients.map((client)=>{
       return(<div>
-        <h3 onClick={handleOpenClientCard} id={client.id} className="client-name">{client.name}</h3>
+        <h3 onClick={handleOpenClientCard} id={client.id} key={client.id} className="client-name">{client.name}</h3>
       </div>
       )
   })
@@ -51,7 +47,7 @@ function TrainerHome({user, setUser}){
   return(
     
     <div className='trainer-home'>
-      {clientCardOn ? <ClientCard client={thisClient} clients={clients} setClients={setClients}/> : ""}
+      {clientCardOn ? <ClientCard client={thisClient} clients={clients} setClients={setClients} clientCardOn={clientCardOn} setClientCardOn={setClientCardOn}/> : ""}
       <h2>Welcome, {user.name}!</h2>
       <h3>Here's your current list of clients:</h3>
       <div className='client-list'>

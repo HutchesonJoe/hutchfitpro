@@ -33,7 +33,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.permit(:name, :email, :age, :feet, :inches, :weight, :fitness_level, :workouts_per_week, :trainer_id)
+    params.permit(:name, :email, :age, :feet, :inches, :weight, :fitness_level, :workouts_per_week, :trainer_id, :username, :assigned_password)
   end
 
   def render_invalid_response(invalid)
