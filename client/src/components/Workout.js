@@ -15,7 +15,7 @@ function Workout({workout}){
   let exerciseList
 
   if(fullWorkout){
-    exerciseList = fullWorkout.exercises.map(ex=><Exercise exercise={ex}/>)
+    exerciseList = fullWorkout.exercises.map(ex=><Exercise exercise={ex} key={ex.id}/>)
   }
 
  

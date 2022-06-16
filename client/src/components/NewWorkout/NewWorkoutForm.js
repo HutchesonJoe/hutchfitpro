@@ -17,6 +17,7 @@ function NewWorkoutForm({}){
     e.preventDefault()
     setTitleInputOn(!titleInputOn)
     setSelectExercisesOn(!selectExercisesOn)
+    //this posts the title with no exercises...
     fetch("/workouts",{
       method: "POST",
       headers: {
@@ -57,6 +58,7 @@ function NewWorkoutForm({}){
         },
         body: JSON.stringify(exercise)     
       })
+      // don't need these
         .then(r=>r.json())
         .then(ex=>console.log(ex))
     })

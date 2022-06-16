@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 import Workout from './Workout'
 
 function WorkoutOptions({client, setWorkoutOptionsOn, workoutOptionsOn, clientWorkouts, setClientWorkouts, setConfirm}){
+  //this state needs to move up a component
   const[workouts, setWorkouts] = useState([])
   const[nextWorkoutId, setNextWorkoutId] = useState()
-  const[nextWorkoutTitle, setNextWorkoutTitle] = useState()
-  const[clientNextWorkout, setClientNextWorkout] = useState()
-  const[showWorkoutOn, setShowWorkoutOn] = useState(false)
+  // const[nextWorkoutTitle, setNextWorkoutTitle] = useState()
+  // const[clientNextWorkout, setClientNextWorkout] = useState()
+  // const[showWorkoutOn, setShowWorkoutOn] = useState(false)
 
   useEffect(()=>{
     fetch("/workouts")
@@ -28,10 +29,10 @@ function WorkoutOptions({client, setWorkoutOptionsOn, workoutOptionsOn, clientWo
 
     fetch(`/workouts/${nextWorkoutId}`)
       .then(r=>r.json())
-      .then(w=>{
-        setNextWorkoutTitle(w.title)
-        setClientNextWorkout(w)
-      })
+      // .then(w=>{
+      //   setNextWorkoutTitle(w.title)
+      //   setClientNextWorkout(w)
+      // })
     
     if(nextWorkoutId){
       const workout = workouts.find((w)=>w.id===parseInt(nextWorkoutId))

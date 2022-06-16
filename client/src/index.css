@@ -20,9 +20,10 @@ code {
 
 
 .header{
-  font-size: xx-large;
+  font-size: xxx-large;
+  font-weight: bold;
   margin: auto;
-  width: 200px;
+  width: 100%;
 }
 
 input{
@@ -39,7 +40,7 @@ button{
   display: block;
   text-align: center;
   margin: auto;
-  width: 200px;
+  width: 250px;
   border-width: 2px;
   border-style: inset;
 }
@@ -51,9 +52,28 @@ button{
   width: 75%;
 }
 
-.radio{
-  width: 100%;
-  display: inline-block;
+radio{
+  font-size: smaller;
+  display: inline;
+  /* position: relative; */
+  /* padding-left: 35px; */
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 50%;
+}
+
+radio input{
+  float: right;
+  position: relative;
+}
+radio label {
+  float: right;
+  width: 30%;
 }
 
 .signup{
@@ -61,7 +81,7 @@ button{
   display: block;
   text-align: center;
   margin: auto;
-  width: 200px;
+  width: 250px;
   position: relative;
   /* display: inline-block; */
   border-width: 2px;
@@ -203,13 +223,35 @@ a​:hover { color: green; }
 #workout-completed{
   color: green;
 }
+
+#completed{
+  color: blue;
+}
 .workout-card{
   border-width: 2px;
+  font-weight: bold;
 }
 
 .workout-title{
   font-size: large;
   font-weight: bold;
+}
+
+#next-workout{
+  color: black;
+  background-color: white;
+  padding: 10px;
+  border-width: 2px;
+  border-style: groove;
+}
+
+.radio input{
+  display: block;
+}
+
+.radio label{
+  display: inline-block;
+  /* width: 50% */
 }
 /* #create-workout{
   width: 40%;

@@ -26,12 +26,6 @@ function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
       })
   }
 
-  function handleSubmit(e){
-    debugger
-    e.preventDefault()
-    console.log("Handle submit")
-  }
-
   const exerciseList = exercises.map((ex)=>{
     return (<div>
       <input type="checkbox" id={ex.id} name={ex.name} value={ex.instructions} key={ex.name} onChange={handleSelect}/>

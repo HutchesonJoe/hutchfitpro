@@ -1,6 +1,6 @@
 
 // import './App.css';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Banner from './Banner';
 import Login from './Login';
 import Signup from './Signup';
@@ -14,7 +14,8 @@ import SelectExercises from './NewWorkout/SelectExercises';
 function App() {
   const [user, setUser] = useState(null);
   const [signUpFormOn, setSignUpFormOn] = useState(true)
-
+  const [nextClientWorkoutOn, setNextClientWorkoutOn] = useState(false)
+ 
   useEffect(()=>{
     fetch("/me").then((r)=>{
       if (r.ok) {
@@ -29,26 +30,21 @@ function App() {
     landingPage = (
       <div>
     <Banner/>
-    <Login onLogin={setUser} user={user}/>
+    <Login onLogin={setUser} user={user} nextClientWorkoutOn={nextClientWorkoutOn} setNextClientWorkoutOn={setNextClientWorkoutOn}/>
     {signUpFormOn ? <Signup setUser={setUser} setSignUpFormOn={setSignUpFormOn}/> : ""}
   </div>
     )
-  } else if(user.trainer_id){
-    landingPage=(<div>
-      Client Home
-    </div>)
   } else {
     landingPage = (
       <div className="start-page">
         <Banner/>
         <NavBar/>
         <Routes>
-          <Route path="/" element={<TrainerHome user={user} setUser={setUser}/>}/>
-          {/* <Route path="/confirmworkout" element={<ConfirmWorkout/>}/> */}
-          <Route path="/newworkout" element={<NewWorkoutForm/>}/>
-          <Route path="/newworkout/selectexercises" element={<SelectExercises/>}/>
-          <Route path="About" element={<About/>}/>
-          <Route path="/trainerhome" element={<TrainerHome user={user} setUser={setUser}/>}/>
+          <Route exact path="/newworkout" element={<NewWorkoutForm user={user}/>}/>
+          <Route exact path="/newworkout/selectexercises" element={<SelectExercises/>}/>
+          <Route exact path="/about" element={<About/>}/>
+          <Route exact path="/trainerhome" element={<TrainerHome user={user} setUser={setUser}/>}/>
+          <Route exact path="/" element={<TrainerHome user={user} setUser={setUser}/>}/>
         </Routes>
       </div>
     )

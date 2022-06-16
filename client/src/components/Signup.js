@@ -39,12 +39,14 @@ function Signup({setSignUpFormOn}){
     <div className="signup" >
       <form onSubmit={handleSubmit}>
         <label>New to HutchFit PRO?</label>
+        <div>
         <input placeholder="Your First Name" onChange={(e)=>setName(e.target.value)}></input>
         <input placeholder="Certifications" onChange={(e)=>setCerts(e.target.value)}></input>
         <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input>
         <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input>
         <input placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
         <input placeholder="Confirm Password" onChange={(e)=>setPassConf(e.target.value)}></input>
+        </div>
         <button type="Submit">submit</button>
       </form>
       <Errors errors={errors}/>
