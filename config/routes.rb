@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api do
+  
 
     resources :trainers, only: [:show, :create, :index]
     resources :sessions, only: [:create]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     #should this be in my resources above???
     post "/signup", to: "trainers#create"
     # post "/nextworkout", to: "client_workouts#create"
-  end
+  
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
