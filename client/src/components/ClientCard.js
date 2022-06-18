@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import EditForm from './EditForm';
 import WorkoutOptions from './WorkoutOptions';
-import NewWorkoutForm from './NewWorkout/NewWorkoutForm';
 import Workout from './Workout'
 
 function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn}){
   const[editFormOpen, setEditFormOpen] = useState(false)
   const[workoutOptionsOn, setWorkoutOptionsOn] = useState(false)
-  // const[nextWorkout, setNextWorkout] = useState()
   const[clientWorkouts, setClientWorkouts] = useState([])
   const[confirm, setConfirm] = useState(false)
   const[clientInfo, setClientInfo] = useState(client)
@@ -50,7 +48,7 @@ function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn}
       <button onClick={handleDelete}>Delete Client</button>
       <div>{editFormOpen ? <EditForm client = {client} clients = {clients} setClients = {setClients} editForm={editFormOpen} setEditForm={setEditFormOpen} clientInfo={clientInfo} setClientInfo={setClientInfo}/> : ""}</div>
       <div className="client-workouts">
-        <p>Most recent workouts (in chronological order):</p>
+        <p>Last three workouts (click for more details):</p>
         <ul>
           {clientRecentWorkouts}
         </ul>

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Errors from '../Errors'
 import SelectExercises from './SelectExercises';
 
-function NewWorkoutForm({}){
+function NewWorkoutForm(){
   const[title, setTitle] = useState("")
-  const[workoutId, setWorkoutId] = useState()
+  // const[workoutId, setWorkoutId] = useState()
   const[titleInputOn, setTitleInputOn] = useState(true)
   const[submitted, setSubmitted] = useState(false)
   const[formOn, setFormOn] = useState(false)
@@ -49,35 +49,12 @@ function NewWorkoutForm({}){
           r.json().then((data)=>{
             console.log(data)
             setTitle(data.title)
-            setWorkoutId(data.id)
+            // setWorkoutId(data.id)
           })
-//           .then(()=>{
-// //Why is 
-//             newWorkoutExercises.map((ex)=>{
-//               console.log(workoutId)
-//               const exercise = { exercise_id: ex.id, workout_id: workoutId}
-//               console.log(exercise)
-//               fetch('/workout_exercises',{
-//                 method: "POST",
-//                 headers: {
-//                   "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify(exercise)     
-//               })
-//               // don't need these
-//                 .then(r=>r.json())
-//                 .then(ex=>console.log(ex))
-//             })
-// ///
-//           })
         } else {
           r.json().then((err) => setErrors(err.errors))
         }
       })
-    ////Do I need a callback here like "handle submit Exercises?"
-    function handleSubmitEachExercise(){
-
-    }
     
   }
  

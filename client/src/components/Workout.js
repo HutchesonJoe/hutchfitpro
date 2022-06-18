@@ -20,7 +20,7 @@ function Workout({workout}){
 
  
   return(
-    <div>
+    <div className="workout-card">
       <li id={workout.completed ? "workout-completed" : "workout-pending"} className="workout-title" onClick={handleShowWorkout}>{workout.workout_title}</li>
       {showWorkout ? 
       <div>
