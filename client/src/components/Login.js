@@ -30,7 +30,7 @@ function Login({onLogin}){
      <form  onSubmit={handleTrainerSubmit}>
       
       <input placeholder="Username" onChange={(e)=>setUsername(e.target.value)}></input>
-      <input placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
+      <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
       <button type="submit">submit</button>
       <Errors errors = {errors}/>
      </form>
