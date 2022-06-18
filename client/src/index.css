@@ -120,6 +120,19 @@ radio label {
   width: 40%;
 }
 
+.add-client-form input{
+  width: 90%;
+}
+
+.add-client-form select{
+  width: 90%;
+}
+
+.edit-form select {
+  width: 90%
+
+}
+
 #logout-button{
   float: left;
 }
@@ -194,7 +207,7 @@ a​:hover { color: green; }
 .navlink{
   color: white;
   display: inline-block;
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
   text-align: center;
   margin-left: auto;
@@ -252,6 +265,11 @@ a​:hover { color: green; }
 .radio label{
   display: inline-block;
   /* width: 50% */
+}
+
+#about-page{
+  padding: 10px;
+  font-size: x-large;
 }
 /* #create-workout{
   width: 40%;

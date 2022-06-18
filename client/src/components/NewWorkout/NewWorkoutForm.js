@@ -17,27 +17,6 @@ function NewWorkoutForm({}){
     e.preventDefault()
     setTitleInputOn(!titleInputOn)
     setSelectExercisesOn(!selectExercisesOn)
-    //this posts the title with no exercises...
-    fetch("/workouts",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-      title
-    })
-    })
-      .then((r) => {
-        if(r.ok){
-          r.json().then((data)=>{
-            console.log(data)
-            setTitle(data.title)
-            setWorkoutId(data.id)
-          })
-        } else {
-          r.json().then((err) => setErrors(err.errors))
-        }
-      })
       
   }
   
@@ -47,21 +26,59 @@ function NewWorkoutForm({}){
     e.preventDefault()
     setSubmitted(!submitted)
     setSelectExercisesOn(!selectExercisesOn)
-    newWorkoutExercises.map((ex)=>{
-      //can I patchc all the exercises to the workout_exercise? 
-      const exercise = { exercise_id: ex.id, workout_id: workoutId}
-      console.log(exercise)
-      fetch('/workout_exercises',{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(exercise)     
-      })
-      // don't need these
-        .then(r=>r.json())
-        .then(ex=>console.log(ex))
+
+    let exerciseIds = newWorkoutExercises.map((ex)=>{
+      return({exercise_id: parseInt(ex)})
     })
+    console.log(exerciseIds)
+   
+    fetch("/workouts",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+      workout: {
+        title,
+        exercise_ids : exerciseIds
+      }
+    })
+    })
+      .then((r) => {
+        if(r.ok){
+          r.json().then((data)=>{
+            console.log(data)
+            setTitle(data.title)
+            setWorkoutId(data.id)
+          })
+//           .then(()=>{
+// //Why is 
+//             newWorkoutExercises.map((ex)=>{
+//               console.log(workoutId)
+//               const exercise = { exercise_id: ex.id, workout_id: workoutId}
+//               console.log(exercise)
+//               fetch('/workout_exercises',{
+//                 method: "POST",
+//                 headers: {
+//                   "Content-Type": "application/json",
+//                 },
+//                 body: JSON.stringify(exercise)     
+//               })
+//               // don't need these
+//                 .then(r=>r.json())
+//                 .then(ex=>console.log(ex))
+//             })
+// ///
+//           })
+        } else {
+          r.json().then((err) => setErrors(err.errors))
+        }
+      })
+    ////Do I need a callback here like "handle submit Exercises?"
+    function handleSubmitEachExercise(){
+
+    }
+    
   }
  
   function handleNavigate(){

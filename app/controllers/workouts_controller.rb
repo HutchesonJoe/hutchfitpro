@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  skip_before_action :authorized, only: [:show, :index]
+  skip_before_action :authorized, only: [:show, :index, :create]
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
 
   def index
@@ -13,9 +13,17 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    workout = Workout.create!(workout_params)
+
+    workout = Workout.create!(title: params[:workout][:title])
+    params[:workout][:exercise_ids].each do |ex_id_obj|
+      # byebug
+      exercise_id = ex_id_obj[:exercise_id]
+      workout.workout_exercises.create(exercise_id: exercise_id)
+    end
     render json: workout, status: :created
   end
+
+  #params_title, params_exercise_id
 
   def destroy
     workout = Workout.find(params[:id])
@@ -32,8 +40,15 @@ class WorkoutsController < ApplicationController
   private
 
   def workout_params
-    params.permit(:title)
+    params.permit(
+      :id, :title, :exercise_ids,
+      exercise_attributes: [:exercise_ids]
+    )
   end
+
+  # def workout_exercise_params
+  #   params.require(:exercise_ids).permit(exercise_ids[:exercise_id])
+  # end
 
 
   def render_invalid_response(invalid)
@@ -42,3 +57,5 @@ class WorkoutsController < ApplicationController
 
   #associated data???
 end
+
+#this is the code I need to work: workout.workout_exercises.create([{exercise_id: 1}, {exercise_id: 2}])

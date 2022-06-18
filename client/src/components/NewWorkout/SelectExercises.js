@@ -11,19 +11,16 @@ function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
   },[])
   
   function handleSelect(e){
-    fetch(`/exercises/${e.target.id}`)
-      .then(r=>r.json())
-      .then(ex=>{
-        let selectedExercise = newWorkoutExercises.find((exercise)=>exercise.id===ex.id)
-        
-        if(!selectedExercise){
-          setNewWorkoutExercises([...newWorkoutExercises, ex])
-          
-        } else {
-          const filteredExercises = newWorkoutExercises.filter((exercise)=>exercise.id!==ex.id)
-          setNewWorkoutExercises(filteredExercises)
-        }
-      })
+    let selectedExercise = newWorkoutExercises.find((id)=>id===e.target.id)
+    if(!selectedExercise){
+       setNewWorkoutExercises([...newWorkoutExercises, e.target.id])
+       
+    } else {
+      const filteredExercises = newWorkoutExercises.filter((exercise)=>exercise!==e.target.id)
+      setNewWorkoutExercises(filteredExercises)
+     
+      }    
+      
   }
 
   const exerciseList = exercises.map((ex)=>{
