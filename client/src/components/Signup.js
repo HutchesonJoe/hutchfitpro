@@ -44,8 +44,8 @@ function Signup({setSignUpFormOn}){
         <input placeholder="Certifications" onChange={(e)=>setCerts(e.target.value)}></input>
         <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input>
         <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input>
-        <input placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
-        <input placeholder="Confirm Password" onChange={(e)=>setPassConf(e.target.value)}></input>
+        <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
+        <input placeholder="Confirm Password" type="password" onChange={(e)=>setPassConf(e.target.value)}></input>
         </div>
         <button type="Submit">submit</button>
       </form>

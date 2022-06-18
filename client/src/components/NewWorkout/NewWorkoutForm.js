@@ -5,7 +5,6 @@ import SelectExercises from './SelectExercises';
 
 function NewWorkoutForm(){
   const[title, setTitle] = useState("")
-  // const[workoutId, setWorkoutId] = useState()
   const[titleInputOn, setTitleInputOn] = useState(true)
   const[submitted, setSubmitted] = useState(false)
   const[formOn, setFormOn] = useState(false)

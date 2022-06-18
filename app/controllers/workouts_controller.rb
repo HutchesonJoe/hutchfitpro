@@ -13,17 +13,14 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-
     workout = Workout.create!(title: params[:workout][:title])
     params[:workout][:exercise_ids].each do |ex_id_obj|
-      # byebug
       exercise_id = ex_id_obj[:exercise_id]
       workout.workout_exercises.create(exercise_id: exercise_id)
     end
     render json: workout, status: :created
   end
 
-  #params_title, params_exercise_id
 
   def destroy
     workout = Workout.find(params[:id])
@@ -45,11 +42,6 @@ class WorkoutsController < ApplicationController
       exercise_attributes: [:exercise_ids]
     )
   end
-
-  # def workout_exercise_params
-  #   params.require(:exercise_ids).permit(exercise_ids[:exercise_id])
-  # end
-
 
   def render_invalid_response(invalid)
     render json: { errors: invalid.record.errors.full_messages }, status: 422

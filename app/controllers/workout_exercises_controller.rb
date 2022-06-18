@@ -12,12 +12,6 @@ class WorkoutExercisesController < ApplicationController
     render json: workout_exercise
   end
 
-  # def create
-  #   workout_exercise = WorkoutExercise.create!(workout_exercise_params)
-  #   workout = Workout.find(workout_exercise_params.workout_id)
-  #   render json: workout_exercise, status: :created
-  # end
- #accepts_nested_attributes_for
   private
 
   def workout_exercise_params
