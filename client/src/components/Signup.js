@@ -12,7 +12,7 @@ function Signup({setSignUpFormOn}){
   
   function handleSubmit(e){
     e.preventDefault()
-    setSignUpFormOn(false)
+    // setSignUpFormOn(false)
     const newUser = {
       name, 
       certifications: certs,
