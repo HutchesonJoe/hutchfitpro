@@ -63,6 +63,7 @@ function AddClient({clients, setClients, trainer, addClient, setAddClient, setAd
          <option>Intermediate</option>
          <option>Advanced</option>
        </select>
+       <div>
        <label>How many workouts a week? (maximum 5)</label>
        <select onChange={(e)=>setWorkouts(e.target.value)}>
          <option>1</option>
@@ -72,6 +73,8 @@ function AddClient({clients, setClients, trainer, addClient, setAddClient, setAd
          <option>5</option>
          <option>6</option>
        </select>
+       </div>
+      
        <Errors errors={errors}/>
 
        <button type="submit">Submit</button>
