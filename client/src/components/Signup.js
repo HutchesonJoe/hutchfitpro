@@ -12,7 +12,7 @@ function Signup({setSignUpFormOn}){
   
   function handleSubmit(e){
     e.preventDefault()
-    // setSignUpFormOn(false)
+    
     const newUser = {
       name, 
       certifications: certs,
@@ -29,6 +29,9 @@ function Signup({setSignUpFormOn}){
       },
       body: JSON.stringify(newUser)
     }).then((r) => {
+      if (r.ok) {
+        r.json().then(()=>setErrors(["Success! Log in above."]))
+      }
       if (!r.ok) {
         r.json().then((err) => setErrors(err.errors))
       }
