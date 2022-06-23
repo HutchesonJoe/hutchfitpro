@@ -28,7 +28,7 @@ function AddClient({clients, setClients, trainer, addClient, setAddClient, setAd
       trainer_id: trainer.id
     }
     
-    fetch("/newclient",{
+    fetch("/clients",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
