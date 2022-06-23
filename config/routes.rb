@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     # get "/clients/:id", to: "clients#show"
     #should this be in my resources above???
     # patch "/clients/:id/edit", to: "clients#update"
-    # delete "/logout", to: "sessions#destroy"
+    delete "/logout", to: "sessions#destroy"
     get "/me", to: "trainers#show"
     post "/signup", to: "trainers#create"
     # post "/nextworkout", to: "client_workouts#create"
