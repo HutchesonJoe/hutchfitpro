@@ -47,7 +47,6 @@ class WorkoutsController < ApplicationController
     render json: { errors: invalid.record.errors.full_messages }, status: 422
    end
 
-  #associated data???
+
 end
 
-#this is the code I need to work: workout.workout_exercises.create([{exercise_id: 1}, {exercise_id: 2}])

@@ -84,9 +84,9 @@ radio label {
   border-style: inset;
 }
 
-.errors{
+#errors{
   color: red;
-  font-size: small;
+  font-size:medium;
   margin: 5px;
   text-align: left;
 }
@@ -104,7 +104,7 @@ radio label {
   margin: 10px;
   width: 40%;
   color: black;
-  background-color: rgba(0, 0, 255, 0.189);
+  background-color: rgb(241, 241, 244);
   float: right;
 }
 
@@ -148,8 +148,8 @@ radio label {
 }
 
 .exercise-name{
-  width: 100%;
-  background-color: black;
+  background-color: rgb(8, 8, 152);
+  padding: 5px;
   color: white;
 }
 
@@ -272,11 +272,17 @@ a​:hover { color: green; }
 
 .exercise{
   line-height: normal;
+  font-size: large;
   padding: 10px;
   margin-top: 0;
   border-color: blue;
   border-style: double;
   border-width: 2px;
+}
+
+#exercise-collection{
+  float: top;
+  width: 40%;
 }
 /* #create-workout{
   width: 40%;

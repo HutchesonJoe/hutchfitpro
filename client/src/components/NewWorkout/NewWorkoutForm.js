@@ -48,7 +48,7 @@ function NewWorkoutForm(){
           r.json().then((data)=>{
             console.log(data)
             setTitle(data.title)
-            // setWorkoutId(data.id)
+            
           })
         } else {
           r.json().then((err) => setErrors(err.errors))

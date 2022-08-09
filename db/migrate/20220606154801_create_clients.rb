@@ -10,8 +10,9 @@ class CreateClients < ActiveRecord::Migration[6.1]
       t.string :fitness_level
       t.integer :workouts_per_week
       t.string :username
-      t.string :assigned_password
+      t.string :password_digest
       t.integer :trainer_id
+      t.boolean :is_trainer
 
       t.timestamps
     end

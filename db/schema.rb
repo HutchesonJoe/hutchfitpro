@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_205031) do
+ActiveRecord::Schema.define(version: 2022_08_05_224114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "client_exercises", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "exercise_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "client_workouts", force: :cascade do |t|
     t.integer "workout_id"
@@ -34,8 +41,9 @@ ActiveRecord::Schema.define(version: 2022_06_07_205031) do
     t.string "fitness_level"
     t.integer "workouts_per_week"
     t.string "username"
-    t.string "assigned_password"
+    t.string "password_digest"
     t.integer "trainer_id"
+    t.boolean "is_trainer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_205031) do
     t.string "email"
     t.string "certifications"
     t.string "password_digest"
+    t.boolean "is_trainer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

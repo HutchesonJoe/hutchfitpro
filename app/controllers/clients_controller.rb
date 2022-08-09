@@ -23,6 +23,11 @@ class ClientsController < ApplicationController
     render json: client
   end
 
+  def alphabetize
+    clients = Client.order(:name)
+    render json: clients
+  end
+
   def destroy
     #associated data?
     client = Client.find(params[:id])
@@ -33,7 +38,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.permit(:name, :email, :age, :feet, :inches, :weight, :fitness_level, :workouts_per_week, :trainer_id, :username, :assigned_password)
+    params.permit(:name, :email, :age, :feet, :inches, :weight, :fitness_level, :workouts_per_week, :trainer_id, :username)
   end
 
   def render_invalid_response(invalid)

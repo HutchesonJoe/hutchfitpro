@@ -7,10 +7,10 @@ class TrainersController < ApplicationController
     render json: trainers
   end
 
-  def show
-    trainer = Trainer.find_by(id: session[:trainer_id])
-    render json: trainer
-  end
+  # def show
+  #   trainer = Trainer.find_by(id: session[:trainer_id])
+  #   render json: trainer
+  # end
 
   def create
     trainer = Trainer.create!(trainer_params)

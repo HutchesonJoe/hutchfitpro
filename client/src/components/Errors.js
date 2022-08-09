@@ -9,7 +9,7 @@ function Errors({errors}){
     errorList = ""
   }
   return(
-    <div className="errors">
+    <div id="errors">
       <ul>{errorList}</ul>
     </div>
     

@@ -4,11 +4,17 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router}  from 'react-router-dom'
+import { UserProvider } from './components/context/UserContext'
+import { ExerciseRepProvider } from './components/context/ExerciseRepContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <UserProvider>
+        <ExerciseRepProvider>
+          <App />
+        </ExerciseRepProvider>
+      </UserProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

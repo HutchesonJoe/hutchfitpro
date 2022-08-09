@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Errors from './Errors';
 
 function AddClient({clients, setClients, trainer, addClient, setAddClient, setAddClientButtonText}){
+  
   const[name, setName] = useState("")
   const[email, setEmail] = useState("")
   const[age, setAge] = useState()
@@ -27,7 +28,7 @@ function AddClient({clients, setClients, trainer, addClient, setAddClient, setAd
       workouts_per_week: workouts,
       trainer_id: trainer.id
     }
-    
+    console.log(newClient)
     fetch("/clients",{
       method: "POST",
       headers: {

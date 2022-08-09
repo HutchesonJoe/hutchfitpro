@@ -1,5 +1,7 @@
 class ExercisesController < ApplicationController
-  
+  #remember to remove this
+  skip_before_action :authorized
+
   def index
     exercises = Exercise.all
     render json: exercises

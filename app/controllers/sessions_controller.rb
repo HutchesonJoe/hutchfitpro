@@ -1,31 +1,57 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:create, :destroy, :index]
+  skip_before_action :authorized, only: [:create, :show, :destroy, :index]
 
   def create
-    @trainer = Trainer.find_by(username: params[:username])
-    # @client = Client.find_by(username: params[:username])
-    if @trainer&.authenticate(params[:password])
-      # :user_id??
-      session[:trainer_id] = @trainer.id
-      render json: @trainer, status: :created
-    # elsif @client&.authenticate(params[:password])
-    #   
-    #   session[:client_id] = @client.id
-    #   render json: @cleint, status: :created
+    if(params[:isTrainer])
+     session[:is_trainer] = @is_trainer
+     trainer_user
+    elsif(params[:isTrainer]==false)
+     client_user
+    end
+  #  byebug
+    if @user&.authenticate(params[:password])
+
+      session[:user_id] = @user.id
+      session[:is_trainer] = @is_trainer
+      render json: @user, status: :created
+
     else
       render json: {errors: ["Invalid username or password"]}, status: :unauthorized
     end
   end
-  #move below to client_controller?
-  def index
-    trainer = Trainer.find(session[:trainer_id])
-    clients = trainer.clients
-    render json: clients
+  #Not sure this is where this action would go
+  # def index
+  #   trainer = Trainer.find(session[:user_id])
+  #   clients = trainer.clients
+  #   render json: clients
+  # end
+
+  def show
+    
+    if session[:is_trainer]
+      user = Trainer.find_by(id: session[:user_id])
+    else
+      user = Client.find_by(id: session[:user_id])
+    end
+    # byebug
+    render json: user
   end
 
   def destroy
     session.delete :trainer_id
     head :no_content
+  end
+
+  def client_user
+    @user = Client.find_by!(username: params[:username])
+    #is this redundant
+    @is_trainer = false
+  end
+
+  def trainer_user
+    @user = Trainer.find_by!(username: params[:username])
+    #is this redundant
+    @is_trainer = true
   end
 
 end

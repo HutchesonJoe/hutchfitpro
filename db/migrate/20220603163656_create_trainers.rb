@@ -6,6 +6,7 @@ class CreateTrainers < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :certifications
       t.string :password_digest
+      t.boolean :is_trainer
       t.timestamps
     end
   end

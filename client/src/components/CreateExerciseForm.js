@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function CreateExerciseForm({exercises, setExercises, setFormOn}){
+function CreateExerciseForm({exerciseRep, setExerciseRep, setCreateExOn}){
   const[exerciseName, setExerciseName] = useState("")
   const[instructions, setInstructions] = useState("")
   const[category, setCategory] = useState()
@@ -13,14 +13,14 @@ function CreateExerciseForm({exercises, setExercises, setFormOn}){
   
   function handleSubmit(e){
     e.preventDefault()
-    setFormOn(false)
+    setCreateExOn(false)
     fetch("/exercises", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newExercise)
-    }).then((r)=>r.json()).then(data=>setExercises([...exercises, data]))
+    }).then((r)=>r.json()).then(data=>setExerciseRep([...exerciseRep, data]))
   }
   return(
     <div>
@@ -42,4 +42,4 @@ function CreateExerciseForm({exercises, setExercises, setFormOn}){
   )
 }
 
-// export default CreateExerciseForm
+export default CreateExerciseForm
