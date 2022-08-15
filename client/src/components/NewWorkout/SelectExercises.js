@@ -1,15 +1,8 @@
 import CreateExerciseForm from '../CreateExerciseForm';
 import { useEffect, useState } from 'react';
 
-function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
-
-  const[exercises, setExercises] = useState([])
-  
-  
-  useEffect(()=>{
-    fetch("./exercises").then(r=>r.json()).then((data)=>setExercises(data))
-  },[])
-  
+function SelectExercises({clientExercises, newWorkoutExercises, setNewWorkoutExercises}){
+  console.log(clientExercises)
   function handleSelect(e){
     let selectedExercise = newWorkoutExercises.find((id)=>id===e.target.id)
     if(!selectedExercise){
@@ -23,7 +16,7 @@ function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
       
   }
 
-  const exerciseList = exercises.map((ex)=>{
+  const exerciseList = clientExercises.map((ex)=>{
     return (<div>
       <input type="checkbox" id={ex.id} name={ex.name} value={ex.instructions} key={ex.name} onChange={handleSelect}/>
       <label htmlFor={ex.name} key={ex.id}>{ex.name}, <em>{ex.category}</em></label>

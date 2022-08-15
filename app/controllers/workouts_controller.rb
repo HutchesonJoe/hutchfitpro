@@ -13,6 +13,7 @@ class WorkoutsController < ApplicationController
   end
 
   def create
+    #how do I get weights and reps up to this???
     workout = Workout.create!(title: params[:workout][:title])
     params[:workout][:exercise_ids].each do |ex_id_obj|
       exercise_id = ex_id_obj[:exercise_id]

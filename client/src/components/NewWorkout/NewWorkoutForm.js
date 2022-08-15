@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
+// import { ExerciseRepContext } from '../context/ExerciseRepContext';
+import { UserContext } from '../context/UserContext';
 import Errors from '../Errors'
 import SelectExercises from './SelectExercises';
 
-function NewWorkoutForm(){
+function NewWorkoutForm({clientExercises}){
+  // const[user] = useContext(UserContext)
+  console.log(clientExercises)
   const[title, setTitle] = useState("")
   const[titleInputOn, setTitleInputOn] = useState(true)
   const[submitted, setSubmitted] = useState(false)
@@ -12,11 +16,14 @@ function NewWorkoutForm(){
   const[selectExercisesOn, setSelectExercisesOn] = useState(false) 
   const[newWorkoutExercises, setNewWorkoutExercises] = useState([])
 
+  useEffect(()=>{
+    
+  },[])
+
   function handleSubmitTitle(e){
     e.preventDefault()
     setTitleInputOn(!titleInputOn)
     setSelectExercisesOn(!selectExercisesOn)
-      
   }
   
   const navigate = useNavigate()
@@ -29,7 +36,6 @@ function NewWorkoutForm(){
     let exerciseIds = newWorkoutExercises.map((ex)=>{
       return({exercise_id: parseInt(ex)})
     })
-    console.log(exerciseIds)
    
     fetch("/workouts",{
       method: "POST",
@@ -56,7 +62,8 @@ function NewWorkoutForm(){
       })
     
   }
- 
+
+  //Is this the right way? probably not a useNavigate. Probably switch to conditional.
   function handleNavigate(){
     navigate(-1)
   }
@@ -71,7 +78,7 @@ function NewWorkoutForm(){
           {selectExercisesOn ? 
             <div>
               <p className="workout-title">{title}</p>
-              <SelectExercises setFormOn={setFormOn} formOn={formOn} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises}/>
+              <SelectExercises setFormOn={setFormOn} formOn={formOn} clientExercises={clientExercises} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises}/>
             </div>
             : ""}
         </div>

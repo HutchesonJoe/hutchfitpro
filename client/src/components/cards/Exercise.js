@@ -4,17 +4,21 @@ import { useContext, useEffect, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
 import Errors from "../Errors";
 
-function Exercise({exercise, thisClient, clientExercises, setClientExercises, exerciseRep, setExerciseRep}){
+function Exercise({exercise, thisClient, clientExercises, setClientExercises}){
   // const[exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
   const[errors, setErrors] = useState([])
   const[inClientRep, setInClientRep] = useState(false)
+  console.log(clientExercises)
 
-//not quite working, almost there.
   useEffect(()=>{
-    if(clientExercises.includes(exercise)){
-    setInClientRep(true)
-    } else {
-      setInClientRep(false)
+    let thisEx
+    if(clientExercises){
+      thisEx = clientExercises.find((ex)=>ex.id===exercise.id)
+      if(thisEx){
+        setInClientRep(true)
+        } else {
+        setInClientRep(false)
+        }
     }
   },[clientExercises])
 
@@ -52,7 +56,7 @@ function Exercise({exercise, thisClient, clientExercises, setClientExercises, ex
       <p className="exercise-name">{exercise.name}</p>
       <p>Category: <em>{exercise.category}</em></p>
       <p>Instructions: <em>{exercise.instructions}</em></p>
-      {inClientRep ? "" : <button onClick={handleAdd}>Add to Client's Rep</button>}
+      {inClientRep ? null : <button onClick={handleAdd}>Add to Client's Rep</button>}
       <Errors errors={errors}/>
     </div>
   )

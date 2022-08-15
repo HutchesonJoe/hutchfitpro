@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Errors from './Errors';
 
-function Login({onLogin}){
+function Login({onLogin, isTrainer, setIsTrainer}){
   const[username, setUsername] = useState("");
   const[password, setPassword] = useState("");
-  const[isTrainer, setIsTrainer] = useState(false)
+  // const[isTrainer, setIsTrainer] = useState(false)
   const[errors, setErrors] = useState([]);
   
   function handleSubmit(e){
@@ -26,16 +26,20 @@ function Login({onLogin}){
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => setErrors(err.errors))
+        r.json().then((err) => setErrors([err.errors]))
       }
     })
+  }
+
+  function handleSetIsTrainer(value){
+    setIsTrainer(JSON.parse(value))
   }
 
   return(
     <div className="login">
       <h3>Trainer Login</h3>
      <form  onSubmit={handleSubmit}>
-      <select onChange={(e)=>setIsTrainer(e.target.value)}>
+      <select onChange={(e)=>handleSetIsTrainer(e.target.value)}>
         <option value={false}>Client</option>
         <option value={true}>Trainer</option>
       </select>

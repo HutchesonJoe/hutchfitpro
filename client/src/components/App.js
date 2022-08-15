@@ -20,13 +20,13 @@ function App() {
   const [isTrainer, setIsTrainer] = useState(false)
   const [signUpFormOn, setSignUpFormOn] = useState(true)
   const [nextClientWorkoutOn, setNextClientWorkoutOn] = useState(false)
-    
+  // console.log(user)
   useEffect(()=>{
     fetch("/me").then((r)=>{
+      setIsTrainer(false)
       if (r.ok) {
         r.json().then((user) => {
           setUser(user);
-          setIsTrainer(user.is_trainer)
         });
       }
     })
@@ -34,7 +34,6 @@ function App() {
 
   useEffect(()=>{
     if(user && user.is_trainer){
-      console.log(user)
       setIsTrainer(true)
     } 
   },[user])
@@ -44,15 +43,14 @@ function App() {
   if (!user){
     landingPage = (
       <div>
-    <Banner/>
-    <Login onLogin={setUser} user={user} nextClientWorkoutOn={nextClientWorkoutOn} setNextClientWorkoutOn={setNextClientWorkoutOn}/>
+    
+    <Login onLogin={setUser} user={user} nextClientWorkoutOn={nextClientWorkoutOn} setNextClientWorkoutOn={setNextClientWorkoutOn} isTrainer={isTrainer} setIsTrainer={setIsTrainer}/>
     {signUpFormOn ? <Signup setUser={setUser} setSignUpFormOn={setSignUpFormOn}/> : ""}
   </div>
     )
   } else {
     landingPage = (
       <div className="start-page">
-        <Banner/>
         {/* <NavBar/> */}
         {isTrainer ? <TrainerHome/> : <ClientHome/>}
         {/* <Routes>
@@ -67,7 +65,11 @@ function App() {
   }
 
   return (
-      landingPage
+    <div>
+      <Banner/>
+      {landingPage}
+    </div>
+    
     );
 }
 

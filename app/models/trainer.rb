@@ -6,5 +6,6 @@ class Trainer < ApplicationRecord
   validates :email, presence: true, uniqueness: true
  
   has_many :clients
+  has_many :workouts, through: :clients
 end
  

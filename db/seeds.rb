@@ -31,23 +31,24 @@ jumpingJacks = Exercise.create(name: "Jumping Jacks", instructions: "You know wh
 
 #workouts
 
-upperbody = Workout.create(title: "Upper Body")
-cardioCore = Workout.create(title: "Cardio Core")
-pullHinge = Workout.create(title: "Upper Pull and Hip Hinge")
+charlupperbody = Workout.create(title: "Upper Body", client_id: 1 )
+charlcardioCore = Workout.create(title: "Cardio Core", client_id: 1)
+charlpullHinge = Workout.create(title: "Upper Pull and Hip Hinge", client_id: 1)
 
 #join tables
 
-clientWorkout1 = ClientWorkout.create(client_id: jenn.id, workout_id: upperbody.id, workout_title: "Upper Body", completed: true)
-clientWorkout2 = ClientWorkout.create(client_id: charl.id, workout_id: pullHinge.id, workout_title: "Upper Pull and Hip Hinge", completed: true)
-clientWorkout3 = ClientWorkout.create(client_id: jenn.id, workout_id: cardioCore.id, workout_title: "Cardio Core", completed: true)
-clientWorkout4 = ClientWorkout.create(client_id: jenn.id, workout_id: pullHinge.id,  workout_title: "Upper Pull and Hip Hinge", completed: true)
-clientWorkout5 = ClientWorkout.create(client_id: jenn.id, workout_id: upperbody.id, workout_title: "Upper Body", completed: false)
+# clientWorkout1 = ClientWorkout.create(client_id: jenn.id, workout_id: charlupperbody.id, workout_title: "Upper Body", completed: true)
+# clientWorkout2 = ClientWorkout.create(client_id: charl.id, workout_id: charlpullHinge.id, workout_title: "Upper Pull and Hip Hinge", completed: true)
+# clientWorkout3 = ClientWorkout.create(client_id: jenn.id, workout_id: charlcardioCore.id, workout_title: "Cardio Core", completed: true)
+# clientWorkout4 = ClientWorkout.create(client_id: jenn.id, workout_id: charlpullHinge.id,  workout_title: "Upper Pull and Hip Hinge", completed: true)
+# clientWorkout5 = ClientWorkout.create(client_id: jenn.id, workout_id: charlupperbody.id, workout_title: "Upper Body", completed: false)
 
-workoutExercise1 = WorkoutExercise.create(workout_id: pullHinge.id, exercise_id: deadlift.id)
-workoutExercise2 = WorkoutExercise.create(workout_id: pullHinge.id, exercise_id: gluteBridge.id)
-workoutExercise3 = WorkoutExercise.create(workout_id: cardioCore.id, exercise_id: plank.id)
-workoutExercise4 = WorkoutExercise.create(workout_id: cardioCore.id, exercise_id: jumpingJacks.id)
-workoutExercise5 = WorkoutExercise.create(workout_id: upperbody.id, exercise_id: pushUp.id)
-workoutExercise6 = WorkoutExercise.create(workout_id: upperbody.id, exercise_id: row.id)
-
+client_exercise1 = ClientExercise.create(exercise_id: deadlift.id, weight: "15-20")
+client_exercise2 = ClientExercise.create(exercise_id: gluteBridge.id, weight: "15-20")
+client_exercise3 = ClientExercise.create(exercise_id: plank.id, weight: 15, reps: "12.5-17.5")
+client_exercise4 = ClientExercise.create(exercise_id: jumpingJacks.id, weight: "17.5-22.5")
+client_exercise5 = ClientExercise.create(exercise_id: pushUp.id, weight: "17.5-22.5")
+client_exercise6 = ClientExercise.create(exercise_id: row.id, weight: "17.5-22.5")
+#continue figuring out the seed below...
+workout_exercises1 = WorkoutExercise.create(workout_id: charlupperbody.id, exercise.id: gluteBridge.id, client_exercise_id: 
 puts "SeedFit!"

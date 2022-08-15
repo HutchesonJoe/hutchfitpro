@@ -3,24 +3,27 @@ import { NavLink } from 'react-router-dom';
 import EditForm from '../EditForm';
 import WorkoutOptions from '../WorkoutOptions';
 import Workout from '../Workout'
+import NewWorkoutForm from '../NewWorkout/NewWorkoutForm';
 
-function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn, clientExercises, setClientExercises}){
+function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn, clientExercises, setClientExercises, filteredExerciseRep, setFilteredExerciseRep}){
   const[editFormOpen, setEditFormOpen] = useState(false)
-  const[workoutOptionsOn, setWorkoutOptionsOn] = useState(false)
+  // const[workoutOptionsOn, setWorkoutOptionsOn] = useState(false)
   const[clientWorkouts, setClientWorkouts] = useState([])
-  const[confirm, setConfirm] = useState(false)
+  // const[confirm, setConfirm] = useState(false)
   const[clientInfo, setClientInfo] = useState(client)
+  const[workoutFormOn, setWorkoutFormOn] = useState(false)
   
-  console.log(client.client_exercises)
+  console.log(clientExercises)
   useEffect(()=>{
-      setClientWorkouts(client.workouts)
-  },[])
+      setClientWorkouts(client.workouts);
+      // setClientExercises(client.client_exercises)
+  },[client])
    
   function handleEdit(){
     setEditFormOpen(!editFormOpen)
   }
 
-
+  //move the workout history into it's own component. 
   const lastThreeWorkouts = clientWorkouts.slice(-3)
   const clientRecentWorkouts = lastThreeWorkouts.map((workout)=><Workout workout={workout} key={workout.id}/>)
 
@@ -42,7 +45,7 @@ function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn,
   }
  
   function handleExerciseDelete(e){
-    console.log(parseInt(e.target.id))
+    
     fetch(`/client_exercises/${parseInt(e.target.id)}`, {
       method: "DELETE",
       headers: {
@@ -50,13 +53,17 @@ function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn,
       }
     })
     .then(()=>{
-      const filteredExercises = clientExercises.filter((ex)=>ex.id!==parseInt(e.target.id))
-      setClientExercises(filteredExercises)
+      const filteredClientExercises = clientExercises.filter((ex)=>ex.id!==parseInt(e.target.id))
+      // const filteredExerciseRep = exerciseRep.push(())
+      //this is NOT working. Need to add this exercise back to the filtered list. 
+      setClientExercises(filteredClientExercises)
     })
   }
 
-
-  const clientExerciseList = clientExercises.map((e)=><div key={e.id}><p>{e.name}<button key={e.id} id={e.id} onClick={handleExerciseDelete}>remove</button></p></div>)
+  let exerciseList
+  if(clientExercises){
+    exerciseList = clientExercises.map((e)=><div key={e.id}><p>{e.name}<button key={e.id} id={e.id} onClick={handleExerciseDelete}>remove</button></p></div>)
+  }
   
   return(
     <div className="client-card">
@@ -72,15 +79,17 @@ function ClientCard({client, clients, setClients, clientCardOn, setClientCardOn,
         <div>
           {clientRecentWorkouts}
         </div>
-      <div>
-      <button onClick={()=>setWorkoutOptionsOn(!workoutOptionsOn)}>Set your client's next workout:</button>
-        {workoutOptionsOn ?  <WorkoutOptions client={client} workoutOptionsOn={workoutOptionsOn} setWorkoutOptionsOn={setWorkoutOptionsOn} clientWorkouts={clientWorkouts} setClientWorkouts={setClientWorkouts} confirm={confirm} setConfirm={setConfirm}/> : ""}
-        </div>
-        <NavLink to="/newworkout">OR create a new workout above.</NavLink>
+      
+        {/* <NavLink to="/newworkout">OR create a new workout above.</NavLink> */}
       </div>
       <div>
+      <button onClick={()=>setWorkoutFormOn(!workoutFormOn)}>{workoutFormOn ? "Close" : "Set this client's next workout"}</button>
+      {workoutFormOn ? <NewWorkoutForm clientExercises={clientExercises}/> : null}
+        {/* {workoutOptionsOn ?  <WorkoutOptions client={client} workoutOptionsOn={workoutOptionsOn} setWorkoutOptionsOn={setWorkoutOptionsOn} clientWorkouts={clientWorkouts} setClientWorkouts={setClientWorkouts} confirm={confirm} setConfirm={setConfirm}/> : ""} */}
+        </div>
+      <div>
         <h4>This Client's Exercise Rep:</h4>
-        {clientExerciseList}
+        {exerciseList}
       </div>
     </div>
   )

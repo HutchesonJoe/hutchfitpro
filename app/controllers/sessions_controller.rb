@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:create, :show, :destroy, :index]
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   def create
     if(params[:isTrainer])
@@ -38,7 +39,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :trainer_id
+    session.delete :user_id
     head :no_content
   end
 
@@ -52,6 +53,13 @@ class SessionsController < ApplicationController
     @user = Trainer.find_by!(username: params[:username])
     #is this redundant
     @is_trainer = true
+  end
+
+  private
+
+  def render_not_found(not_found)
+    render json: { errors: not_found }, status: 404
+    # render json: { errors: ["Not found."] }, status: 404
   end
 
 end

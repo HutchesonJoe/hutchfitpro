@@ -1,8 +1,8 @@
 class Workout < ApplicationRecord
-  has_many :client_workouts
-  has_many :clients, through: :client_workouts
+  belongs_to :client
   has_many :workout_exercises
   has_many :exercises, through: :workout_exercises
+  belongs_to :client_exercises
 
   accepts_nested_attributes_for :exercises
 

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_08_05_224114) do
   create_table "client_exercises", force: :cascade do |t|
     t.integer "client_id"
     t.integer "exercise_id"
+    t.string "weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -69,13 +70,15 @@ ActiveRecord::Schema.define(version: 2022_08_05_224114) do
 
   create_table "workout_exercises", force: :cascade do |t|
     t.integer "workout_id"
-    t.integer "exercise_id"
+    t.integer "exercise_id"   
+    t.integer "reps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "workouts", force: :cascade do |t|
     t.string "title"
+    t.integer "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
