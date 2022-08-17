@@ -10,15 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_05_224114) do
+ActiveRecord::Schema.define(version: 2022_08_16_234141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blocks", force: :cascade do |t|
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "client_exercises", force: :cascade do |t|
     t.integer "client_id"
     t.integer "exercise_id"
     t.string "weight"
+    t.boolean "recently_completed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,8 +77,8 @@ ActiveRecord::Schema.define(version: 2022_08_05_224114) do
 
   create_table "workout_exercises", force: :cascade do |t|
     t.integer "workout_id"
-    t.integer "exercise_id"   
-    t.integer "reps"
+    t.integer "exercise_id"
+    t.integer "client_exercise_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

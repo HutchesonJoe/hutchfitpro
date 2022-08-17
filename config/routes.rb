@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :exercises, only: [:index, :create, :show, :update]
     resources :client_workouts, only: [:create, :index]
     resources :workout_exercises, only: [:create, :index]
-    resources :client_exercises, only: [:create, :show, :index, :destroy]
+    resources :client_exercises, only: [:create, :show, :index, :destroy, :update]
+    resources :blocks, only: [:index, :create]
+    
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     get "/me", to: "sessions#show"

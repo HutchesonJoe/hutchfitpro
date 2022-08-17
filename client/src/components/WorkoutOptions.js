@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Workout from './Workout'
+import Workout from './workout/Workout'
 
 function WorkoutOptions({client, setWorkoutOptionsOn, workoutOptionsOn, clientWorkouts, setClientWorkouts, setConfirm}){
   //this state needs to move up a component

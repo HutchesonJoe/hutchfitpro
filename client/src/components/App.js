@@ -12,6 +12,7 @@ import NewWorkoutForm from './NewWorkout/NewWorkoutForm';
 import About from './About';
 import SelectExercises from './NewWorkout/SelectExercises';
 import ClientHome from './ClientHome';
+import { ThisClientProvider } from './context/ThisClientContext';
 
 function App() {
   
@@ -52,7 +53,7 @@ function App() {
     landingPage = (
       <div className="start-page">
         {/* <NavBar/> */}
-        {isTrainer ? <TrainerHome/> : <ClientHome/>}
+        {isTrainer ? <ThisClientProvider><TrainerHome/></ThisClientProvider> : <ClientHome/>}
         {/* <Routes>
           <Route exact path="/newworkout" element={<NewWorkoutForm user={user}/>}/>
           <Route exact path="/newworkout/selectexercises" element={<SelectExercises/>}/>

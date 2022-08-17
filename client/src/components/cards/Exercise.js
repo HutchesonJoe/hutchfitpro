@@ -8,8 +8,7 @@ function Exercise({exercise, thisClient, clientExercises, setClientExercises}){
   // const[exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
   const[errors, setErrors] = useState([])
   const[inClientRep, setInClientRep] = useState(false)
-  console.log(clientExercises)
-
+  
   useEffect(()=>{
     let thisEx
     if(clientExercises){
@@ -56,7 +55,7 @@ function Exercise({exercise, thisClient, clientExercises, setClientExercises}){
       <p className="exercise-name">{exercise.name}</p>
       <p>Category: <em>{exercise.category}</em></p>
       <p>Instructions: <em>{exercise.instructions}</em></p>
-      {inClientRep ? null : <button onClick={handleAdd}>Add to Client's Rep</button>}
+      {/* {inClientRep ? null : <button onClick={handleAdd}>Add to Client's Rep</button>} */}
       <Errors errors={errors}/>
     </div>
   )

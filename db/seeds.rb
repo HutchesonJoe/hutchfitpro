@@ -43,12 +43,12 @@ charlpullHinge = Workout.create(title: "Upper Pull and Hip Hinge", client_id: 1)
 # clientWorkout4 = ClientWorkout.create(client_id: jenn.id, workout_id: charlpullHinge.id,  workout_title: "Upper Pull and Hip Hinge", completed: true)
 # clientWorkout5 = ClientWorkout.create(client_id: jenn.id, workout_id: charlupperbody.id, workout_title: "Upper Body", completed: false)
 
-client_exercise1 = ClientExercise.create(exercise_id: deadlift.id, weight: "15-20")
-client_exercise2 = ClientExercise.create(exercise_id: gluteBridge.id, weight: "15-20")
-client_exercise3 = ClientExercise.create(exercise_id: plank.id, weight: 15, reps: "12.5-17.5")
-client_exercise4 = ClientExercise.create(exercise_id: jumpingJacks.id, weight: "17.5-22.5")
-client_exercise5 = ClientExercise.create(exercise_id: pushUp.id, weight: "17.5-22.5")
-client_exercise6 = ClientExercise.create(exercise_id: row.id, weight: "17.5-22.5")
+client_exercise1 = ClientExercise.create(client_id: charl.id, exercise_id: deadlift.id, weight: "15-20", recently_completed: true)
+client_exercise2 = ClientExercise.create(client_id: charl.id, exercise_id: gluteBridge.id, weight: "15-20", recently_completed: true)
+client_exercise3 = ClientExercise.create(client_id: charl.id, exercise_id: plank.id, weight: "Body Weight", recently_completed: true)
+client_exercise4 = ClientExercise.create(client_id: charl.id, exercise_id: jumpingJacks.id, weight: "17.5-22.5", recently_completed: false)
+client_exercise5 = ClientExercise.create(client_id: charl.id, exercise_id: pushUp.id, weight: "17.5-22.5", recently_completed: false)
+client_exercise6 = ClientExercise.create(client_id: charl.id, exercise_id: row.id, weight: "17.5-22.5", recently_completed: false)
 #continue figuring out the seed below...
-workout_exercises1 = WorkoutExercise.create(workout_id: charlupperbody.id, exercise.id: gluteBridge.id, client_exercise_id: 
+workout_exercises1 = WorkoutExercise.create(workout_id: charlpullHinge.id, exercise_id: gluteBridge.id, client_exercise_id: client_exercise2.id) 
 puts "SeedFit!"

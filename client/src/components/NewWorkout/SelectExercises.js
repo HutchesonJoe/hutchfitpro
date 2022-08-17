@@ -1,8 +1,11 @@
 import CreateExerciseForm from '../CreateExerciseForm';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ExerciseRepContext } from '../context/ExerciseRepContext'
 
-function SelectExercises({clientExercises, newWorkoutExercises, setNewWorkoutExercises}){
-  console.log(clientExercises)
+function SelectExercises({newWorkoutExercises, setNewWorkoutExercises, exerciseRep}){
+  
+  console.log(newWorkoutExercises)
+
   function handleSelect(e){
     let selectedExercise = newWorkoutExercises.find((id)=>id===e.target.id)
     if(!selectedExercise){
@@ -16,8 +19,8 @@ function SelectExercises({clientExercises, newWorkoutExercises, setNewWorkoutExe
       
   }
 
-  const exerciseList = clientExercises.map((ex)=>{
-    return (<div>
+  const exerciseList = exerciseRep.map((ex)=>{
+    return (<div key={ex.name}>
       <input type="checkbox" id={ex.id} name={ex.name} value={ex.instructions} key={ex.name} onChange={handleSelect}/>
       <label htmlFor={ex.name} key={ex.id}>{ex.name}, <em>{ex.category}</em></label>
     </div>

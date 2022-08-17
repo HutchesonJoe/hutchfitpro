@@ -5,11 +5,11 @@ import Exercise from './cards/Exercise';
 // import Errors from './Errors';
 
 function ExerciseCollection({thisClient, clientExercises, setClientExercises, filteredExerciseRep, setFilteredExerciseRep}){
-  
+  const [exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
   const [createExOn, setCreateExOn] = useState(false)
   // const [errors, setErrors] = useState([])
 
-  let exerciseList = filteredExerciseRep.map((x)=><Exercise exercise={x} key={x.id} thisClient={thisClient} clientExercises={clientExercises} setClientExercises={setClientExercises} filteredExerciseRep={filteredExerciseRep} setFilteredExerciseRep={setFilteredExerciseRep}/>)
+  let exerciseList = exerciseRep.map((x)=><Exercise exercise={x} key={x.id} thisClient={thisClient} clientExercises={clientExercises} setClientExercises={setClientExercises} filteredExerciseRep={filteredExerciseRep} setFilteredExerciseRep={setFilteredExerciseRep}/>)
 
   
   return(

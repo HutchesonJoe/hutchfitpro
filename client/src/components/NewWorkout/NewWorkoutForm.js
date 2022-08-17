@@ -2,28 +2,44 @@ import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 // import { ExerciseRepContext } from '../context/ExerciseRepContext';
 import { UserContext } from '../context/UserContext';
+import Workout from '../workout/Workout';
+import { ThisClientContext } from '../context/ThisClientContext';
 import Errors from '../Errors'
-import SelectExercises from './SelectExercises';
+import CreateBlock from './CreateBlock';
 
-function NewWorkoutForm({clientExercises}){
-  // const[user] = useContext(UserContext)
-  console.log(clientExercises)
+
+function NewWorkoutForm({client}){
+  const[thisClient] = useContext(ThisClientContext)
   const[title, setTitle] = useState("")
   const[titleInputOn, setTitleInputOn] = useState(true)
+  const[blockOn, setBlockOn] = useState(false)
   const[submitted, setSubmitted] = useState(false)
-  const[formOn, setFormOn] = useState(false)
   const[errors, setErrors] = useState([])
   const[selectExercisesOn, setSelectExercisesOn] = useState(false) 
   const[newWorkoutExercises, setNewWorkoutExercises] = useState([])
-
-  useEffect(()=>{
-    
-  },[])
+  const[previewOn, setPreviewOn] = useState(false)
+  const[workout, setWorkout] = useState()
 
   function handleSubmitTitle(e){
     e.preventDefault()
+    const workout = {
+      title, 
+      client_id: thisClient.id
+    }
+
+    fetch("/workouts",{
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify(workout)
+    })
+      .then(r=>r.json())
+      .then(data=>console.log(data))
+    e.preventDefault()
     setTitleInputOn(!titleInputOn)
     setSelectExercisesOn(!selectExercisesOn)
+    setBlockOn(!blockOn)
   }
   
   const navigate = useNavigate()
@@ -36,7 +52,7 @@ function NewWorkoutForm({clientExercises}){
     let exerciseIds = newWorkoutExercises.map((ex)=>{
       return({exercise_id: parseInt(ex)})
     })
-   
+    console.log(exerciseIds)
     fetch("/workouts",{
       method: "POST",
       headers: {
@@ -45,7 +61,8 @@ function NewWorkoutForm({clientExercises}){
       body: JSON.stringify({
       workout: {
         title,
-        exercise_ids : exerciseIds
+        exercise_ids : exerciseIds,
+        client_id : client.id
       }
     })
     })
@@ -75,18 +92,18 @@ function NewWorkoutForm({clientExercises}){
             {titleInputOn ? <input  id="workout-title-input" placeholder="Title Workout, i.e. 'Upper Body/Core'" onChange={(e)=>setTitle(e.target.value)}></input> : ""}
         </div>
         <div>
-          {selectExercisesOn ? 
+          {blockOn ? 
             <div>
               <p className="workout-title">{title}</p>
-              <SelectExercises setFormOn={setFormOn} formOn={formOn} clientExercises={clientExercises} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises}/>
             </div>
             : ""}
         </div>
        
-      
+        {blockOn ? <CreateBlock newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} workout={workout} setWorkout={setWorkout}/> : null}
         {titleInputOn ? <button type="submit">Next</button> : <button onClick={submitted ? handleNavigate : handleSubmitExercises}>{submitted ? "Back to Clients": "Submit Workout"}</button>}
         {submitted ? "Your new workout has been submitted and can now be selected for your client's next workout." : ""}
       </form>
+      {previewOn ? <Workout workout={workout}/> : null}
       <Errors errors={errors}/>
     </div>
   )

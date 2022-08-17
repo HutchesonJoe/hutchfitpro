@@ -11,13 +11,21 @@ class ClientExercisesController < ApplicationController
     render json: client_exercise
   end
 
+  def update
+    client_exercise = ClientExercise.find(params[:id])
+    # byebug
+    client_exercise.update(ce_params)
+    render json: client_exercise
+  end
+
+
   def index
     exercises = ClientExercise.all 
     render json: exercises
   end
 
   def destroy
-    exercise = ClientExercise.find_by(exercise_id: params[:id])
+    exercise = ClientExercise.find_by(id: params[:id])
     
     exercise.destroy
     head :no_content
@@ -26,7 +34,8 @@ class ClientExercisesController < ApplicationController
   private
   
   def ce_params 
-    params.permit(:client_id, :exercise_id)
+    # byebug
+    params.permit(:id, :client_id, :exercise_id, :weight, :recently_completed)
   end
 
 end

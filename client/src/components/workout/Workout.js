@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import Exercise from './cards/Exercise';
+import Block from './Block';
+
 
 function Workout({workout}){
   const[fullWorkout, setFullWorkout] = useState()
@@ -22,12 +23,13 @@ function Workout({workout}){
  
   return(
     <div className="workout-card">
-      <li id={workout.completed ? "workout-completed" : "workout-pending"} className="workout-title" onClick={handleShowWorkout}>{workout.title}</li>
+      <p>Workout Card</p>
+      {/* <li id={workout.completed ? "workout-completed" : "workout-pending"} className="workout-title" onClick={handleShowWorkout}>{workout.title}</li>
       {showWorkout ? 
       <div>
           {exerciseList}
       </div>
-        : "" }
+        : "" } */}
     </div>
   )
 }
