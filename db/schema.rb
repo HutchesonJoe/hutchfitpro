@@ -16,7 +16,10 @@ ActiveRecord::Schema.define(version: 2022_08_16_234141) do
   enable_extension "plpgsql"
 
   create_table "blocks", force: :cascade do |t|
-    t.integer "count"
+    t.string "count"
+    t.string "sets"
+    t.string "note"
+    t.integer "workout_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,9 +79,10 @@ ActiveRecord::Schema.define(version: 2022_08_16_234141) do
   end
 
   create_table "workout_exercises", force: :cascade do |t|
-    t.integer "workout_id"
+    t.integer "block_id"
     t.integer "exercise_id"
     t.integer "client_exercise_id"
+    t.integer "workout_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

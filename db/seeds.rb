@@ -50,5 +50,5 @@ client_exercise4 = ClientExercise.create(client_id: charl.id, exercise_id: jumpi
 client_exercise5 = ClientExercise.create(client_id: charl.id, exercise_id: pushUp.id, weight: "17.5-22.5", recently_completed: false)
 client_exercise6 = ClientExercise.create(client_id: charl.id, exercise_id: row.id, weight: "17.5-22.5", recently_completed: false)
 #continue figuring out the seed below...
-workout_exercises1 = WorkoutExercise.create(workout_id: charlpullHinge.id, exercise_id: gluteBridge.id, client_exercise_id: client_exercise2.id) 
+workout_exercises1 = WorkoutExercise.create(block_id: 1, exercise_id: gluteBridge.id, client_exercise_id: client_exercise2.id) 
 puts "SeedFit!"

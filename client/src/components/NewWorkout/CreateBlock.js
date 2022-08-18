@@ -1,16 +1,18 @@
 import SelectExercises from "./SelectExercises";
 import { useContext, useState } from "react";
-import { ExerciseRepContext } from "../context/ExerciseRepContext"
+import { ExerciseRepContext } from "../context/ExerciseRepContext";
+import Block from "../workout/Block";
 
-function CreateBlock({formOn, setFormOn, newWorkoutExercises, setNewWorkoutExercises, workout, setWorkout}){
+function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, newWorkoutExercises, setNewWorkoutExercises, workout, setWorkout}){
   const [exerciseRep] = useContext(ExerciseRepContext)
   const [addBlockOn, setAddBlockOn] = useState(true)
   const [selectExerciseFormOn, setSelectExerciseFormOn] = useState(true)
   const [filteredRep, setFilteredRep] = useState([])
   const [count, setCount] = useState("")
   const [sets, setSets] = useState("")
-  const [note, setNotes] = useState("")
+  const [note, setNote] = useState("")
   
+  let blocks = blockArray.map((block)=> <Block block={block} newWorkoutExercises={newWorkoutExercises} workout={workout}/>)
   // function handleClick(){
   //   setAddBlockOn(!addBlockOn)
   //   // setSelectExerciseFormOn(!selectExerciseFormOn)
@@ -24,9 +26,13 @@ function CreateBlock({formOn, setFormOn, newWorkoutExercises, setNewWorkoutExerc
     })
     const block = {
       count,
-      exercise_ids: exerciseIds
-    }
+      sets,
+      note,
+      exercise_ids: exerciseIds,
+      workout_id: workout.id
 
+    }
+    console.log(block)
     fetch("/blocks",{
       method: "POST",
       headers: {
@@ -35,12 +41,16 @@ function CreateBlock({formOn, setFormOn, newWorkoutExercises, setNewWorkoutExerc
       body: JSON.stringify(block)
     })
     .then(r=>r.json())
-    .then(data=>console.log(data))
+    .then((data)=>{
+      setBlockArray([...blockArray, data]);
+      setNewWorkoutExercises([])
+    })
   }
 
   return(
     <div>
       <form onSubmit={handleSubmit}>
+        {blocks}
       <div>Select an exercises or multiple exercises for a circuit:</div>
       {selectExerciseFormOn ? <SelectExercises setFormOn={setFormOn} formOn={formOn} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} exerciseRep={exerciseRep}/> : null}
       <select onChange={(e)=>setCount(e.target.value)}>
@@ -53,16 +63,16 @@ function CreateBlock({formOn, setFormOn, newWorkoutExercises, setNewWorkoutExerc
         <option>16 reps</option>
         <option>30 secs</option>
         <option>45 secs</option>
-        <opiton>1 min</opiton>
+        <option>1 min</option>
       </select>
       <select onChange={(e)=>setSets(e.target.value)}>
         <option>2 sets</option>
         <option>3 sets</option>
         <option>4 sets</option>
-        <options>5 sets</options>
+        <option>5 sets</option>
       </select>
       <textarea placeholder="Enter note" onChange={(e)=>setNote(e.target.value)}></textarea>
-        
+      <button type="submit">Add Block</button>
       </form>
     </div>
   )

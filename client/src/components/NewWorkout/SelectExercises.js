@@ -3,8 +3,6 @@ import { useEffect, useState, useContext } from 'react';
 import { ExerciseRepContext } from '../context/ExerciseRepContext'
 
 function SelectExercises({newWorkoutExercises, setNewWorkoutExercises, exerciseRep}){
-  
-  console.log(newWorkoutExercises)
 
   function handleSelect(e){
     let selectedExercise = newWorkoutExercises.find((id)=>id===e.target.id)

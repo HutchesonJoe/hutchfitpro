@@ -19,7 +19,7 @@ function NewWorkoutForm({client}){
   const[newWorkoutExercises, setNewWorkoutExercises] = useState([])
   const[previewOn, setPreviewOn] = useState(false)
   const[workout, setWorkout] = useState()
-
+  const[blockArray, setBlockArray] = useState([])
   function handleSubmitTitle(e){
     e.preventDefault()
     const workout = {
@@ -35,50 +35,50 @@ function NewWorkoutForm({client}){
       body: JSON.stringify(workout)
     })
       .then(r=>r.json())
-      .then(data=>console.log(data))
-    e.preventDefault()
+      .then(data=>setWorkout(data))
     setTitleInputOn(!titleInputOn)
     setSelectExercisesOn(!selectExercisesOn)
     setBlockOn(!blockOn)
+    
   }
   
   const navigate = useNavigate()
 
-  function handleSubmitExercises(e){
-    e.preventDefault()
-    setSubmitted(!submitted)
-    setSelectExercisesOn(!selectExercisesOn)
+  // function handleSubmitExercises(e){
+  //   e.preventDefault()
+  //   setSubmitted(!submitted)
+  //   setSelectExercisesOn(!selectExercisesOn)
 
-    let exerciseIds = newWorkoutExercises.map((ex)=>{
-      return({exercise_id: parseInt(ex)})
-    })
-    console.log(exerciseIds)
-    fetch("/workouts",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-      workout: {
-        title,
-        exercise_ids : exerciseIds,
-        client_id : client.id
-      }
-    })
-    })
-      .then((r) => {
-        if(r.ok){
-          r.json().then((data)=>{
-            console.log(data)
-            setTitle(data.title)
+  //   let exerciseIds = newWorkoutExercises.map((ex)=>{
+  //     return({exercise_id: parseInt(ex)})
+  //   })
+  //   console.log(exerciseIds)
+  //   fetch("/workouts",{
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //     workout: {
+  //       title,
+  //       exercise_ids : exerciseIds,
+  //       client_id : client.id
+  //     }
+  //   })
+  //   })
+  //     .then((r) => {
+  //       if(r.ok){
+  //         r.json().then((data)=>{
+  //           console.log(data)
+  //           setTitle(data.title)
             
-          })
-        } else {
-          r.json().then((err) => setErrors(err.errors))
-        }
-      })
+  //         })
+  //       } else {
+  //         r.json().then((err) => setErrors(err.errors))
+  //       }
+  //     })
     
-  }
+  // }
 
   //Is this the right way? probably not a useNavigate. Probably switch to conditional.
   function handleNavigate(){
@@ -98,11 +98,12 @@ function NewWorkoutForm({client}){
             </div>
             : ""}
         </div>
-       
-        {blockOn ? <CreateBlock newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} workout={workout} setWorkout={setWorkout}/> : null}
-        {titleInputOn ? <button type="submit">Next</button> : <button onClick={submitted ? handleNavigate : handleSubmitExercises}>{submitted ? "Back to Clients": "Submit Workout"}</button>}
-        {submitted ? "Your new workout has been submitted and can now be selected for your client's next workout." : ""}
-      </form>
+        {titleInputOn ? <button type="submit">Next</button> : null}
+        </form>
+        {blockOn ? <CreateBlock newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} workout={workout} setWorkout={setWorkout} blockArray={blockArray} setBlockArray={setBlockArray} newWorkoutExercises={newWorkoutExercises}/> : null}
+        
+        {/* {submitted ? "Your new workout has been submitted and can now be selected for your client's next workout." : ""} */}
+      
       {previewOn ? <Workout workout={workout}/> : null}
       <Errors errors={errors}/>
     </div>

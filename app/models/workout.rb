@@ -6,7 +6,7 @@ class Workout < ApplicationRecord
   has_many :blocks
   # belongs_to :client_exercises
 
-  accepts_nested_attributes_for :exercises
+  # accepts_nested_attributes_for :exercises
 
   validates :title, presence: true
 end

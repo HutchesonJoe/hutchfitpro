@@ -12,6 +12,12 @@ class WorkoutExercisesController < ApplicationController
     render json: workout_exercise
   end
 
+  def create
+    workout_exercise = WorkoutExercise.create!(block_id: params[:block_id], exercise_id: params[:exercise_id])
+    render json: workout_exercise
+  end
+
+
   private
 
   def workout_exercise_params
