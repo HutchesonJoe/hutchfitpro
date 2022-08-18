@@ -16,7 +16,7 @@ function NewWorkoutForm({client}){
   const[submitted, setSubmitted] = useState(false)
   const[errors, setErrors] = useState([])
   const[selectExercisesOn, setSelectExercisesOn] = useState(false) 
-  const[newWorkoutExercises, setNewWorkoutExercises] = useState([])
+  // const[newWorkoutExercises, setNewWorkoutExercises] = useState([])
   const[previewOn, setPreviewOn] = useState(false)
   const[workout, setWorkout] = useState()
   const[blockArray, setBlockArray] = useState([])
@@ -100,8 +100,8 @@ function NewWorkoutForm({client}){
         </div>
         {titleInputOn ? <button type="submit">Next</button> : null}
         </form>
-        {blockOn ? <CreateBlock newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} workout={workout} setWorkout={setWorkout} blockArray={blockArray} setBlockArray={setBlockArray} newWorkoutExercises={newWorkoutExercises}/> : null}
-        
+        {blockOn ? <CreateBlock  workout={workout} setWorkout={setWorkout} blockArray={blockArray} setBlockArray={setBlockArray}/> : null}
+        {/* newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} */}
         {/* {submitted ? "Your new workout has been submitted and can now be selected for your client's next workout." : ""} */}
       
       {previewOn ? <Workout workout={workout}/> : null}

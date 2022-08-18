@@ -7,7 +7,7 @@ import Errors from "../Errors";
 function Exercise({exercise}){
   // const[exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
   const[errors, setErrors] = useState([])
-  console.log(exercise)
+  // console.log(exercise)
   // const[inClientRep, setInClientRep] = useState(false)
   
   // useEffect(()=>{

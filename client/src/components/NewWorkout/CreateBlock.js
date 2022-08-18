@@ -3,27 +3,29 @@ import { useContext, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
 import Block from "../workout/Block";
 
-function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, newWorkoutExercises, setNewWorkoutExercises, workout, setWorkout}){
+function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, setWorkout}){
   const [exerciseRep] = useContext(ExerciseRepContext)
-  const [addBlockOn, setAddBlockOn] = useState(true)
   const [selectExerciseFormOn, setSelectExerciseFormOn] = useState(true)
+  const [newWorkoutExercises, setNewWorkoutExercises] = useState([])
   const [filteredRep, setFilteredRep] = useState([])
   const [count, setCount] = useState("")
   const [sets, setSets] = useState("")
   const [note, setNote] = useState("")
-  
-  let blocks = blockArray.map((block)=> <Block block={block} newWorkoutExercises={newWorkoutExercises} workout={workout}/>)
+  console.log(newWorkoutExercises)
+  let workoutPreview = blockArray.map((block)=> <Block block={block} newWorkoutExercises={newWorkoutExercises} workout={workout}/>)
   // function handleClick(){
   //   setAddBlockOn(!addBlockOn)
   //   // setSelectExerciseFormOn(!selectExerciseFormOn)
   // }
   //this should be where I can filter exercises by "type", so I can create a block this way. 
   //select with options for each category, filter and set state. 
+  let exerciseIds = newWorkoutExercises.map((ex)=>{
+    return({exercise_id: parseInt(ex)});
+  })
+
   function handleSubmit(e){
     e.preventDefault()
-    let exerciseIds = newWorkoutExercises.map((ex)=>{
-      return({exercise_id: parseInt(ex)})
-    })
+
     const block = {
       count,
       sets,
@@ -50,7 +52,7 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, newWorkoutEx
   return(
     <div>
       <form onSubmit={handleSubmit}>
-        {blocks}
+        {workoutPreview}
       <div>Select an exercises or multiple exercises for a circuit:</div>
       {selectExerciseFormOn ? <SelectExercises setFormOn={setFormOn} formOn={formOn} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} exerciseRep={exerciseRep}/> : null}
       <select onChange={(e)=>setCount(e.target.value)}>
