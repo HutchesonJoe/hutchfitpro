@@ -2,17 +2,19 @@ import SelectExercises from "./SelectExercises";
 import { useContext, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
 import Block from "../workout/Block";
+import WorkoutPreview from "./WorkoutPreview";
 
 function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, setWorkout}){
   const [exerciseRep] = useContext(ExerciseRepContext)
   const [selectExerciseFormOn, setSelectExerciseFormOn] = useState(true)
   const [newWorkoutExercises, setNewWorkoutExercises] = useState([])
+  const [addNewBlock, setAddNewBlock] = useState(true)
   const [filteredRep, setFilteredRep] = useState([])
   const [count, setCount] = useState("")
   const [sets, setSets] = useState("")
   const [note, setNote] = useState("")
-  console.log(newWorkoutExercises)
-  let workoutPreview = blockArray.map((block)=> <Block block={block} newWorkoutExercises={newWorkoutExercises} workout={workout}/>)
+   
+ 
   // function handleClick(){
   //   setAddBlockOn(!addBlockOn)
   //   // setSelectExerciseFormOn(!selectExerciseFormOn)
@@ -25,7 +27,7 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, set
 
   function handleSubmit(e){
     e.preventDefault()
-
+    setAddNewBlock(false)
     const block = {
       count,
       sets,
@@ -51,9 +53,15 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, set
 
   return(
     <div>
-      <form onSubmit={handleSubmit}>
-        {workoutPreview}
-      <div>Select an exercises or multiple exercises for a circuit:</div>
+      <div>
+        <WorkoutPreview blockArray={blockArray}/>
+      </div>
+       
+      <div>
+      {addNewBlock ? 
+        <div>
+          <form onSubmit={handleSubmit}>
+          <div>Select an exercises or multiple exercises for a circuit:</div>
       {selectExerciseFormOn ? <SelectExercises setFormOn={setFormOn} formOn={formOn} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} exerciseRep={exerciseRep}/> : null}
       <select onChange={(e)=>setCount(e.target.value)}>
         <option>Select Count or Duration:</option>
@@ -76,7 +84,11 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, set
       <textarea placeholder="Enter note" onChange={(e)=>setNote(e.target.value)}></textarea>
       <button type="submit">Add Block</button>
       </form>
-    </div>
+          </div>
+      : <button onClick={()=>setAddNewBlock(true)}>Create New Block</button>}
+      </div>
+      </div>
+      
   )
 }
 

@@ -4,9 +4,9 @@ import { ExerciseRepContext } from '../context/ExerciseRepContext';
 
 function Block({block}){
   const[exerciseRep] = useContext(ExerciseRepContext)
-  
+  console.log(block)
   const exerciseList =  block.workout_exercises.map((ex)=>{
-      // console.log(ex)
+      
       const exercise = exerciseRep.find((x)=>x.id===ex.exercise_id)
       return (
         <Exercise exercise={exercise}/>
@@ -17,7 +17,7 @@ function Block({block}){
   
   return(
     <div className="block">
-      Block
+      <div>{block.count}, {block.sets} rounds</div>
       {exerciseList}
     </div>
   )

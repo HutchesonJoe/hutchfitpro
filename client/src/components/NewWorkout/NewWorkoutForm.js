@@ -38,7 +38,7 @@ function NewWorkoutForm({client}){
       .then(data=>setWorkout(data))
     setTitleInputOn(!titleInputOn)
     setSelectExercisesOn(!selectExercisesOn)
-    setBlockOn(!blockOn)
+    setBlockOn(true)
     
   }
   

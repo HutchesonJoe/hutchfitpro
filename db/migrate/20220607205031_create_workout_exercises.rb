@@ -4,7 +4,7 @@ class CreateWorkoutExercises < ActiveRecord::Migration[6.1]
       t.integer :block_id
       t.integer :exercise_id
       t.integer :client_exercise_id
-      # t.integer :workout_id
+      t.integer :workout_id
       t.timestamps
     end
   end
