@@ -1,14 +1,15 @@
-import Block from "../workout/Block"
+import PreviewBlock from "./PreviewBlock"
 
 function WorkoutPreview({blockArray}){
   console.log(blockArray)
   let workoutPreview = blockArray.map((block) => { 
     
     let blockNumber = blockArray.findIndex((b)=>block.id===b.id) + 1
+
     return(
       <div>
         <h3>Block number {blockNumber}</h3>
-        <Block key={block.id} block={block} />
+        <PreviewBlock key={block.id} block={block} />
       </div>
     )
   })

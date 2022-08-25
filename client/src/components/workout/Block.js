@@ -11,7 +11,7 @@ function Block({block}){
       return (
         <Exercise exercise={exercise}/>
       )
-    })
+  })
 
   
   

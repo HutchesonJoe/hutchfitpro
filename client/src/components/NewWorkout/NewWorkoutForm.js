@@ -6,18 +6,21 @@ import Workout from '../workout/Workout';
 import { ThisClientContext } from '../context/ThisClientContext';
 import Errors from '../Errors'
 import CreateBlock from './CreateBlock';
+import WorkoutConfirm from './WorkoutConfirm'
 
 
 function NewWorkoutForm({client}){
   const[thisClient] = useContext(ThisClientContext)
   const[title, setTitle] = useState("")
   const[titleInputOn, setTitleInputOn] = useState(true)
-  const[blockOn, setBlockOn] = useState(false)
+  
   const[submitted, setSubmitted] = useState(false)
   const[errors, setErrors] = useState([])
   const[selectExercisesOn, setSelectExercisesOn] = useState(false) 
   // const[newWorkoutExercises, setNewWorkoutExercises] = useState([])
-  const[previewOn, setPreviewOn] = useState(false)
+  const[blockOn, setBlockOn] = useState(false)
+  // const[previewOn, setPreviewOn] = useState(false)
+  const[confirmOn, setConfirmOn] = useState(false)
   const[workout, setWorkout] = useState()
   const[blockArray, setBlockArray] = useState([])
   function handleSubmitTitle(e){
@@ -41,49 +44,6 @@ function NewWorkoutForm({client}){
     setBlockOn(true)
     
   }
-  
-  const navigate = useNavigate()
-
-  // function handleSubmitExercises(e){
-  //   e.preventDefault()
-  //   setSubmitted(!submitted)
-  //   setSelectExercisesOn(!selectExercisesOn)
-
-  //   let exerciseIds = newWorkoutExercises.map((ex)=>{
-  //     return({exercise_id: parseInt(ex)})
-  //   })
-  //   console.log(exerciseIds)
-  //   fetch("/workouts",{
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //     workout: {
-  //       title,
-  //       exercise_ids : exerciseIds,
-  //       client_id : client.id
-  //     }
-  //   })
-  //   })
-  //     .then((r) => {
-  //       if(r.ok){
-  //         r.json().then((data)=>{
-  //           console.log(data)
-  //           setTitle(data.title)
-            
-  //         })
-  //       } else {
-  //         r.json().then((err) => setErrors(err.errors))
-  //       }
-  //     })
-    
-  // }
-
-  //Is this the right way? probably not a useNavigate. Probably switch to conditional.
-  function handleNavigate(){
-    navigate(-1)
-  }
 
   return(
     <div>
@@ -103,8 +63,8 @@ function NewWorkoutForm({client}){
         {blockOn ? <CreateBlock  workout={workout} setWorkout={setWorkout} blockArray={blockArray} setBlockArray={setBlockArray}/> : null}
         {/* newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} */}
         {/* {submitted ? "Your new workout has been submitted and can now be selected for your client's next workout." : ""} */}
-      
-      {previewOn ? <Workout workout={workout}/> : null}
+      {confirmOn ? <WorkoutConfirm/> : null}
+      {/* {previewOn ? <Workout workout={workout}/> : null} */}
       <Errors errors={errors}/>
     </div>
   )

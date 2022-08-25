@@ -28,7 +28,7 @@ function CreateExerciseForm({exerciseRep, setExerciseRep, setCreateExOn}){
         <input placeholder="Exercise Name" id="exercise-name" onChange={(e)=>setExerciseName(e.target.value)}></input><br/>
         <textarea placeholder="Instructions" id="exercise-instructions" rows="7" onChange={(e)=>setInstructions(e.target.value)}></textarea>
         <select onChange={(e)=>setCategory(e.target.value)}>
-          <option>Upper Body Push</option>
+          <option>Upper Body Press</option>
           <option>Upper Body Pull</option>
           <option>Lower Body Hip Hinge</option>
           <option>Lower Body Squat/Lunge</option>

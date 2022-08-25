@@ -4,12 +4,11 @@ import { ExerciseRepContext } from "../context/ExerciseRepContext";
 import Block from "../workout/Block";
 import WorkoutPreview from "./WorkoutPreview";
 
-function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, setWorkout}){
+function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, setConfirmOn}){
   const [exerciseRep] = useContext(ExerciseRepContext)
   const [selectExerciseFormOn, setSelectExerciseFormOn] = useState(true)
   const [newWorkoutExercises, setNewWorkoutExercises] = useState([])
   const [addNewBlock, setAddNewBlock] = useState(true)
-  const [filteredRep, setFilteredRep] = useState([])
   const [count, setCount] = useState("")
   const [sets, setSets] = useState("")
   const [note, setNote] = useState("")
@@ -53,7 +52,7 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, set
 
   return(
     <div>
-      <div>
+      <div id = "workout-preview">
         <WorkoutPreview blockArray={blockArray}/>
       </div>
        
@@ -85,7 +84,8 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, set
       <button type="submit">Add Block</button>
       </form>
           </div>
-      : <button onClick={()=>setAddNewBlock(true)}>Create New Block</button>}
+          
+      : <div><button onClick={()=>setAddNewBlock(true)}>Create New Block</button><button onClick={()=>setConfirmOn(true)}>Confirm Workout</button></div>}
       </div>
       </div>
       

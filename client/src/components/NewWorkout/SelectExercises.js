@@ -1,10 +1,11 @@
-import CreateExerciseForm from '../CreateExerciseForm';
-import { useEffect, useState, useContext } from 'react';
-import { ExerciseRepContext } from '../context/ExerciseRepContext';
+import { useContext, useState } from 'react'
+import { ExerciseRepContext } from '../context/ExerciseRepContext'
 import EachExercise from './EachExercise'
 
-function SelectExercises({newWorkoutExercises, setNewWorkoutExercises, exerciseRep}){
-console.log(exerciseRep)
+function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
+  const [exerciseRep] = useContext(ExerciseRepContext)
+  const [filteredRep, setFilteredRep] = useState(exerciseRep)
+
   // function handleSelect(e){
   //   let selectedExercise = newWorkoutExercises.find((id)=>id===e.target.id)
   //   console.log(selectedExercise)
@@ -18,7 +19,7 @@ console.log(exerciseRep)
   //     }    
   // }
 
-  const exerciseList = exerciseRep.map((ex)=>{
+  const exerciseList = filteredRep.map((ex)=>{
     console.log(ex)
     return(
       <div>
@@ -26,16 +27,32 @@ console.log(exerciseRep)
       </div>
     )
   })
-  // {
-  //   return (<div key={ex.name}>
-  //     <input type="checkbox" id={ex.id} name={ex.name} key={ex.name} onChange={handleSelect}/>
-  //     <label htmlFor={ex.name} key={ex.id}>{ex.name}, <em>{ex.category}</em></label>
-  //   </div>
-  //   )
-  // }
+
+  function handleFilter(e){
+    if(e.target.value==="All Exercises"){
+      setFilteredRep(exerciseRep)
+    } else {
+      const exercises = exerciseRep.filter((ex)=>ex.category===e.target.value)
+      setFilteredRep(exercises)
+    }
+  }
+ 
   return(
     <div>
       <p>Select exercises:</p>
+      <div>
+        <label>Category: </label>
+        <select onChange={handleFilter}>
+          <option>All Exercises</option>
+          <option>Upper Body Press</option>
+          <option>Upper Body Pull</option>
+          <option>Lower Body Hip Hinge</option>
+          <option>Lower Body Squat/Lunge</option>
+          <option>Core</option>
+          <option>Cardio</option>
+          <option>Advanced/Tricks/Misc.</option>
+        </select>
+      </div>
         <div>{exerciseList}</div>
     </div>
     
