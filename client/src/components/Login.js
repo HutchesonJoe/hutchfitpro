@@ -13,7 +13,7 @@ function Login({onLogin, isTrainer, setIsTrainer}){
       password,
       isTrainer
     } 
-    console.log(user)
+   
     e.preventDefault()
     
     fetch("/login", {
