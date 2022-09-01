@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react'
 
 function EachExercise({exercise, newWorkoutExercises, setNewWorkoutExercises}){
-  console.log(newWorkoutExercises)
+  //console.log(newWorkoutExercises)
   //do I need this state?
   const[inBlock, setInBlock] = useState(false)
   

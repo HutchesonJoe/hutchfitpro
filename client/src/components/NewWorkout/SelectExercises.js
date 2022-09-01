@@ -20,10 +20,10 @@ function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
   // }
 
   const exerciseList = filteredRep.map((ex)=>{
-    console.log(ex)
+    
     return(
-      <div>
-        <EachExercise exercise={ex} key={ex.id} newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises}/>
+      <div key={ex.id}>
+        <EachExercise exercise={ex}  newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises}/>
       </div>
     )
   })

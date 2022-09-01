@@ -1,7 +1,7 @@
 import PreviewBlock from "./PreviewBlock"
 
 function WorkoutPreview({blockArray}){
-  console.log(blockArray)
+  
   let workoutPreview = blockArray.map((block) => { 
     
     let blockNumber = blockArray.findIndex((b)=>block.id===b.id) + 1
