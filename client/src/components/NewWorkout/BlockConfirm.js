@@ -6,8 +6,10 @@ function BlockConfirm({block}){
   const[thisClient] = useContext(ThisClientContext)
   const[clientExArr, setClientExArr] = useState([])
   const[exerciseRep] = useContext(ExerciseRepContext)
+  const[exWeight, setExWeight] = useState("")
   console.log(clientExArr)
   console.log(exerciseRep)
+  //would I use state to reset the component for weight? When the weight is assigned/selected, store this in state, use the value to PATCH.
   useEffect(()=>{
     let arr = [] 
 
@@ -53,14 +55,60 @@ function BlockConfirm({block}){
 
   const clientExercisesBlock = clientExArr.map((ex)=>{
     const exercise = exerciseRep.find((x)=>x.id===ex.exercise_id)
+    const options = []
+    function createOptions(){
+      for(let i = 2.5; i < 140; i = i + 2.5){
+        options.push(<option key = {i}>{i} - {i + 5}</option>)
+      }
+    }
+
+  createOptions()
+
+  function handleSelectWeight(e){
+    setExWeight(e.target.value)
+    fetch(`client_exercises/${ex.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify({
+        weight: exWeight        
+      })
+    })
+      .then(r=>r.json())
+      .then(data=>{
+          
+          const index = clientExArr.findIndex((x)=>x.id===ex.id)
+          console.log(index)
+          clientExArr.splice(index, 1, data)
+          const newArr = clientExArr
+          console.log(clientExArr)
+          setClientExArr(newArr)
+        })
+
+      }
+
+    const weightSelect = (
+      <select onChange={handleSelectWeight}>
+        {options}
+      </select>
+    )
+
+    const weight = () => {
+     return ex.weight
+    }
 
     return(
-      <li key={ex.id}>{exercise.name}</li>
+      <div>
+        <p key={ex.id}>{exercise.name}, {weight()}</p>
+      {weightSelect}
+      </div>
     )
   })
 
   return(
     <div>
+      {block.count}, {block.sets}, {block.note}
       {clientExercisesBlock}
     </div>
   )
