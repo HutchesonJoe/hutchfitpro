@@ -63,7 +63,7 @@ function NewWorkoutForm({client}){
         {blockOn ? <CreateBlock  workout={workout} setWorkout={setWorkout} blockArray={blockArray} setBlockArray={setBlockArray} setConfirmOn={setConfirmOn} setBlockOn={setBlockOn}/> : null}
         {/* newWorkoutExercises={newWorkoutExercises} setNewWorkoutExercises={setNewWorkoutExercises} */}
         {/* {submitted ? "Your new workout has been submitted and can now be selected for your client's next workout." : ""} */}
-      {confirmOn ? <WorkoutConfirm blockArray={blockArray} workout={workout}/> : null}
+      {confirmOn ? <WorkoutConfirm blockArray={blockArray} workout={workout} setConfirmOn={setConfirmOn}/> : null}
       {/* {previewOn ? <Workout workout={workout}/> : null} */}
       <Errors errors={errors}/>
     </div>

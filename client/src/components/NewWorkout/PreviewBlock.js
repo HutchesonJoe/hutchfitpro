@@ -17,7 +17,7 @@ function PreviewBlock({block}){
   // const exercises = block.workout_exercises.map((ex)=><li>{ex.title}</li>)
 return (
   <div>
-    <p>{block.count}, {block.sets}</p>
+    <p>{block.count}, {block.sets}, {block.note}</p>
     <ul>
       {exercises}
     </ul>

@@ -21,7 +21,7 @@ function App() {
   const [isTrainer, setIsTrainer] = useState(false)
   const [signUpFormOn, setSignUpFormOn] = useState(true)
   const [nextClientWorkoutOn, setNextClientWorkoutOn] = useState(false)
-  // console.log(user)
+  
   useEffect(()=>{
     fetch("/me").then((r)=>{
       setIsTrainer(false)

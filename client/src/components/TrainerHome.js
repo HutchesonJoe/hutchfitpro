@@ -11,14 +11,12 @@ function TrainerHome(){
   const [user, setUser] = useContext(UserContext)
   
   const [thisClient, setThisClient] = useContext(ThisClientContext)
-  // const [clientExercises, setClientExercises] = useState([])
   const [exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
   const [filteredExerciseRep, setFilteredExerciseRep] = useState([])
   const [clients, setClients] = useState([])
   const [clientCardOn, setClientCardOn] = useState(false)
   const [addClient, setAddClient] = useState(false)
   const [addClientButtonText, setAddClientButtonText] = useState(false)
-  // console.log(thisClient, clientRep, clientWorkouts)
 
   useEffect(()=>{
     setClients(user.clients)
@@ -32,7 +30,6 @@ function TrainerHome(){
     const client = clients.find((cl)=>cl.id===parseInt(e.target.id))
     setThisClient(client)
     setClientCardOn(!clientCardOn)
-    // setClientExercises(client.client_exercises)
   }
   let clientList
 

@@ -7,9 +7,7 @@ function BlockConfirm({block}){
   const[clientExArr, setClientExArr] = useState([])
   const[exerciseRep] = useContext(ExerciseRepContext)
   const[exWeight, setExWeight] = useState("")
-  console.log(clientExArr)
-  console.log(exerciseRep)
-  //would I use state to reset the component for weight? When the weight is assigned/selected, store this in state, use the value to PATCH.
+
   useEffect(()=>{
     let arr = [] 
 
@@ -39,19 +37,6 @@ function BlockConfirm({block}){
     })
     setClientExArr(arr)
   },[])
-  
-  
-  //take the block of selected exercises
-  //for each workout_exercise, look for that exercise in the client_exercises
-  //if (the exercise had been previously assigned)
-  //get the info for that client_exercise, push to clientExerciseArr
-  //if NOT(else)
-  //create a new client_exercise, push to clientExerciseArr
-
-  //take clientExerciseArray
-  //get exercise title, resistance level
-  //give option to set or change resistance level
-
 
   const clientExercisesBlock = clientExArr.map((ex)=>{
     const exercise = exerciseRep.find((x)=>x.id===ex.exercise_id)
@@ -64,8 +49,10 @@ function BlockConfirm({block}){
 
   createOptions()
 
-  function handleSelectWeight(e){
-    setExWeight(e.target.value)
+  function handleSubmit(e){
+    e.preventDefault()
+    const index = clientExArr.findIndex((x)=>x.id===ex.id)
+    const filteredArr = clientExArr.filter((y)=>y.id!==ex.id)
     fetch(`client_exercises/${ex.id}`, {
       method: "PATCH",
       headers: {
@@ -77,21 +64,21 @@ function BlockConfirm({block}){
     })
       .then(r=>r.json())
       .then(data=>{
-          
-          const index = clientExArr.findIndex((x)=>x.id===ex.id)
-          console.log(index)
-          clientExArr.splice(index, 1, data)
-          const newArr = clientExArr
-          console.log(clientExArr)
-          setClientExArr(newArr)
+          filteredArr.splice(index, 0, data);
+          setClientExArr(filteredArr)
         })
-
       }
 
     const weightSelect = (
-      <select onChange={handleSelectWeight}>
-        {options}
-      </select>
+      <form onSubmit={handleSubmit}>
+        <label>Select Resistance Level</label>
+        <select onChange={(e)=>setExWeight(e.target.value)}>
+          <option>Body Weight/0</option>
+          {options}
+        </select>
+        <button type="submit">submit</button>
+      </form>
+      
     )
 
     const weight = () => {
@@ -99,16 +86,16 @@ function BlockConfirm({block}){
     }
 
     return(
-      <div>
-        <p key={ex.id}>{exercise.name}, {weight()}</p>
+      <div className="exercise">
+        <p key={ex.id}>{exercise.name}: {weight()} lbs</p>
       {weightSelect}
       </div>
     )
   })
 
   return(
-    <div>
-      {block.count}, {block.sets}, {block.note}
+    <div className="block">
+      {block.count}, {block.sets}{block.note ? `,${block.note}` : ""}
       {clientExercisesBlock}
     </div>
   )
