@@ -5,7 +5,7 @@ import BlockConfirm from "./BlockConfirm";
 
 function WorkoutConfirm({blockArray, workout, setConfirmOn}){
   const[thisClient] = useContext(ThisClientContext)
-  const navigate = useNavigate()
+ 
   const workoutConfirm = blockArray.map((block)=><BlockConfirm block={block} key={block.id}/>)
 
   function handleSendWorkout(e){

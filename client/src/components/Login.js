@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Errors from './Errors';
 
-function Login({onLogin, isTrainer, setIsTrainer}){
+function Login({setUser, isTrainer, setIsTrainer}){
   const[username, setUsername] = useState("");
   const[password, setPassword] = useState("");
   // const[isTrainer, setIsTrainer] = useState(false)
@@ -24,7 +24,7 @@ function Login({onLogin, isTrainer, setIsTrainer}){
       body: JSON.stringify(user)
     }).then((r)=> {
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => setUser(user));
       } else {
         r.json().then((err) => setErrors([err.errors]))
       }

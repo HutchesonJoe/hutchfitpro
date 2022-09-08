@@ -68,7 +68,7 @@ function TrainerHome(){
       {/* BLOG: Look how we share these parallel PROPS down to these two components: CLientCard and ExerciseCollection. I'm using both UseContext passing props. Why? What is the best solution? */}
       {/* Clients must add themselves; move this component below */}
       {/* <div>{addClient ? <AddClient trainer={user} clients={clients} setClients={setClients} addClient={addClient} setAddClient={setAddClient} setAddClientButtonText={setAddClientButtonText}/> : ""}</div> */}
-      <div><button onClick={byAlphabetize}>By Alphabetize</button><Logout/></div>
+      <div><button onClick={byAlphabetize}>list alphabetically</button><Logout/></div>
       <div><ExerciseCollection thisClient={thisClient} /></div>
       
     </div>

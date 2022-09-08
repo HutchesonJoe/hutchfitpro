@@ -1,35 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Block from './Block';
 
 
 function Workout({workout}){
-  const[fullWorkout, setFullWorkout] = useState()
-  const[showWorkout, setShowWorkout] = useState(false)
-  console.log(workout)
+   
+  let blocks
 
-  function handleShowWorkout(){
-    // setShowWorkout(!showWorkout)
-    // fetch(`/workouts/${workout.workout_id}`)
-    //   .then(r=>r.json())
-    //   .then(w=>setFullWorkout(w))
-  }
+  useEffect(()=>{
+    if(workout){
+      blocks = workout.blocks.map((b)=>{
+        const blockNumber = workout.blocks.findIndex((bl)=>bl.id===b.id) + 1
+        return(
+          <div className="block-holder">
+            <h3>Circuit # {blockNumber}</h3>
+            <Block block={b}/>
+            <h4>Rest 1 Minute</h4>
+          </div>
+        )
+      })
+    }
+  }, [workout])
 
-  let exerciseList
-
-  // if(fullWorkout){
-  //   exerciseList = fullWorkout.exercises.map(ex=><Exercise exercise={ex} key={ex.id}/>)
-  // }
-
- 
   return(
     <div className="workout-card">
-      <p>Workout Card</p>
-      {/* <li id={workout.completed ? "workout-completed" : "workout-pending"} className="workout-title" onClick={handleShowWorkout}>{workout.title}</li>
-      {showWorkout ? 
+      <p>{workout ? workout.title : null}</p>
       <div>
-          {exerciseList}
+        {blocks}
       </div>
-        : "" } */}
     </div>
   )
 }

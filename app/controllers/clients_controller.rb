@@ -24,7 +24,8 @@ class ClientsController < ApplicationController
   end
 
   def alphabetize
-    clients = Client.order(:name)
+    all_clients = Client.order(:name)
+    clients = all_clients.filter {|c| c.trainer_id==session[:user_id]}
     render json: clients
   end
 

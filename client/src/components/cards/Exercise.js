@@ -2,62 +2,32 @@
 
 import { useContext, useEffect, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
-import Errors from "../Errors";
+import { UserContext } from "../context/UserContext";
+// import Errors from "../Errors";
 
 function Exercise({exercise}){
-  // const[exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
+  //errors
   const[errors, setErrors] = useState([])
-  // console.log(exercise)
-  // const[inClientRep, setInClientRep] = useState(false)
+  const[instructionsOn, setInstructionsOn] = useState(false)
+  const[user] = useContext(UserContext)
+  const[exerciseRep] = useContext(ExerciseRepContext)
   
-  // useEffect(()=>{
-  //   let thisEx
-  //   if(clientExercises){
-  //     thisEx = clientExercises.find((ex)=>ex.id===exercise.id)
-  //     if(thisEx){
-  //       setInClientRep(true)
-  //       } else {
-  //       setInClientRep(false)
-  //       }
-  //   }
-  // },[clientExercises])
+  let exer 
+  if(exercise.client_id){
+    exer = exerciseRep.find((ex)=>ex.id===exercise.exercise_id)
+  } else {exer = exercise}
 
-  // useEffect(()=>{
-  //   if(thisClient){
-  //     setErrors([])
-  //   }
-  // },[thisClient])
-
-  // function handleAdd(){
-  //   setErrors([])
-  //   if(!thisClient){
-  //     setErrors(["No client selected"])
-  //   } else if (clientExercises.includes(exercise)){
-  //     setErrors(["Exercise already in client rep."]);
-  //     setInClientRep(true)
-  //   } else {
-  //     setErrors([])
-  //     setClientExercises([...clientExercises, exercise])
-  //     fetch("/client_exercises",{
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type" : "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         exercise_id: exercise.id, 
-  //         client_id: thisClient.id
-  //       })
-  //     })
-  //   }
-  // }
-
+  const instructions = <p>Instructions: <em>{exer.instructions}</em></p>
+  
   return(
     <div className="exercise">
-      <p className="exercise-name">{exercise.name}</p>
-      <p>Category: <em>{exercise.category}</em></p>
-      <p>Instructions: <em>{exercise.instructions}</em></p>
+      <p className="exercise-name">{exer.name}</p>
+      <p>Category: <em>{exer.category}</em></p>
+      <h4 onClick ={()=>setInstructionsOn(!instructionsOn)}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</h4>
+      {instructionsOn ? instructions : null}
+      <h5>current resistance level:{exercise.weight} lbs</h5>
       {/* {inClientRep ? null : <button onClick={handleAdd}>Add to Client's Rep</button>} */}
-      <Errors errors={errors}/>
+      {/* <Errors errors={errors}/> */}
     </div>
   )
 }

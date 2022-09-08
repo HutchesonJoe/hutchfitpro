@@ -21,7 +21,7 @@ function BlockConfirm({block}){
           client_id : thisClient.id,
           exercise_id : ex.exercise_id
         }
-        console.log(newExercise)
+        
         fetch('/client_exercises',{
           method: "POST",
           headers: {

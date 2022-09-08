@@ -17,7 +17,6 @@ import { ThisClientProvider } from './context/ThisClientContext';
 function App() {
   
   const [user, setUser] = useContext(UserContext);
-  
   const [isTrainer, setIsTrainer] = useState(false)
   const [signUpFormOn, setSignUpFormOn] = useState(true)
   const [nextClientWorkoutOn, setNextClientWorkoutOn] = useState(false)
@@ -45,7 +44,7 @@ function App() {
     landingPage = (
       <div>
     
-    <Login onLogin={setUser} user={user} nextClientWorkoutOn={nextClientWorkoutOn} setNextClientWorkoutOn={setNextClientWorkoutOn} isTrainer={isTrainer} setIsTrainer={setIsTrainer}/>
+    <Login setUser={setUser} user={user} nextClientWorkoutOn={nextClientWorkoutOn} setNextClientWorkoutOn={setNextClientWorkoutOn} isTrainer={isTrainer} setIsTrainer={setIsTrainer}/>
     {signUpFormOn ? <Signup setUser={setUser} setSignUpFormOn={setSignUpFormOn}/> : ""}
   </div>
     )
