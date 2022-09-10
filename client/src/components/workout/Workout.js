@@ -3,9 +3,9 @@ import Block from './Block';
 
 
 function Workout({workout}){
-   
+  
   let blocks
-
+  
   useEffect(()=>{
     if(workout){
       blocks = workout.blocks.map((b)=>{

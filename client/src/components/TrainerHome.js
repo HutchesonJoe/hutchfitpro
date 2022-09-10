@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import ClientCard from './cards/ClientCard';
-import AddClient from './AddClient';
+import ClientList from './ClientList'
 import { UserContext } from './context/UserContext';
 import { ExerciseRepContext } from './context/ExerciseRepContext';
 import Logout from './Logout';
@@ -17,35 +17,42 @@ function TrainerHome(){
   const [clientCardOn, setClientCardOn] = useState(false)
   const [addClient, setAddClient] = useState(false)
   const [addClientButtonText, setAddClientButtonText] = useState(false)
-
+  console.log(thisClient)
   useEffect(()=>{
     setClients(user.clients)
-  },[])
+  },[user])
 
   useEffect(()=>{
     setFilteredExerciseRep(exerciseRep)
   },[exerciseRep])
-
+ 
+  //*****this is a bit of a mess, this funcxtion below has to set the client, which maybe happens int he client card
+  
   function handleOpenClientCard(e){
-    const client = clients.find((cl)=>cl.id===parseInt(e.target.id))
+    const client = clients.find((cl)=>cl.id===parseInt(e.target.value))
     setThisClient(client)
     setClientCardOn(!clientCardOn)
   }
+  
   let clientList
 
-  if(clients){
-    clientList = clients.map((client)=>{
-      return(<div key={client.id}>
-        <p onClick={handleOpenClientCard} id={client.id} key={client.id} className="client-name">{client.name}</p>
+  if(clients.length!==0){
+    const list = clients.map((cl)=><li key={cl.id} onClick={handleOpenClientCard} value={cl.id}>{cl.name}</li>)
+    clientList = (
+      <div>
+        <p>Your Current clients</p>
+        <ul>
+          {list}
+        </ul>
       </div>
+      
       )
-  })
   }
- 
-  function openAddClientForm(){
-    setAddClientButtonText(!addClientButtonText)
-    setAddClient(!addClient)
-  }
+  
+  // function openAddClientForm(){
+  //   setAddClientButtonText(!addClientButtonText)
+  //   setAddClient(!addClient)
+  // }
 
   
 
@@ -58,13 +65,9 @@ function TrainerHome(){
   return(
     
     <div className='trainer-home'>
-      {clientCardOn ? <ClientCard client={thisClient} clients={clients} setClients={setClients} clientCardOn={clientCardOn} setClientCardOn={setClientCardOn} filteredExerciseRep={filteredExerciseRep} setFilteredExerciseRep={setFilteredExerciseRep}/> : "" }
       <h2>Welcome, {user.name}!</h2>
-      <h3>Here's your current list of clients:</h3>
-      <div className='client-list'>
-        {clientList}
-      <button onClick={openAddClientForm}>{addClientButtonText ? "Close" : "Add Client"}</button>
-      </div>
+      {clientCardOn ? <ClientCard client={thisClient} clients={clients} setClients={setClients} clientCardOn={clientCardOn} setClientCardOn={setClientCardOn} filteredExerciseRep={filteredExerciseRep} setFilteredExerciseRep={setFilteredExerciseRep}/> : clientList }
+      
       {/* BLOG: Look how we share these parallel PROPS down to these two components: CLientCard and ExerciseCollection. I'm using both UseContext passing props. Why? What is the best solution? */}
       {/* Clients must add themselves; move this component below */}
       {/* <div>{addClient ? <AddClient trainer={user} clients={clients} setClients={setClients} addClient={addClient} setAddClient={setAddClient} setAddClientButtonText={setAddClientButtonText}/> : ""}</div> */}
