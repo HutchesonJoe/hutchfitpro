@@ -1,12 +1,18 @@
 import { ThisClientContext } from "../context/ThisClientContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 
 function LastThreeWorkouts(){
+  const [lastThree, setLastThree] = useState([])
   const [thisClient] = useContext(ThisClientContext)
   
-  const lastThree = thisClient.workouts.slice(-4, -1).map((w)=><li key={w.id}>{w.title}</li>)
+  useEffect(()=>{
+    setLastThree(thisClient.workouts.slice(-4, -1).map((w)=><li key={w.id}>{w.title}</li>)
+    )
+  },[])
+  
   return(
     <div>
+      <p>Last Three</p>
       <ul>
         {lastThree}
       </ul>

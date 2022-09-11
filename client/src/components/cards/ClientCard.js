@@ -37,7 +37,7 @@ function ClientCard({clients, setClients, clientCardOn, setClientCardOn}){
     } else {
       card = (
         <div>
-          card
+          Loading...
         </div>
       )
     }

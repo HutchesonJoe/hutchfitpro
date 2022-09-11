@@ -10,40 +10,46 @@ function ClientHome(){
   const [current, setCurrent] = useState()
   
   let clientWorkouts
-  let lastWorkout 
   
   useEffect(()=>{
     if(user.workouts){
-      
       setCurrent(user.workouts[user.workouts.length-1])
-      clientWorkouts = user.workouts.slice(-4, -1).map((w)=>{
-        return (
-          <li key={w.id}>{w.title}</li>
-        )
-      })
+      setLastThree(user.workouts.slice(-4, -1))
     }
+    
   }, [user])
 
+  
+    
+  if(lastThree){
+      clientWorkouts = lastThree.map((w)=><li key={w.id}>{w.title}</li>)
+  }
+  
+
   return(
-    <div>
-      <div>
-        <p id="client-welcome">Hello, {user.name}!</p>
-        <p>Last three workouts:</p>
-        <ul>
-          {clientWorkouts}
-        </ul>
-        <p>Here, you should be able to:</p>
-        <ul>
-          <li>View upcoming workout.</li>
-          {current ? <Workout workout={current}/> : null}
-          <li>Quickly see where your weight range is for each exercise.</li>
-          <li>Log a workout: record resistance level; take a note.</li>
-          <li>Request a new workout?</li>
-          <li>* Create your own workout.</li>
-        </ul>
-      </div>
+    <div id="client-home">
+      
+        <div id= "client-welcome">
+           Hello, {user.name}!
+        </div>
+
+       
+        <div id="client-last-three">
+          <p>Last three workouts:</p>
+          <ul>
+            {clientWorkouts}
+          </ul>
+        </div>
+      
+        
+        <div id="client-next-workout">
+          <h3>Current Workout:</h3>
+          <ul>
+            {current ? <Workout workout={current}/> : <li>You don't have an upcoming workout yet.</li>}
+          </ul>
+        </div>
       <Logout/>
-    </div>
+  </div>
   )
 }
 
