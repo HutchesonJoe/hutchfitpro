@@ -18,7 +18,6 @@ function Block({block}){
 
   if(thisBlock.length!==0){
     
-    
     exerciseList =  thisBlock.workout_exercises.map((ex)=>{
       const clientExercise = user.client_exercises.find((x)=>x.id===ex.exercise_id)
       

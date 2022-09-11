@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Errors from './Errors';
 
 function Signup({setSignUpFormOn}){
+  //I probably could split this up between two components: trainer singup and client signup. pass down the setter functioon to setUser, so I have the object here. The components could be just the forms.
+  
   const [name, setName] = useState("")
   const [certs, setCerts] = useState("")
   const [userName, setUserName] = useState("")
@@ -9,18 +11,39 @@ function Signup({setSignUpFormOn}){
   const [passConf, setPassConf] = useState("")
   const [email, setEmail] = useState("")
   const [errors, setErrors] = useState([])
+  const [trainerId, setTrainerId] = useState()
+  const [age, setAge] = useState()
+  const [feet, setFeet] = useState()
+  const [inches, setInches] = useState()
+  const [weight, setWeight] = useState()
   
   function handleSubmit(e){
     e.preventDefault()
-    
-    const newUser = {
-      name, 
-      certifications: certs,
-      username: userName,
-      email,
-      password, 
-      password_confirmation: passConf
-    }
+     let newUser
+     if(isTrainer){
+      newUser = {
+        name, 
+        certifications: certs,
+        username: userName,
+        email,
+        password, 
+        password_confirmation: passConf
+      }
+     } else {
+      newUser = {
+        name,
+        userName,
+        password,
+        passConf,
+        email, 
+        feet,
+        inches,
+        age,
+        weight,
+        trainer_id: trainerId
+      }
+     }
+     
     
     fetch("/signup", {
       method: "POST",

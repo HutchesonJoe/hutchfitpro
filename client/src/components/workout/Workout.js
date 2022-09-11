@@ -10,11 +10,13 @@ function Workout({workout}){
     if(workout){
       const blocksArr = workout.blocks.map((b)=>{
         const blockNumber = workout.blocks.findIndex((bl)=>bl.id===b.id) + 1
+        
         return(
-          <div>
-            <h3>Circuit # {blockNumber}</h3>
-            <Block block={b}/>
-            <h4>Rest 1 Minute</h4>
+          <div className="block">
+    
+            <Block block={b} blockNumber={blockNumber}/>
+            {blocks.length===blockNumber ? null : <p className="rest">Rest 1 Minute</p>}
+            
           </div>
         )
       });
@@ -23,13 +25,18 @@ function Workout({workout}){
   }, [workout])
 
   return(
-    <div className="workout-card">
-      <h2>{workout ? workout.title : null}</h2>
-      <div id="warmup">
+    <div>
+      
+      <p id="workout-title">{workout.title}</p>
+      <br/>
+      <p id="warmup">
         WarmUp/Movement Prep
-      </div>
-      <div>
+      </p>
+      
         {blocks}
+      
+      <div id="stretch">
+        Stretch
       </div>
     </div>
   )

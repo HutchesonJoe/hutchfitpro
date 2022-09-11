@@ -239,18 +239,60 @@ a​:hover { color: green; }
 .workout-card{
   border-width: 2px;
   font-weight: bold;
+  margin: auto
 }
 
-.workout-card h2{
-  margin-right: 25px;
-  text-align: center;
-  background-color: blue;
-}
-
-.workout-title{
+#workout-title{
   font-size: large;
   font-weight: bold;
-  margin: 20px;
+  margin: auto;
+  text-align: center;
+  background-color: blue;
+  line-height: normal;
+  font-size: large;
+  width: 85%;
+  padding: 10px;
+  color: white;
+}
+
+#warmup{
+  font-size: large;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  line-height: normal;
+  font-size: large;
+  width: 85%;
+  padding: 10px;
+  color: blue;
+}
+
+
+#stretch{
+  font-size: large;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  line-height: normal;
+  font-size: large;
+  width: 85%;
+  padding: 10px;
+  color: blue;
+}
+
+.rest {
+  font-size: large;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  line-height: normal;
+  font-size: large;
+  width: 85%;
+  padding: 10px;
+  color: blue;
 }
 
 #next-workout{
@@ -278,6 +320,7 @@ a​:hover { color: green; }
 .exercise{
   line-height: normal;
   font-size: large;
+  margin: auto;
   padding: 10px;
   margin-top: 0;
   border-color: blue;
@@ -309,7 +352,14 @@ a​:hover { color: green; }
   width: 90%;
   background-color:white;
   color: blue;
+  margin: auto;
+}
 
+.block h2{
+  /* margin-right: 25px;
+  margin-bottom: 0px; */
+  text-align: center;
+  background-color: blue;
 }
 
 #client-next-workout{
@@ -317,18 +367,8 @@ a​:hover { color: green; }
   /* width: 90%; */
 }
 
-#warmup{
-  line-height: normal;
-  font-size: large;
-  width: 85%;
-  padding: 10px;
-  margin-top: 0;
-  border-color: blue;
-  border-style: double;
-  border-width: 2px;
-  color: blue;
-  background-color: white;
-}
+
+
 
 #client-last-three{
   padding: 15px;

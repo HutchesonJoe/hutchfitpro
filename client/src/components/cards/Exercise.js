@@ -22,10 +22,10 @@ function Exercise({exercise}){
   return(
     <div className="exercise">
       <p className="exercise-name">{exer.name}</p>
-      <p>Category: <em>{exer.category}</em></p>
+      {/* <p>Category: <em>{exer.category}</em></p> */}
       <h4 onClick ={()=>setInstructionsOn(!instructionsOn)}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</h4>
       {instructionsOn ? instructions : null}
-      <h5>current resistance level:{exercise.weight} lbs</h5>
+      <h5>current resistance level: {exercise.weight} lbs</h5>
       {/* {inClientRep ? null : <button onClick={handleAdd}>Add to Client's Rep</button>} */}
       {/* <Errors errors={errors}/> */}
     </div>
