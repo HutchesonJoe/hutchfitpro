@@ -17,7 +17,7 @@ function ClientCard({clients, setClients, clientCardOn, setClientCardOn}){
     if(thisClient){
       card = (
         <div className="client-card">
-      <h3>{thisClient.name}</h3>
+      <h3>{thisClient.first_name}</h3>
       <p>Email: {thisClient.email}</p>
       <p>Stats: {thisClient.age} years, {thisClient.feet} ft. {thisClient.inches} in., {thisClient.weight} lbs</p>
       <p>{thisClient.fitness_level}, {thisClient.workouts_per_week} workouts per week</p>

@@ -3,7 +3,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Banner from './Banner';
 import Login from './Login';
-import Signup from './Signup';
+import Signup from './signup/Signup';
 import { useEffect, useState, useContext } from 'react';
 import { UserContext } from './context/UserContext';
 import TrainerHome from './TrainerHome';

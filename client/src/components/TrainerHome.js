@@ -15,9 +15,7 @@ function TrainerHome(){
   const [filteredExerciseRep, setFilteredExerciseRep] = useState([])
   const [clients, setClients] = useState([])
   const [clientCardOn, setClientCardOn] = useState(false)
-  const [addClient, setAddClient] = useState(false)
-  const [addClientButtonText, setAddClientButtonText] = useState(false)
-  console.log(thisClient)
+  
   useEffect(()=>{
     setClients(user.clients)
   },[user])
@@ -37,7 +35,7 @@ function TrainerHome(){
   let clientList
 
   if(clients.length!==0){
-    const list = clients.map((cl)=><li key={cl.id} onClick={handleOpenClientCard} value={cl.id}>{cl.name}</li>)
+    const list = clients.map((cl)=><li key={cl.id} onClick={handleOpenClientCard} value={cl.id}>{cl.first_name}</li>)
     clientList = (
       <div>
         <p>Your Current clients</p>
@@ -49,12 +47,6 @@ function TrainerHome(){
       )
   }
   
-  // function openAddClientForm(){
-  //   setAddClientButtonText(!addClientButtonText)
-  //   setAddClient(!addClient)
-  // }
-
-  
 
   function byAlphabetize(){
     fetch('/alphabetize')
@@ -65,7 +57,7 @@ function TrainerHome(){
   return(
     
     <div className='trainer-home'>
-      <h2>Welcome, {user.name}!</h2>
+      <h2>Welcome, {user.first_name}!</h2>
       {clientCardOn ? <ClientCard client={thisClient} clients={clients} setClients={setClients} clientCardOn={clientCardOn} setClientCardOn={setClientCardOn} filteredExerciseRep={filteredExerciseRep} setFilteredExerciseRep={setFilteredExerciseRep}/> : clientList }
       
       {/* BLOG: Look how we share these parallel PROPS down to these two components: CLientCard and ExerciseCollection. I'm using both UseContext passing props. Why? What is the best solution? */}

@@ -43,7 +43,8 @@ ActiveRecord::Schema.define(version: 2022_08_16_234141) do
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
     t.integer "age"
     t.integer "feet"
@@ -68,7 +69,8 @@ ActiveRecord::Schema.define(version: 2022_08_16_234141) do
   end
 
   create_table "trainers", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "username"
     t.string "email"
     t.string "certifications"

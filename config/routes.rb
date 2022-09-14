@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     get "/me", to: "sessions#show"
-    post "/signup", to: "trainers#create"
+    post "/trainersignup", to: "trainers#create"
+    post "/clientsignup", to: "clients#create"
     get "/alphabetize", to: "clients#alphabetize"
   
   
