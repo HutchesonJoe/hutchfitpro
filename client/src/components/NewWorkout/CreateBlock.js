@@ -1,7 +1,6 @@
 import SelectExercises from "./SelectExercises";
 import { useContext, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
-import Block from "../workout/Block";
 import WorkoutPreview from "./WorkoutPreview";
 
 function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, setConfirmOn, setBlockOn}){
@@ -14,12 +13,7 @@ function CreateBlock({formOn, setFormOn, blockArray, setBlockArray, workout, set
   const [note, setNote] = useState("")
    
  
-  // function handleClick(){
-  //   setAddBlockOn(!addBlockOn)
-  //   // setSelectExerciseFormOn(!selectExerciseFormOn)
-  // }
-  //this should be where I can filter exercises by "type", so I can create a block this way. 
-  //select with options for each category, filter and set state. 
+
   let exerciseIds = newWorkoutExercises.map((ex)=>{
     return({exercise_id: parseInt(ex)});
   })

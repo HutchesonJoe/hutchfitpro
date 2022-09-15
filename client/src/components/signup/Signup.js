@@ -98,14 +98,6 @@ function Signup({setSignUpFormOn}){
         </select>
         {isTrainer ? <TrainerSignup setFirstName={setFirstName} setLastName={setLastName} setCerts={setCerts} setUserName={setUserName} setEmail={setEmail} setPassword={setPassword} setPassConf={setPassConf}/> 
         : <ClientSignup setFirstName={setFirstName} setLastName={setLastName} setUserName={setUserName} setEmail={setEmail} setWeight={setWeight} setFeet={setFeet} setInches={setInches} setAge={setAge} setLevel={setLevel} setWorkouts={setWorkouts} setTrainerId={setTrainerId} setPassword={setPassword} setPassConf={setPassConf}/>}
-        {/* <div>
-        <input placeholder="Your First Name" onChange={(e)=>setName(e.target.value)}></input>
-        <input placeholder="Certifications" onChange={(e)=>setCerts(e.target.value)}></input>
-        <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input>
-        <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input>
-        <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
-        <input placeholder="Confirm Password" type="password" onChange={(e)=>setPassConf(e.target.value)}></input>
-        </div> */}
         <button type="Submit">submit</button>
       </form>
       <Errors errors={errors}/>

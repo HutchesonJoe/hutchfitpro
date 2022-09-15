@@ -13,7 +13,6 @@ function WorkoutPreview({blockArray}){
       </div>
     )
   })
-//"block" will get the set and duration count. When I confirm the block, I will set/confirm the weight for the client.
   return(
     <div>
       {workoutPreview}

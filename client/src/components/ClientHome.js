@@ -30,14 +30,14 @@ function ClientHome(){
     <div id="client-home">
       
         <div id= "client-welcome">
-           Hello, {user.name}!
+           Hello, {user.first_name}!
         </div>
 
        
         <div id="client-last-three">
           <p>Last three workouts:</p>
           <ul>
-            {clientWorkouts}
+            {clientWorkouts.length!==0 ? clientWorkouts : "No workouts yet."}
           </ul>
         </div>
       
