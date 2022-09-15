@@ -1,4 +1,23 @@
-function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet, setInches, setWeight, setLevel, setWorkouts, setPassword, setPassConf}){
+import { useState, useEffect } from 'react';
+
+function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet, setInches, setWeight, setLevel, setWorkouts, setPassword, setPassConf, setTrainerId}){
+  const[trainers, setTrainers] = useState([])
+  const[trainerOptions, setTrainerOptions] = useState([])
+  
+  useEffect(()=>{
+    fetch("/trainers")
+    .then(r=>r.json())
+    .then(t=>setTrainers(t))
+  },[])
+
+  console.log(trainerOptions)
+  useEffect(()=>{
+    if(trainers.length!==0){
+      const options = trainers.map((tr)=><option key={tr.id} value={tr.id}>{tr.first_name} {tr.last_name}</option>)
+      setTrainerOptions(options)
+    }
+  },[trainers])
+
   return(
     <div>
       <div>
@@ -30,8 +49,20 @@ function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet
          <option>6</option>
        </select>
        </div>
-        <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
+       <div>
+        <select onChange={(e)=>setTrainerId(e.target.value)}>
+          {trainerOptions}
+        </select>
+       </div>
+       <div>
+        <label>Choose a password:</label>
+          <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
+       </div>
+       <div>
+        <label>Confirm password: </label>
         <input placeholder="Confirm Password" type="password" onChange={(e)=> setPassConf(e.target.value)}></input>
+       </div>
+       
         </div>
     </div>
   )

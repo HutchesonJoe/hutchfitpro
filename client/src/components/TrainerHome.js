@@ -29,7 +29,7 @@ function TrainerHome(){
   function handleOpenClientCard(e){
     const client = clients.find((cl)=>cl.id===parseInt(e.target.value))
     setThisClient(client)
-    setClientCardOn(!clientCardOn)
+    setClientCardOn(true)
   }
   
   let clientList

@@ -15,7 +15,7 @@ function Signup({setSignUpFormOn}){
   const [passConf, setPassConf] = useState("")
   const [email, setEmail] = useState("")
   const [errors, setErrors] = useState([])
-  const [trainerId, setTrainerId] = useState()
+  const [trainerId, setTrainerId] = useState(1)
   const [age, setAge] = useState()
   const [feet, setFeet] = useState()
   const [inches, setInches] = useState()
@@ -45,9 +45,9 @@ function Signup({setSignUpFormOn}){
       newUser = {
         first_name: firstName,
         last_name: lastName,
-        userName,
+        username: userName,
         password,
-        passConf,
+        password_confirmation: passConf,
         email, 
         feet,
         inches,
