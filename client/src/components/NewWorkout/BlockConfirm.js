@@ -15,6 +15,7 @@ function BlockConfirm({block}){
       const exercise = thisClient.client_exercises.find((x)=>x.exercise_id===ex.exercise_id)
       console.log(exercise)
       if(exercise!==undefined){
+        setClientExArr([...arr, exercise])
         arr.push(exercise)
       } else {
         const newExercise = {
@@ -32,8 +33,9 @@ function BlockConfirm({block}){
         .then(r=>r.json())
         .then((newEx)=>{
         console.log(newEx)
-         arr.push(newEx)
          setClientExArr([...arr, newEx])
+         arr.push(newEx)
+
         })
         
       }

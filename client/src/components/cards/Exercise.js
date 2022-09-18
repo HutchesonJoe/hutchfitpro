@@ -17,10 +17,9 @@ function Exercise({clientExercise}){
     <div className="exercise">
       <p className="exercise-name">{exercise.name}</p>
       <p>Category: <em>{exercise.category}</em></p>
-      {/* <h4 onClick ={()=>setInstructionsOn(!instructionsOn)}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</h4>
-      {instructionsOn ? instructions : null} */}
+      <p onClick={()=>setInstructionsOn(!instructionsOn)} style={{color:"red"}}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</p>
+      {instructionsOn ? exercise.instructions : null}
       <h5>current resistance level: {clientExercise.weight} lbs</h5>
-      {/* {inClientRep ? null : <button onClick={handleAdd}>Add to Client's Rep</button>} */}
       {/* <Errors errors={errors}/> */}
     </div>
   )
