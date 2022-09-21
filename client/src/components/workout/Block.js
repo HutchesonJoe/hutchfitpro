@@ -22,7 +22,7 @@ function Block({block}){
       const clientExercise = user.client_exercises.find((x)=>x.id===ex.exercise_id)
       
       return (
-        <Exercise exercise={clientExercise}/>
+        <Exercise key={clientExercise.id} exercise={clientExercise}/>
       )
       })
     }

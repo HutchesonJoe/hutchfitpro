@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import Errors from './Errors';
+import Errors from '../Errors';
+import ClientSignup from './ClientSignup';
+import TrainerSignup from './TrainerSignup';
 
 function Signup({setSignUpFormOn}){
   //I probably could split this up between two components: trainer singup and client signup. pass down the setter functioon to setUser, so I have the object here. The components could be just the forms.
@@ -16,7 +18,8 @@ function Signup({setSignUpFormOn}){
   const [feet, setFeet] = useState()
   const [inches, setInches] = useState()
   const [weight, setWeight] = useState()
-  
+  const [isTrainer, setIsTrainer] = useState(true)
+  console.log(isTrainer)
   function handleSubmit(e){
     e.preventDefault()
      let newUser
@@ -61,10 +64,22 @@ function Signup({setSignUpFormOn}){
     });
   }
 
+  function handleIsTrainer(e){
+    console.log(isTrainer, e.target.value)
+    setIsTrainer(e.target.value)
+  }
+
   return(
     <div className="signup" >
       <form onSubmit={handleSubmit}>
+        
         <label>New to HutchFit PRO?</label>
+        <p> I am a new: </p>
+        <select onChange={e=>{setIsTrainer(e.target.value)}}>
+          <option value={true}>Trainer</option>
+          <option value={false}>Client</option>
+        </select>
+        {isTrainer ? <TrainerSignup/> : <ClientSignup/>}
         <div>
         <input placeholder="Your First Name" onChange={(e)=>setName(e.target.value)}></input>
         <input placeholder="Certifications" onChange={(e)=>setCerts(e.target.value)}></input>

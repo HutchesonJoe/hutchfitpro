@@ -14,7 +14,8 @@ function BlockConfirm({block}){
     block.workout_exercises.map((ex)=>{
       const exercise = thisClient.client_exercises.find((x)=>x.exercise_id===ex.exercise_id)
       
-      if(exercise){
+      if(exercise!==undefined){
+        setClientExArr([...arr, exercise])
         arr.push(exercise)
       } else {
         const newExercise = {
@@ -31,11 +32,11 @@ function BlockConfirm({block}){
         })
         .then(r=>r.json())
         .then((newEx)=>{
+          setClientExArr([...arr, newEx])
          arr.push(newEx)
         })
       }
     })
-    setClientExArr(arr)
   },[])
 
   const clientExercisesBlock = clientExArr.map((ex)=>{

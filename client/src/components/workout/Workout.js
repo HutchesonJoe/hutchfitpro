@@ -12,7 +12,7 @@ function Workout({workout}){
         const blockNumber = workout.blocks.findIndex((bl)=>bl.id===b.id) + 1
         
         return(
-          <div className="block">
+          <div className="block" key={b.id}>
     
             <Block block={b} blockNumber={blockNumber}/>
             {blocks.length===blockNumber ? null : <p className="rest">Rest 1 Minute</p>}
