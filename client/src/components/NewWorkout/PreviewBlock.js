@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
 
 function PreviewBlock({block}){
-  console.log(block)
+  
   const [exerciseRep] = useContext(ExerciseRepContext)
 
   const exercises =  block.workout_exercises.map((ex)=>{

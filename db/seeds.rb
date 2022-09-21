@@ -4,17 +4,16 @@ puts "Seeding..."
 
 #trainers
 
-hutch = Trainer.create(name: "Hutch", username: "JoeHutch", email: "hutcheson2001@yahoo.com", certifications: "ACE, Integral Yoga Institute, TRX, Prenatal/postpartum", password: "Hutch", password_confirmation: "Hutch", is_trainer: true)
+hutch = Trainer.create(first_name: "Hutch", last_name: "Smith", username: "JoeHutch", email: "hutcheson2001@yahoo.com", certifications: "ACE, Integral Yoga Institute, TRX", password: "Hutch", password_confirmation: "Hutch", is_trainer: true)
+sophie = Trainer.create(first_name: "Sophie", last_name: "Smith", username: "SoFit", email: "sofit@gmail.com", certifications: "NASM/TRX", password: "Sophie", password_confirmation: "Sophie", is_trainer: true)
 
-sophie = Trainer.create(name: "Sophie", username: "SoFit", email: "sofit@gmail.com", certifications: "NASM/TRX", password: "Sophie", password_confirmation: "Sophie", is_trainer: true)
+#clients``
 
-#clients
+charl = Client.create(first_name: "Charl", last_name: "Smith", email: "Singnceb@gmail.com", age: 41, feet: 6, inches: 4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id, username: "Charl", password: "charl123", password_confirmation: "charl123", is_trainer: false)
 
-charl = Client.create(name: "Charl", email: "Singnceb@gmail.com", age: 41, feet: 6, inches: 4, weight: 210, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: hutch.id, username: "Charl", password: "charl123", password_confirmation: "charl123", is_trainer: false)
+jenn = Client.create(first_name: "Jenn", last_name: "Smith", email: "jcolella@aol.com", age: 47, feet: 5, inches: 4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id, username: "Jenn", password: "jenn123", password_confirmation: "jenn123", is_trainer: false)
 
-jenn = Client.create(name: "Jenn", email: "jcolella@aol.com", age: 47, feet: 5, inches: 4, weight: 150, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id, username: "Jenn", password: "jenn123", password_confirmation: "jenn123", is_trainer: false)
-
-fee = Client.create(name: "Felecia", email: "fharrelson@bmcc.cuny.edu", age: 49, feet: 5, inches: 8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id, username: "Felecia", password: "felecia123", password_confirmation: "felecia123", is_trainer: false)
+fee = Client.create(first_name: "Felecia", last_name: "Smith", email: "fharrelson@bmcc.cuny.edu", age: 49, feet: 5, inches: 8, weight: 175, fitness_level: "intermediate", workouts_per_week: 5, trainer_id: sophie.id, username: "Felecia", password: "felecia123", password_confirmation: "felecia123", is_trainer: false)
 
 #exercises
 

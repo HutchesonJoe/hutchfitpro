@@ -20,7 +20,7 @@ class TrainersController < ApplicationController
   private
 
   def trainer_params
-    params.permit(:name, :username, :email, :certifications, :password, :password_confirmation)
+    params.permit(:first_name, :last_name, :username, :email, :certifications, :password, :password_confirmation)
   end
 
   def render_invalid_response(invalid)

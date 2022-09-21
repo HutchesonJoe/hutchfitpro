@@ -5,7 +5,7 @@ import BlockConfirm from "./BlockConfirm";
 
 function WorkoutConfirm({blockArray, workout, setConfirmOn}){
   const[thisClient] = useContext(ThisClientContext)
- 
+  console.log(blockArray)
   const workoutConfirm = blockArray.map((block)=><BlockConfirm block={block} key={block.id}/>)
 
   function handleSendWorkout(e){
@@ -19,7 +19,7 @@ function WorkoutConfirm({blockArray, workout, setConfirmOn}){
   }
 
   return(
-    <div>
+    <div id="workout-confirm">
       <h3>{workout.title}</h3>
       <h4>Confirm the resistance level for your client exercises.</h4>
       {workoutConfirm}

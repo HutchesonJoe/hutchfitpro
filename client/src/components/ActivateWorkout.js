@@ -7,3 +7,7 @@ function ActivateWorkout(){
 }
 
 export default ActivateWorkout;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/updates
