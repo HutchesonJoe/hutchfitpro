@@ -4,7 +4,7 @@ import Block from './Block';
 
 function Workout({workout}){
   const [blocks, setBlocks] = useState([])
-  
+ 
   useEffect(()=>{
     
     if(workout){

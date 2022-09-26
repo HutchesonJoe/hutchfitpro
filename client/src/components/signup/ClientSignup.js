@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-function ClientSignup(){
-  return(
-    <div>
-      client Singup
-=======
 import { useState, useEffect } from 'react';
 
 function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet, setInches, setWeight, setLevel, setWorkouts, setPassword, setPassConf, setTrainerId}){
@@ -70,7 +64,6 @@ function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet
        </div>
        
         </div>
->>>>>>> origin/updates
     </div>
   )
 }

@@ -6,49 +6,62 @@ import TrainerSignup from './TrainerSignup';
 function Signup({setSignUpFormOn}){
   //I probably could split this up between two components: trainer singup and client signup. pass down the setter functioon to setUser, so I have the object here. The components could be just the forms.
   
-  const [name, setName] = useState("")
+
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [certs, setCerts] = useState("")
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
   const [passConf, setPassConf] = useState("")
   const [email, setEmail] = useState("")
   const [errors, setErrors] = useState([])
-  const [trainerId, setTrainerId] = useState()
+  const [trainerId, setTrainerId] = useState(1)
   const [age, setAge] = useState()
   const [feet, setFeet] = useState()
   const [inches, setInches] = useState()
   const [weight, setWeight] = useState()
+  const[level, setLevel] = useState("Beginner")
+  const[workouts, setWorkouts] = useState()
   const [isTrainer, setIsTrainer] = useState(true)
-  console.log(isTrainer)
+  
   function handleSubmit(e){
     e.preventDefault()
      let newUser
+     let userRoute
      if(isTrainer){
+      userRoute = "trainers"
       newUser = {
-        name, 
+        first_name: firstName,
+        last_name: lastName, 
         certifications: certs,
         username: userName,
         email,
         password, 
-        password_confirmation: passConf
+        password_confirmation: passConf,
+        is_trainer: true
       }
      } else {
+      userRoute = "clients"
       newUser = {
-        name,
-        userName,
+        first_name: firstName,
+        last_name: lastName,
+        username: userName,
         password,
-        passConf,
+        password_confirmation: passConf,
         email, 
         feet,
         inches,
         age,
         weight,
-        trainer_id: trainerId
+        fitness_level: level,
+        workouts_per_week: workouts,
+        trainer_id: trainerId,
+        is_trainer: false
       }
      }
      
     
-    fetch("/signup", {
+    fetch(`/${userRoute}`, {
       method: "POST",
       headers: {
         "Content-Type" : "application/json",
@@ -64,10 +77,14 @@ function Signup({setSignUpFormOn}){
     });
   }
 
-  function handleIsTrainer(e){
-    console.log(isTrainer, e.target.value)
-    setIsTrainer(e.target.value)
+  function handleSetIsTrainer(e){
+    if(e.target.value==="Trainer"){
+      setIsTrainer(true)
+    } else if (e.target.value==="Client"){
+      setIsTrainer(false)
+    }
   }
+
 
   return(
     <div className="signup" >
@@ -75,19 +92,12 @@ function Signup({setSignUpFormOn}){
         
         <label>New to HutchFit PRO?</label>
         <p> I am a new: </p>
-        <select onChange={e=>{setIsTrainer(e.target.value)}}>
-          <option value={true}>Trainer</option>
-          <option value={false}>Client</option>
+        <select onChange={handleSetIsTrainer}>
+          <option>Trainer</option>
+          <option>Client</option>
         </select>
-        {isTrainer ? <TrainerSignup/> : <ClientSignup/>}
-        <div>
-        <input placeholder="Your First Name" onChange={(e)=>setName(e.target.value)}></input>
-        <input placeholder="Certifications" onChange={(e)=>setCerts(e.target.value)}></input>
-        <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input>
-        <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input>
-        <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
-        <input placeholder="Confirm Password" type="password" onChange={(e)=>setPassConf(e.target.value)}></input>
-        </div>
+        {isTrainer ? <TrainerSignup setFirstName={setFirstName} setLastName={setLastName} setCerts={setCerts} setUserName={setUserName} setEmail={setEmail} setPassword={setPassword} setPassConf={setPassConf}/> 
+        : <ClientSignup setFirstName={setFirstName} setLastName={setLastName} setUserName={setUserName} setEmail={setEmail} setWeight={setWeight} setFeet={setFeet} setInches={setInches} setAge={setAge} setLevel={setLevel} setWorkouts={setWorkouts} setTrainerId={setTrainerId} setPassword={setPassword} setPassConf={setPassConf}/>}
         <button type="Submit">submit</button>
       </form>
       <Errors errors={errors}/>

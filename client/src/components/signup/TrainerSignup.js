@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-function TrainerSignup(){
-  return(
-    <div>
-      Trainer signup
-=======
 
 function TrainerSignup({setEmail, setFirstName, setLastName, setCerts, setUserName, setPassConf, setPassword}){
 
@@ -18,7 +12,6 @@ function TrainerSignup({setEmail, setFirstName, setLastName, setCerts, setUserNa
         <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
         <input placeholder="Confirm Password" type="password" onChange={(e)=>setPassConf(e.target.value)}></input>
         </div>
->>>>>>> origin/updates
     </div>
   )
 }

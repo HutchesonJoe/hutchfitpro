@@ -7,13 +7,13 @@ function BlockConfirm({block}){
   const[clientExArr, setClientExArr] = useState([])
   const[exerciseRep] = useContext(ExerciseRepContext)
   const[exWeight, setExWeight] = useState("")
-
+  console.log(clientExArr)
   useEffect(()=>{
     let arr = [] 
 
     block.workout_exercises.map((ex)=>{
       const exercise = thisClient.client_exercises.find((x)=>x.exercise_id===ex.exercise_id)
-      
+      console.log(exercise)
       if(exercise!==undefined){
         setClientExArr([...arr, exercise])
         arr.push(exercise)
@@ -32,13 +32,17 @@ function BlockConfirm({block}){
         })
         .then(r=>r.json())
         .then((newEx)=>{
-          setClientExArr([...arr, newEx])
+        console.log(newEx)
+         setClientExArr([...arr, newEx])
          arr.push(newEx)
+
         })
+        
       }
     })
-  },[])
-
+    
+  },[thisClient])
+  console.log(clientExArr)
   const clientExercisesBlock = clientExArr.map((ex)=>{
     const exercise = exerciseRep.find((x)=>x.id===ex.exercise_id)
     const options = []
@@ -93,7 +97,7 @@ function BlockConfirm({block}){
       </div>
     )
   })
-
+ 
   return(
     <div className="block">
       {block.count}, {block.sets}{block.note ? `,${block.note}` : ""}

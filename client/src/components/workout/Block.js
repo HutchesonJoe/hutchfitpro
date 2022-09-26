@@ -4,25 +4,28 @@ import { ExerciseRepContext } from '../context/ExerciseRepContext';
 import { UserContext } from '../context/UserContext';
 
 function Block({block}){
-  const[exerciseRep] = useContext(ExerciseRepContext)
+  // const[exerciseRep] = useContext(ExerciseRepContext)
   const[user] = useContext(UserContext)
   const[thisBlock, setThisBlock] = useState([])
+  const[workoutExercises, setWorkoutExercises] = useState()
   
   useEffect(()=>{
     fetch(`blocks/${block.id}`)
     .then(r=>r.json())
-    .then(data=>setThisBlock(data))
+    .then(data=>{
+      setWorkoutExercises(data.workout_exercises)
+      setThisBlock(data)
+    })
   },[block])
   
   let exerciseList
 
-  if(thisBlock.length!==0){
-    
-    exerciseList =  thisBlock.workout_exercises.map((ex)=>{
+  if(workoutExercises){
+    exerciseList =  workoutExercises.map((ex)=>{
       const clientExercise = user.client_exercises.find((x)=>x.id===ex.exercise_id)
       
       return (
-        <Exercise key={clientExercise.id} exercise={clientExercise}/>
+        <Exercise key={clientExercise.id} clientExercise={clientExercise}/>
       )
       })
     }
