@@ -8,7 +8,7 @@ function Block({block}){
   const[user] = useContext(UserContext)
   const[thisBlock, setThisBlock] = useState([])
   const[workoutExercises, setWorkoutExercises] = useState()
-  
+  console.log(block)
   useEffect(()=>{
     fetch(`blocks/${block.id}`)
     .then(r=>r.json())
@@ -22,7 +22,7 @@ function Block({block}){
 
   if(workoutExercises){
     exerciseList =  workoutExercises.map((ex)=>{
-      const clientExercise = user.client_exercises.find((x)=>x.id===ex.exercise_id)
+      const clientExercise = user.client_exercises.find((x)=>x.exercise_id===ex.exercise_id)
       
       return (
         <Exercise key={clientExercise.id} clientExercise={clientExercise}/>

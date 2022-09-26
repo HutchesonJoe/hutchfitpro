@@ -12,7 +12,7 @@ function ClientHome(){
   const [lastThree, setLastThree] = useState([])
   const [current, setCurrent] = useState()
   const [overviewOn, setOverviewOn] = useState(true)
-  console.log(current)
+  
   let clientWorkouts
   
   useEffect(()=>{
