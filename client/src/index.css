@@ -1,8 +1,8 @@
 body {
-  margin: 0;
+  /* margin: 0; */
   color: white;
   background-color: rgb(84, 124, 211);
-  font-family: "Gill Sans", sans-serif;
+  font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,9 +32,9 @@ button{
   text-align: center;
   background-color: rgb(125, 181, 237);
   display: block;
-  text-align: center;
+  text-align: left;
   margin: auto;
-  width: 250px;
+  width: 90%;
   border-width: 2px;
   border-style: inset;
 }
@@ -75,7 +75,7 @@ radio label {
   display: block;
   text-align: center;
   margin: auto;
-  width: 250px;
+  width: 90%;
   position: relative;
   /* display: inline-block; */
   border-width: 2px;
@@ -328,10 +328,10 @@ a​:hover { color: green; }
   border-width: 2px;
 }
 
-#exercise-collection{
+/* #exercise-collection{
   float: top;
   width: 40%;
-}
+} */
 
 #new-workout-form{
   background-color: bisque;

@@ -37,12 +37,12 @@ function Login({setUser, isTrainer, setIsTrainer}){
 
   return(
     <div className="login">
-      <h3>Trainer Login</h3>
+      <h3>Login</h3>
      <form  onSubmit={handleSubmit}>
       <select onChange={(e)=>handleSetIsTrainer(e.target.value)}>
         <option value={false}>Client</option>
         <option value={true}>Trainer</option>
-      </select>
+      </select><br/>
       <input placeholder="Username" onChange={(e)=>setUsername(e.target.value)}></input>
       <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
       <button type="submit">submit</button>

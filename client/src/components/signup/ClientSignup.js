@@ -21,26 +21,36 @@ function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet
   return(
     <div>
       <div>
-        <input placeholder="First Name" onChange={(e)=>setFirstName(e.target.value)}></input>
-        <input placeholder="Last Name" onChange={((e)=>setLastName(e.target.value))}></input>
-        <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input>
-        <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input>
-        <div>
+        <label>First Name:</label>
+        <input placeholder="First Name" onChange={(e)=>setFirstName(e.target.value)}></input><br/>
+        <label>Last Name:</label>
+        <input placeholder="Last Name" onChange={((e)=>setLastName(e.target.value))}></input><br/>
+        <label>User Name:</label>
+        <input placeholder="User Name" onChange={(e)=>setUserName(e.target.value)}></input><br/>
+        <label>Email:</label>
+        <input placeholder="Email Address" onChange={(e)=>setEmail(e.target.value)}></input><br/>
+        <label>Password:</label>
+        <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input><br/>
+        <label>Confirm password: </label>
+        <input placeholder="Confirm Password" type="password" onChange={(e)=> setPassConf(e.target.value)}></input><br/>
+        {/* <div>
          <label>Height</label>
        <input placeholder="Feet" onChange={(e)=>setFeet(e.target.value)}></input>
        <input placeholder="Inches" onChange={(e)=> setInches(e.target.value)}></input>
        </div>
        <label>Weight</label>
-       <input placeholder="(in lbs)" onChange={(e)=> setWeight(e.target.value)}></input>
-       <label>Select fitness level</label>
+       <input placeholder="(in lbs)" onChange={(e)=> setWeight(e.target.value)}></input> */}
+
+       <label>How often are you working out currently?</label>
        <select onChange={(e)=> setLevel(e.target.value)}>
-         <option>Beginner</option>
-         <option>Intermediate</option>
-         <option>Advanced</option>
+         <option>I never work out.</option>
+         <option>Walk/ight cardio sometimes.</option>
+         <option>A couple classes a week.</option>
+         <option>Three or more times a week.</option>
        </select>
        <div>
-       <label>How many workouts a week? (maximum 5)</label>
-       <select onChange={(e)=> setWorkouts(e.target.value)}>
+       <label>How many workouts a week will you do?</label>
+       <select label="Workouts per week?" onChange={(e)=> setWorkouts(e.target.value)}>
          <option>1</option>
          <option>2</option>
          <option>3</option>
@@ -50,18 +60,12 @@ function ClientSignup({setFirstName, setLastName, setUserName, setEmail, setFeet
        </select>
        </div>
        <div>
+        <label>Who is your trainer?</label>
         <select onChange={(e)=>setTrainerId(e.target.value)}>
           {trainerOptions}
         </select>
        </div>
-       <div>
-        <label>Choose a password:</label>
-          <input placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}></input>
-       </div>
-       <div>
-        <label>Confirm password: </label>
-        <input placeholder="Confirm Password" type="password" onChange={(e)=> setPassConf(e.target.value)}></input>
-       </div>
+       
        
         </div>
     </div>

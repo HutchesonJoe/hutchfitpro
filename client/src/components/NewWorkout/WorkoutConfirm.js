@@ -21,7 +21,7 @@ function WorkoutConfirm({blockArray, workout, setConfirmOn}){
   return(
     <div id="workout-confirm">
       <h3>{workout.title}</h3>
-      <h4>Confirm the resistance level for your client exercises.</h4>
+      <h4>Confirm the resistance level for your client's exercises.</h4>
       {workoutConfirm}
       <button onClick={handleSendWorkout}>Send Workout</button>
     </div>

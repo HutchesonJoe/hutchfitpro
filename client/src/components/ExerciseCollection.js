@@ -7,20 +7,28 @@ import Exercise from './cards/Exercise';
 function ExerciseCollection({thisClient, clientExercises, setClientExercises, filteredExerciseRep, setFilteredExerciseRep}){
   const [exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
   const [createExOn, setCreateExOn] = useState(false)
-  // const [instructionsOn, setInstructionsOn] = useState(false)
+  const [instructionsOn, setInstructionsOn] = useState(false)
   // const [errors, setErrors] = useState([])
   
   //create a new component called ExerciseForCollection.js which takes in each exercise for this collection and deals with it the way I need it for this collection, i.e. view exercise, edit exercise, etc. 
   
   let exerciseList = exerciseRep.map((x)=>{
-    let instructionsOn = false
+    
     function showInstructions(){
-      instructionsOn = !instructionsOn
+      setInstructionsOn(!instructionsOn)
     }
     return (
-      <div>
-        <li key={x.id} onClick={showInstructions}>{x.name}, <em>{x.category}</em></li>
-        {instructionsOn ? x.instructions : "null"}
+      <div key={x.id}>
+        <li style={{ width: '100%'}} onClick={showInstructions}>{x.name}, <em>{x.category}</em><br/>
+          
+            {instructionsOn ? 
+            <div style={{color: "black", border: "2px solid", margin: "10px"}}>
+            {x.instructions}
+            </div>
+            : null}
+          
+        </li>
+        
       </div>
       )
   })

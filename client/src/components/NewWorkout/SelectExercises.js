@@ -6,19 +6,6 @@ function SelectExercises({newWorkoutExercises, setNewWorkoutExercises}){
   const [exerciseRep] = useContext(ExerciseRepContext)
   const [filteredRep, setFilteredRep] = useState(exerciseRep)
 
-  // function handleSelect(e){
-  //   let selectedExercise = newWorkoutExercises.find((id)=>id===e.target.id)
-  //   console.log(selectedExercise)
-  //   if(!selectedExercise){
-  //      setNewWorkoutExercises([...newWorkoutExercises, e.target.id])
-  //     //  setInRep(true)
-  //   } else {
-  //     const filteredExercises = newWorkoutExercises.filter((exercise)=>exercise!==e.target.id)
-  //     setNewWorkoutExercises(filteredExercises)
-  //     // setInRep(false)
-  //     }    
-  // }
-
   const exerciseList = filteredRep.map((ex)=>{
     
     return(

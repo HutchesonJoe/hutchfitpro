@@ -3,7 +3,7 @@ import { UserContext } from "./context/UserContext";
 import Logout from "./Logout";
 import Workout from "./workout/Workout";
 import { Routes, Route, useNavigate } from "react-router-dom"
-import ActivateWorkout from "./ActivateWorkout";
+import ActivateWorkout from "./activate_workout/ActivateWorkout";
 
 
 function ClientHome(){
@@ -60,7 +60,7 @@ function ClientHome(){
           : null}
         </div>
         <Routes>
-          <Route exact path="/activateworkout" element={<ActivateWorkout/>}/>
+          <Route exact path="/activateworkout" element={<ActivateWorkout workout={current}/>}/>
         </Routes>
       <Logout/>
   </div>

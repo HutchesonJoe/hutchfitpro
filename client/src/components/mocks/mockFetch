@@ -1,0 +1,31 @@
+const clientResponse = {
+  message: {
+    id: 1,
+    first_name: "Charl",
+    last_name: "Brown",
+    email: "charlsemail@gmail.com",
+    feet: 6,
+    inches: 4,
+    weight: 210,
+    fitness_level: "intermediate",
+    workouts_per_week: 5,
+    age: 41,
+    username: "Charl",
+    trainer_id: 1,
+    is_trainer: false,
+    workouts: []
+
+  }
+}
+
+export default async function mockFetch(url){
+  switch(url){
+    case "http://localhost:3000/clients/1":{
+      return {
+        ok: true,
+        status: 200, 
+        json: async () => clientResponse,
+      }
+    }
+  }
+}

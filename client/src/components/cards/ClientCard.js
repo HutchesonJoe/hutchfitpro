@@ -7,7 +7,7 @@ import LastThreeWorkouts from './LastThreeWorkouts';
 
 function ClientCard({clients, setClients, clientCardOn, setClientCardOn}){
   const[editFormOpen, setEditFormOpen] = useState(false)
-  const[exerciseRep] = useContext(ExerciseRepContext)
+  // const[exerciseRep] = useContext(ExerciseRepContext)
   const[workoutFormOn, setWorkoutFormOn] = useState(false)
   const[thisClient, setThisClient] = useContext(ThisClientContext)
   

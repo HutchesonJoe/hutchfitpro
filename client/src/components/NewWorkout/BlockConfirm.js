@@ -42,7 +42,7 @@ function BlockConfirm({block}){
     })
     
   },[thisClient])
-  console.log(clientExArr)
+  
   const clientExercisesBlock = clientExArr.map((ex)=>{
     const exercise = exerciseRep.find((x)=>x.id===ex.exercise_id)
     const options = []
