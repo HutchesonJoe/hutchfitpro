@@ -8,7 +8,7 @@ import ActivateWorkout from "./activate_workout/ActivateWorkout";
 
 function ClientHome(){
 
-  const [user, setUser] = useContext(UserContext)
+  const [user] = useContext(UserContext)
   const [lastThree, setLastThree] = useState([])
   const [current, setCurrent] = useState()
   const [overviewOn, setOverviewOn] = useState(true)

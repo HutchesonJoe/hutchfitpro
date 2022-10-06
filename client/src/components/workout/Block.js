@@ -8,7 +8,7 @@ function Block({block}){
   const[user] = useContext(UserContext)
   const[thisBlock, setThisBlock] = useState([])
   const[workoutExercises, setWorkoutExercises] = useState()
-  console.log(block)
+  
   useEffect(()=>{
     fetch(`blocks/${block.id}`)
     .then(r=>r.json())
