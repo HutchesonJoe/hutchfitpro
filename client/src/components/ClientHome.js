@@ -29,6 +29,7 @@ function ClientHome(){
   }
   
   const navigate = useNavigate()
+  
   function handleBeginWorkout(){
     setOverviewOn(!overviewOn)
     navigate("/activateworkout")
