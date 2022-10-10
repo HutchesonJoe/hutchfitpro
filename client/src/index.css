@@ -1,10 +1,11 @@
 body {
   /* margin: 0; */
   color: white;
-  background-color: rgb(84, 124, 211);
+  background-color:darksalmon;
   font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0px
 }
 
 code {
@@ -215,12 +216,6 @@ a​:hover { color: green; }
   background-color: white;
 }
 
-.workout-title{
-  color: red;
-  border-width: 2px;
-  border-radius: 15px;
-}
-
 #workout-title-input{
   width: 300px;
 }
@@ -247,12 +242,15 @@ a​:hover { color: green; }
   font-weight: bold;
   margin: auto;
   text-align: center;
-  background-color: blue;
+  border-color: blue;
+  border-style: solid;
+  background-color: white;
   line-height: normal;
   font-size: large;
-  width: 85%;
+  width: 90%;
   padding: 10px;
-  color: white;
+  color: darksalmon;
+  border-radius: 25px;
 }
 
 #warmup{
@@ -263,9 +261,9 @@ a​:hover { color: green; }
   background-color: white;
   line-height: normal;
   font-size: large;
-  width: 85%;
   padding: 10px;
-  color: blue;
+  background-color: rgb(0, 106, 255);
+
 }
 
 
@@ -277,9 +275,8 @@ a​:hover { color: green; }
   background-color: white;
   line-height: normal;
   font-size: large;
-  width: 85%;
   padding: 10px;
-  color: blue;
+  background-color: rgb(0, 106, 255);
 }
 
 .rest {
@@ -287,12 +284,11 @@ a​:hover { color: green; }
   font-weight: bold;
   margin: auto;
   text-align: center;
-  background-color: white;
   line-height: normal;
   font-size: large;
-  width: 85%;
   padding: 10px;
   color: blue;
+  background-color: rgb(236, 173, 153);
 }
 
 #next-workout{
@@ -328,10 +324,7 @@ a​:hover { color: green; }
   border-width: 2px;
 }
 
-/* #exercise-collection{
-  float: top;
-  width: 40%;
-} */
+
 
 #new-workout-form{
   background-color: bisque;
@@ -344,36 +337,38 @@ a​:hover { color: green; }
 
 #client-welcome{
   font-size: x-large;
-  background-color: blue;
+  /* background-color: rgb(26, 26, 238); */
   padding: 10px;
 }
 
 .block{
-  width: 90%;
   background-color:white;
   color: blue;
-  margin: auto;
+  padding: 10px;
+}
+
+#block-instructions{
+  color: darksalmon;
+  background-color: white;
+  padding: 5px;
+  font-weight: bold;
 }
 
 .block h2{
   /* margin-right: 25px;
   margin-bottom: 0px; */
+  
   text-align: center;
   background-color: blue;
 }
 
-#client-next-workout{
-  /* color: blue; */
-  /* width: 90%; */
+.block li{
+  margin-left: 20px;
 }
-
-
-
 
 #client-last-three{
   padding: 15px;
-  border-width: 5px;
-  border-style: double;
-  border-radius: 5%;
+  border-style: solid;
+  border-color: blue;
   font-weight: bold;
 }

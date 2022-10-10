@@ -10,8 +10,10 @@ function ClientHome(){
 
   const [user] = useContext(UserContext)
   const [lastThree, setLastThree] = useState([])
+  const [activateOn, setActivateOn] = useState(false)
   const [current, setCurrent] = useState()
   const [overviewOn, setOverviewOn] = useState(true)
+  const [workoutComplete, setWorkoutComplete] = useState(false)
   
   let clientWorkouts
   
@@ -27,43 +29,55 @@ function ClientHome(){
   if(lastThree){
       clientWorkouts = lastThree.map((w)=><li key={w.id}>{w.title}</li>)
   }
-  
-  const navigate = useNavigate()
-  
+
   function handleBeginWorkout(){
+    setActivateOn(true)
     setOverviewOn(!overviewOn)
-    navigate("/activateworkout")
+  }
+
+  function endWorkout(){
+    setActivateOn(false)
+    setWorkoutComplete(true)
   }
 
   return(
     <div id="client-home">
       
-        <div id= "client-welcome">
-           Hello, {user.first_name}!
-        </div>
+       {activateOn ? null :
+       <>
+          <div id= "client-welcome">
+            Hello, {user.first_name}!  <div style={{float: "right"}}><Logout /></div>
+          </div>
+         
+       </>
+        }
+          
 
        
+        {activateOn ? null :
         <div id="client-last-three">
-          <p>Last three workouts:</p>
+          <p>Here are your recent current workouts:</p>
           <ul>
             {clientWorkouts.length!==0 ? clientWorkouts : "No workouts yet."}
           </ul>
-        </div>
+        </div>}
       
         
         <div id="client-next-workout">
-          <h3>Current Workout overview:</h3>
-          <button id="begin workout" onClick={handleBeginWorkout}>Begin Workout</button>
-          {overviewOn ? 
-          <ul>
+          {activateOn ? null : <h3>Here is your current workout:</h3>}
+          
+          {activateOn ? null :
+          <div>
           {current ? <Workout workout={current}/> : <li>You don't have an upcoming workout yet.</li>}
-        </ul>
-          : null}
+        </div>}
         </div>
-        <Routes>
-          <Route exact path="/activateworkout" element={<ActivateWorkout workout={current}/>}/>
-        </Routes>
-      <Logout/>
+        {activateOn ? <ActivateWorkout workout={current} endWorkout={endWorkout}/> : null}
+        {workoutComplete ? <div>Congrats, {user.first_name}! Well done. Your trainer will have another workout for you soon. </div> : null}
+        {activateOn ? null : <>
+          <h4>After <em>warming up</em>, click here to <button id="begin workout" onClick={handleBeginWorkout}>Begin Workout</button></h4>
+        </>}
+        <br/>
+      
   </div>
   )
 }

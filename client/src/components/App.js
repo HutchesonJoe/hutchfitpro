@@ -14,6 +14,7 @@ import SelectExercises from './NewWorkout/SelectExercises';
 import ClientHome from './ClientHome';
 import { ThisClientProvider } from './context/ThisClientContext';
 
+
 function App() {
   
   const [user, setUser] = useContext(UserContext);

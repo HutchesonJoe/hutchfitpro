@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-function Timer2({index, setIndex}){
+function Timer2({setTimerRendered}){
   
   const [resting, setResting] = useState("Start :30 Rest")
+  const [timerOn, setTimerOn] = useState(false)
 
   function hitTimer(){
     setResting("Resting...")
+    setTimerOn(true)
     let timer = setInterval(()=>{
       clearInterval(timer)
-      setResting("Start :30 Rest")
+      setTimerRendered(false)
     }, 30000)
     // 
  //this functino wants to start the timer. When the timerends, it want to reset it.
@@ -16,15 +18,19 @@ function Timer2({index, setIndex}){
   return(
     <>
     <button onClick={hitTimer} type="button">{resting}</button>
-    <ContinueButton index={index} setIndex={setIndex} resting={resting}/>
     </>
   )
 }
 
-function ContinueButton({index, setIndex, resting}){
-  return(
-    <button type = "button" onClick={()=>setIndex(index + 1)}>{resting==="Resting..." ? "Skip Rest": "Continue Workout"}</button>
-  )
-}
+// function ContinueButton({index, setIndex, timerOn, setResting, resting}){
+//   function handleClick(){
+//     setTimerOn(!timerOn)
+//     setIndex(index + 1)
+//     setResting("Resting (click to skip")
+//   }
+//   return(
+//     <button type = "button" onClick={handleClick}>{resting}</button>
+//   )
+// }
 
 export default Timer2;

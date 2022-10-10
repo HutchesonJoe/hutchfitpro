@@ -1,8 +1,8 @@
-
+import logo from './hutchfitimage.jpeg'
 function Banner(){
   return (
     <div>
-      <p className="header">HutchFit PRO</p>
+      <img src={logo} alt="HutchFit Pro" style={{width: "100%"}}/>
     </div>
   )
 }

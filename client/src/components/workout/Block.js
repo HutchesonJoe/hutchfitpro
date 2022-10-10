@@ -3,12 +3,12 @@ import { useEffect, useState, useContext } from "react";
 import { ExerciseRepContext } from '../context/ExerciseRepContext';
 import { UserContext } from '../context/UserContext';
 
-function Block({block}){
-  // const[exerciseRep] = useContext(ExerciseRepContext)
+function Block({block, blockNumber}){
+  
   const[user] = useContext(UserContext)
   const[thisBlock, setThisBlock] = useState([])
   const[workoutExercises, setWorkoutExercises] = useState()
-  
+
   useEffect(()=>{
     fetch(`blocks/${block.id}`)
     .then(r=>r.json())
@@ -23,16 +23,18 @@ function Block({block}){
   if(workoutExercises){
     exerciseList =  workoutExercises.map((ex)=>{
       const clientExercise = user.client_exercises.find((x)=>x.exercise_id===ex.exercise_id)
-      
+
       return (
-        <Exercise key={clientExercise.id} clientExercise={clientExercise}/>
+        <li key={clientExercise.id} >{clientExercise.exercise.name}, {clientExercise.exercise.category}</li>
       )
       })
     }
   
   return(
     <div className="block">
-      <div>{block.count}, {block.sets} rounds</div>
+      <p>Block {blockNumber}</p>
+      <div><em>{block.count}, {block.sets} rounds</em></div>
+      <br/>
       {exerciseList}
     </div>
   )

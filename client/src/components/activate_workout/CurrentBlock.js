@@ -1,77 +1,52 @@
-import { buildQueries } from "@testing-library/react";
 import { useEffect, useState, useContext } from "react";
+import Exercise from "../cards/Exercise";
+import { UserContext } from "../context/UserContext";
 
 function CurrentBlock({currentBlock}){
-  console.log(currentBlock)
+ const [user] = useContext(UserContext)
  const [block, setBlock] = useState()
+ const [setNumber, setSetNumber] = useState(1)
  const [blockReturn, setBlockReturn] = useState("Loading...")
+//this is not quit working...I need the timer to go away when it's done. Connect with the set count?
  useEffect(()=>{
-  
   fetch(`/blocks/${currentBlock.id}`)
     .then(r=>r.json())
     .then(bl=>setBlock(bl))
   },[currentBlock])
+const numberOfSets = parseInt(currentBlock.sets.split(' ')[0])
 
- useEffect(()=>{
+useEffect(()=>{
+  const {count, sets, note} = currentBlock
   if(block){
-    const {count, sets, note} = block
-    let thisBlockReturn = (
+    const thisBlock  = (
       <div className="block">
-      <p>{block.count}, {block.sets} </p>
+      <h3>{count} of each exercise, {sets} </h3>
+      {note ? <h3><em>Trainer note: {note}</em></h3> : null}
       <div>{block.workout_exercises.map((ex)=>{
-        {console.log(ex.exercise.name)}
-       return <p key={ex.exercise.id}>{ex.exercise.name}</p>
+        let exercise = user.client_exercises.find((x)=>x.exercise_id===ex.exercise_id)
+       return <Exercise key={exercise.id} clientExercise={exercise}/>
       })}
       </div>
-      <p>{block.note}</p>
       </div>
     )
-    setBlockReturn(thisBlockReturn)
-  } 
+  setBlockReturn(thisBlock)
+  }
  },[block])
 
 
+  return(
+    <>
+     {blockReturn}
+     {numberOfSets>=setNumber ? 
+        <button type="button" onClick={()=>setSetNumber(setNumber+1)}>Click to Complete Set {setNumber} of {currentBlock.sets}</button> 
+        : <h2>Well done!</h2>
 
+     }
+    </>
+  )
 
-
- return(
- blockReturn
-)
 }
-// class CurrentBlock extends Component {
-  
-//   state = {
-//     id: this.props.currentBlock.id,
-//     count: this.props.currentBlock.count,
-//     sets: this.props.currentBlock.sets,
-//     note: this.props.currentBlock.note,
-//     workout_exercises: []
-//   }
 
-//   componentDidMount(){
-//     fetch(`/blocks/${this.state.id}`)
-//           .then(r=>r.json())
-//           .then(bl=>this.setState(bl))
-//   }
 
-//   showprops = () => console.log(this.props.exerciseRep, "<=this.props")
-//   showstate = () => console.log(this.state,"<--this.state")
-   
-//     render(){
-//       this.showprops()
-//       this.showstate()
-//       return(
-//         <>
-//         <p>{this.state.count}, {this.state.sets} </p>
-//         <div>{this.state.workout_exercises.map((ex)=>{
-//           {console.log(ex.exercise.name)}
-//          return <p key={ex.exercise.id}>{ex.exercise.name}</p>
-//         })}
-//         </div>
-//         <p>{this.state.note}</p>
-//         </>
-//       )
-//     }
-//   }
 
 export default CurrentBlock;

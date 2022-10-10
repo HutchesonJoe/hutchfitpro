@@ -4,18 +4,20 @@ import Block from './Block';
 
 function Workout({workout}){
   const [blocks, setBlocks] = useState([])
-  
+
   useEffect(()=>{
     
     if(workout){
+      
       const blocksArr = workout.blocks.map((b)=>{
-        const blockNumber = workout.blocks.findIndex((bl)=>bl.id===b.id) + 1
         
+        const blockNumber = workout.blocks.findIndex((bl)=>bl.id===b.id) + 1
+
         return(
-          <div className="block" key={b.id}>
+          <div key={b.id}>
     
             <Block block={b} blockNumber={blockNumber}/>
-            {blocks.length===blockNumber ? null : <p className="rest">Rest 1 Minute</p>}
+            {workout.blocks.length > blockNumber ? <p className="rest">Rest 1 Minute</p> : null}
             
           </div>
         )
@@ -27,7 +29,7 @@ function Workout({workout}){
   return(
     <div>
       
-      <p id="workout-title">{workout.title}</p>
+      <div id="workout-title">{workout.title}</div>
       <br/>
       <p id="warmup">
         WarmUp/Movement Prep
