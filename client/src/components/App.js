@@ -11,7 +11,7 @@ import NavBar from './Navbar'
 import NewWorkoutForm from './NewWorkout/NewWorkoutForm';
 import About from './About';
 import SelectExercises from './NewWorkout/SelectExercises';
-import ClientHome from './ClientHome';
+import ClientHome from './client_home/ClientHome';
 import { ThisClientProvider } from './context/ThisClientContext';
 
 

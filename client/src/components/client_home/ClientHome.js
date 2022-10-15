@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "./context/UserContext";
-import Logout from "./Logout";
-import Workout from "./workout/Workout";
-import { Routes, Route, useNavigate } from "react-router-dom"
-import ActivateWorkout from "./activate_workout/ActivateWorkout";
+import { UserContext } from "../context/UserContext";
+import Logout from "../Logout";
+import Workout from "../workout/Workout";
+import { Routes, Route, Link } from "react-router-dom"
+import ActivateWorkout from "../activate_workout/ActivateWorkout";
+import WorkoutHistory from "./WorkoutHistory"
 
 
 function ClientHome(){
@@ -51,9 +52,12 @@ function ClientHome(){
          
        </>
         }
-          
-
-       
+        <Routes>
+          <Route path="workouthistory" element={<WorkoutHistory/>}/>
+          <Route/>
+          <Route/>
+        </Routes>
+        <Link to='workouthistory'>link</Link>
         {activateOn ? null :
         <div id="client-last-three">
           <p>Here are your recent current workouts:</p>

@@ -2,11 +2,14 @@ import { useEffect, useState, useContext } from "react";
 import Exercise from "../cards/Exercise";
 import { UserContext } from "../context/UserContext";
 
-function CurrentBlock({currentBlock}){
+function CurrentBlock({currentBlock, setTimerStarted}){
  const [user] = useContext(UserContext)
  const [block, setBlock] = useState()
  const [setNumber, setSetNumber] = useState(1)
  const [blockReturn, setBlockReturn] = useState("Loading...")
+ const counter =  <button type="button" className="timer-button" onClick={handleClick}>Complete<br/>Set {setNumber} of {currentBlock.sets}</button>
+ const resting = <div className="resting">Resting...</div>   
+ const [counterButton, setCounterButton] = useState(counter)
 //this is not quit working...I need the timer to go away when it's done. Connect with the set count?
  useEffect(()=>{
   fetch(`/blocks/${currentBlock.id}`)
@@ -34,15 +37,28 @@ useEffect(()=>{
  },[block])
 
 
-  return(
-    <>
-     {blockReturn}
-     {numberOfSets>=setNumber ? 
-        <button type="button" onClick={()=>setSetNumber(setNumber+1)}>Click to Complete Set {setNumber} of {currentBlock.sets}</button> 
-        : <h2>Well done!</h2>
 
-     }
-    </>
+function hitTimer(){
+  setCounterButton(resting)
+  setSetNumber(setNumber + 1)
+  let timer = setInterval(()=>{
+    clearInterval(timer)
+    setTimerStarted(false)
+    setCounterButton(counter)
+  }, 30000)
+}
+
+function handleClick(){
+  setSetNumber(setNumber+1)
+  hitTimer()
+}
+
+return(
+  <>
+    {blockReturn}
+    {numberOfSets>=setNumber ? counterButton : <h2>Well done!</h2>
+    }
+  </>
   )
 
 }
