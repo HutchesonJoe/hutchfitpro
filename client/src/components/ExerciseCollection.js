@@ -1,16 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { ExerciseRepContext } from './context/ExerciseRepContext';
 import CreateExerciseForm from './CreateExerciseForm';
-import Exercise from './cards/Exercise';
-// import Errors from './Errors';
 
-function ExerciseCollection({thisClient, clientExercises, setClientExercises, filteredExerciseRep, setFilteredExerciseRep}){
-  const [exerciseRep, setExerciseRep] = useContext(ExerciseRepContext)
+function ExerciseCollection({filteredExerciseRep, setFilteredExerciseRep}){
+  const [exerciseRep] = useContext(ExerciseRepContext)
   const [createExOn, setCreateExOn] = useState(false)
   const [instructionsOn, setInstructionsOn] = useState(false)
-  // const [errors, setErrors] = useState([])
-  
-  //create a new component called ExerciseForCollection.js which takes in each exercise for this collection and deals with it the way I need it for this collection, i.e. view exercise, edit exercise, etc. 
   
   let exerciseList = exerciseRep.map((x)=>{
     
@@ -27,12 +22,10 @@ function ExerciseCollection({thisClient, clientExercises, setClientExercises, fi
             </div>
             : null}
           
-        </li>
-        
+        </li> 
       </div>
       )
   })
-
   
   return(
     <div id="exercise-collection">

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "./context/UserContext"
 function Logout(){
   
-  const[user, setUser] = useContext(UserContext)
+  const[setUser] = useContext(UserContext)
 
   function handleLogOut(){
     fetch("/logout",{

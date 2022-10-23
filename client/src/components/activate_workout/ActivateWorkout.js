@@ -1,34 +1,60 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { ExerciseRepContext } from "../context/ExerciseRepContext";
+import { useNavigate } from "react-router-dom";
+import { CurrentWorkoutContext } from "../context/CurrentWorkoutContext";
+import { UserContext } from "../context/UserContext";
 import CurrentBlock from "./CurrentBlock";
+import { WarmUp } from "./WarmUp"
+import { WorkoutConsole } from "./WorkoutConsole"
 
-function ActivateWorkout({workout, endWorkout}){
-  const[index, setIndex] = useState(0)
-  const[currentBlock, setCurrentBlock] = useState()
-  const [exerciseRep] = useContext(ExerciseRepContext)
-  const [timerStarted, setTimerStarted] = useState(false)
+export const ActivateWorkout = () => {
+  const [workout]  = useContext(CurrentWorkoutContext)
+  const [blocks, setBlocks] = useState([])
+  const [warmUpLength, setWarmUpLength] = useState()
+  const [index, setIndex] = useState(0)
+  const navigate = useNavigate()
+  
+  // if(blocks.length!==0 && index===blocks.length){
+  //   console.log(index, blocks.length)
+  //   navigate(-1)
+  // }
+
 
   useEffect(()=>{
-    if(workout && workout.blocks){
-      setCurrentBlock(workout.blocks[index])
-      if(workout.blocks.length===index){
-        endWorkout()
-       //fetch to mark workout complete
-      }
-    }
-  },[workout, index])
+    if(workout){
+      let newBlocks = []
+    workout.blocks.forEach((block)=>{
+      fetch(`blocks/${block.id}`)
+        .then(r=>r.json())
+        .then(data=>newBlocks.push(data))
+    })
+    setBlocks(newBlocks)}
+    // if(blocks.length !==0 && index===blocks.length){
+    //   navigate("/clienthome")
+    // }
+  },[workout])
 
-  function handleContinue(){
-    setTimerStarted(true)
+  let returnDisplay = "Loading"
+
+  const nextBlock = ()=>{
     setIndex(index + 1)
+  }
+  if(warmUpLength!==0){
+    returnDisplay = <WarmUp warmUpLength={warmUpLength} setWarmUpLength={setWarmUpLength}/>
+  } else {
+    returnDisplay = (
+      <>
+        <CurrentBlock blocks = {blocks} index={index}/>
+        <WorkoutConsole index={index} nextBlock={nextBlock} blocks={blocks}/>
+      </>
+    )
   }
 
   return(
     <div>
-      <p id="block-instructions">Complete all reps for both exercises, then take a break.</p>
-     {currentBlock ? <CurrentBlock currentBlock = {currentBlock} exerciseRep = {exerciseRep} setTimerStarted = {setTimerStarted} /> : null}
+      {returnDisplay}
     </div>
+    
   )
 }
 

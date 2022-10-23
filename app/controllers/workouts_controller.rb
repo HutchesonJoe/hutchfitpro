@@ -45,7 +45,7 @@ class WorkoutsController < ApplicationController
 
   def workout_params
     params.permit(
-      :id, :title, :exercise_ids,
+      :id, :title, :exercise_ids, :completed,
       exercise_attributes: [:exercise_ids]
     )
   end

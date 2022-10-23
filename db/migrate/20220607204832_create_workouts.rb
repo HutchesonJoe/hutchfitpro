@@ -3,7 +3,9 @@ class CreateWorkouts < ActiveRecord::Migration[6.1]
     create_table :workouts do |t|
       t.string :title
       t.integer :client_id
+      t.boolean :completed
       t.timestamps
+      
     end
   end
 end

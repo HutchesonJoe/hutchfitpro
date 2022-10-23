@@ -30,9 +30,9 @@ jumpingJacks = Exercise.create(name: "Jumping Jacks", instructions: "You know wh
 
 #workouts
 
-charlupperbody = Workout.create(title: "Upper Body", client_id: 1 )
-charlcardioCore = Workout.create(title: "Cardio Core", client_id: 1)
-charlpullHinge = Workout.create(title: "Upper Pull and Hip Hinge", client_id: 1)
+charlupperbody = Workout.create(title: "Upper Body", client_id: 1, completed: true)
+charlcardioCore = Workout.create(title: "Cardio Core", client_id: 1, completed: true)
+charlpullHinge = Workout.create(title: "Upper Pull and Hip Hinge", client_id: 1, completed: true)
 
 #join tables
 

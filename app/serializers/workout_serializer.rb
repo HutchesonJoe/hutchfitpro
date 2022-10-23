@@ -1,5 +1,5 @@
 class WorkoutSerializer < ActiveModel::Serializer
-  attributes :id, :title, :blocks, :client_id
+  attributes :id, :title, :blocks, :client_id, :completed
   # has_many :workout_exercises
   # has_many :exercises, through: :workout_exercises
   belongs_to :client

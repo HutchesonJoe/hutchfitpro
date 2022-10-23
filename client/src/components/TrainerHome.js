@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import ClientCard from './cards/ClientCard';
-import ClientList from './ClientList'
 import { UserContext } from './context/UserContext';
 import { ExerciseRepContext } from './context/ExerciseRepContext';
 import Logout from './Logout';
