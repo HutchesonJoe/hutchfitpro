@@ -10,14 +10,11 @@ export const ClientHome = () => {
 
   const [user] = useContext(UserContext)
   const [activateOn, setActivateOn] = useState(false)
-  const [current, setCurrent] = useState()
   const [workoutComplete, setWorkoutComplete] = useState(false)
-  const [workout, setWorkout] = useContext(CurrentWorkoutContext)
+  const workout = useContext(CurrentWorkoutContext) 
   
-  useEffect(()=>{
-    setWorkout(user.workouts[user.workouts.length -1])
-  }, [user])
-  
+ 
+
   return(
     <div id="client-home">
       
@@ -25,7 +22,7 @@ export const ClientHome = () => {
        <>
           <div id= "client-welcome">
             Hello, {user.first_name}!  <div style={{float: "right"}}><Logout /></div>
-          <p>{current && current.completed ? null :`You have a new workout to compete.`}</p>
+          <p>{user.workouts[user.workouts.length - 1].completed ? null :`You have a new workout to compete.`}</p>
           </div>
          
        </>

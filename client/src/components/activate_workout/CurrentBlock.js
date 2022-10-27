@@ -1,24 +1,41 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import Exercise from "../cards/Exercise";
+import { useState } from 'react';
 import { UserContext } from "../context/UserContext";
+import { WorkoutConsole } from "./WorkoutConsole";
+import { CurrentWorkoutContext } from "../context/CurrentWorkoutContext";
 
-export const CurrentBlock = ({blocks, index}) => {
+
+export const CurrentBlock = ({currentBlock, blockNumber}) => {
+
 const[user] = useContext(UserContext)
+const [clientExercises, setClientExercises] = useState([])
+const [blockExercises, setBlockExercises] = useState([])
 const navigate = useNavigate()
+const workout = useContext(CurrentWorkoutContext)
 
-if(blocks.length !==0 && index===blocks.length){
-  navigate("/clienthome")
+useEffect(()=>{
+  fetch(`blocks/${currentBlock.id}`)
+    .then(r=>r.json())
+    .then(block=>setBlockExercises(block.workout_exercises))
+    },[currentBlock])
+
+let exercises
+if(blockExercises){
+  const clientExercises = blockExercises.map((exercise)=>{
+    
+    return user.client_exercises.find((ex)=>exercise.exercise_id===ex.exercise_id)
+  })
+ 
+  exercises = clientExercises.map((exercise)=><Exercise key={exercise.id} clientExercise={exercise}/>)
 }
-
-const clientExercises = blocks[index].workout_exercises.map((exercise) => user.client_exercises.find((exer)=>exer.exercise_id===exercise.exercise_id))
-const blockExercises = clientExercises.map((clientExercise)=><Exercise key={clientExercise.id} clientExercise={clientExercise}/>)
 
 return(
   <>
     <p>Complete all repetitions of each exercise, back to back, then rest...</p>
-    <p>Block{index + 1}</p>
-    {blockExercises}
+    <p>Block {blockNumber}</p>
+    {exercises}
   </>
   )
 
@@ -26,4 +43,3 @@ return(
 
 
 
-export default CurrentBlock;
