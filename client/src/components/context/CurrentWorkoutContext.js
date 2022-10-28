@@ -9,9 +9,11 @@ const CurrentWorkoutProvider = ({children})=>{
   const [workout, setWorkout] = useState()
  
   useEffect(()=>{
-    setWorkout(user.workouts[user.workouts.length - 1])
+    const workouts = user.workouts.filter((wrkt)=>wrkt.completed===false)
+    console.log(workouts)
+    setWorkout(workouts[0])
   },[user])
-  return <CurrentWorkoutContext.Provider value={workout}>{children}</CurrentWorkoutContext.Provider>
+  return <CurrentWorkoutContext.Provider value={[workout, setWorkout]}>{children}</CurrentWorkoutContext.Provider>
 }
 
 export  { CurrentWorkoutContext, CurrentWorkoutProvider }

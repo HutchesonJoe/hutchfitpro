@@ -16,10 +16,12 @@ const navigate = useNavigate()
 const workout = useContext(CurrentWorkoutContext)
 
 useEffect(()=>{
-  fetch(`blocks/${currentBlock.id}`)
+  if(currentBlock && currentBlock.id){
+    fetch(`blocks/${currentBlock.id}`)
     .then(r=>r.json())
     .then(block=>setBlockExercises(block.workout_exercises))
-    },[currentBlock])
+  }
+  },[currentBlock])
 
 let exercises
 if(blockExercises){
@@ -34,7 +36,8 @@ if(blockExercises){
 return(
   <>
     <p>Complete all repetitions of each exercise, back to back, then rest...</p>
-    <p>Block {blockNumber}</p>
+    <h2>Block {blockNumber}</h2>
+    <h4>{currentBlock.note}</h4>
     {exercises}
   </>
   )

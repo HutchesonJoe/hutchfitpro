@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  skip_before_action :authorized, only: [:show, :index, :create]
+  skip_before_action :authorized, only: [:show, :index, :create, :update]
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
 
   def index
