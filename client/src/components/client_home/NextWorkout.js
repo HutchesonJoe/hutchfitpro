@@ -11,7 +11,7 @@ export const NextWorkout = () => {
   return(
     <>
     <h3>{title}</h3>
-    {completed ? "Workout completed" : <button onClick={()=>navigate('/activateworkout')}>Begin workout</button>}
+    {completed ? "Workout completed" : <button onClick={()=>navigate('/warmup')}>Begin workout</button>}
     </>
   )
 }

@@ -1,35 +1,41 @@
 import { useState, useEffect } from 'react'
 
-export const RestTimer = ({setTimerOn, setNumber, setSetNumber}) =>{
-  const[seconds, setSeconds] = useState(30)
+export const RestTimer = ({nextSet, secondsLeft = 30}) => {
+  const[seconds, setSeconds] = useState(secondsLeft)
+  const[over, setOver] = useState(true)
 
-  const nextSet = () => {
-    setTimerOn(false)
-    setSetNumber(setNumber + 1)
+  const newSet = () => {
+    setSeconds(30)
+    setOver(true)
+    nextSet()
   }
-
-  let interval 
-  
-  useEffect(()=>{
     
+  useEffect(()=>{
+    let time
     if(seconds > 0){
-      interval = setTimeout(()=> setSeconds(seconds - 1), 1000)
+      time = setTimeout(()=>setSeconds(seconds - 1), 1000);
     } else {
-      nextSet()
+      newSet()
+      clearInterval(time)
     }
 
-    return  () => {
-      clearTimeout(interval)
-      
-      }
-      
-  },[seconds])
+  },[seconds, over])
 
+  // const tick = () => {
+  //   setSeconds(seconds - 1)
+  // }
+
+  // const reset = () => {
+  //   setSeconds(30)
+  //   setOver(false)
+  //   nextSet()
+  // }
+
+  
 
   return(
-    <>
-    <p>Rest :{seconds} seconds</p>
-    <button onClick = {nextSet} >Skip Rest</button>
-    </>
+    <div>
+      {over ? <button onClick={()=>setOver(false)}>Complete Set</button> : <p>Rest :{seconds} seconds< button onClick = {newSet} >Skip Rest</button></p>}
+    </div>
   )
 }

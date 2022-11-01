@@ -1,18 +1,17 @@
 import styled, { css } from 'styled-components'
 
 const Button = styled.button`
-  background: transparent;
+  background: white;
   border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
+  border: 2px solid blue;
+  color: blue;
   margin: 0 1em;
   padding: 0.25em 1em;
 
 ${props=>
-  props.primary &&
+  props.navbar &&
   css`
-    background: palevioletred;
-    color: white
+    font-weight: bolder;
 `};
 `
 
@@ -23,6 +22,11 @@ const Greeting = styled.div`
 `
 
 const NavBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  
 `
 
 export { Button, Greeting, NavBar };

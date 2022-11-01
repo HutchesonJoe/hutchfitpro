@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
-export const WarmUp = ({warmUpLength, setWarmUpLength}) =>{
+export const WarmUp = () =>{
 
   const warmup = [
     {
@@ -20,23 +21,20 @@ export const WarmUp = ({warmUpLength, setWarmUpLength}) =>{
       instructions: 'Come on. You know how to do these.'
     }
   ]
-
-  useEffect(()=>{
-    setWarmUpLength(warmup.length)
-  },[])
-
+  
   const [index, setIndex ] = useState(0)
   const [exercise, setExercise] = useState(warmup[index])
-
-  // if(index === warmup.length){
-  //   setWarmUpOn(false)
-  // }
-
+  const navigate = useNavigate()
+  
+  
   const handleClick = () => { 
     let newIndex = index + 1
-    setIndex(newIndex)
-    setExercise(warmup[newIndex])
-    setWarmUpLength(warmUpLength - 1)
+    if(newIndex===warmup.length){
+      navigate('/activateworkout')
+    } else {
+      setIndex(newIndex)
+      setExercise(warmup[newIndex])
+    }
   }
 
   return (

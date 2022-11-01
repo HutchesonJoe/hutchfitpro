@@ -34,11 +34,12 @@ export const ClientHome = () => {
  
   return(
     <div id="client-home">
+        <NavBar>
+          {/* <NavLink to='clienthome'><Button>Home</Button></NavLink> */}
+          <NavLink to='workouthistory'><Button navbar>Workout History</Button></NavLink>
+          <NavLink to='nextworkout'><Button navbar>{NewOrCurrent} Workout</Button></NavLink>
+        </NavBar>
         
-        <NavLink to='clienthome'>Home</NavLink>
-        <NavLink to='workouthistory'>Workout History</NavLink>
-        <NavLink to='nextworkout'>{NewOrCurrent} Workout</NavLink>
-        <NavRoutes/>
         <br/>
         {activateOn ? null :
        <>
@@ -48,6 +49,7 @@ export const ClientHome = () => {
           <p>{user.workouts[user.workouts.length - 1].completed ? `No new workouts. ${user.trainer.first_name} will have one for you ASAP.` :`You have a new workout to compete.`}</p>
        </>
         }
+        <NavRoutes/>
   </div>
   )
 }
