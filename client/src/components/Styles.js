@@ -12,13 +12,9 @@ ${props=>
   props.navbar &&
   css`
     font-weight: bolder;
+    height: 50px;
+    width: 100px;
 `};
-`
-
-const Greeting = styled.div`
-  color: blue;
-  font-weight: bold;
-  font-size: xx-large
 `
 
 const NavBar = styled.div`
@@ -29,4 +25,18 @@ const NavBar = styled.div`
   
 `
 
-export { Button, Greeting, NavBar };
+const Greeting = styled.div`
+  color: #0066ff;
+  font-weight: bold;
+  font-size: xx-large
+`
+
+const ClientWindow = styled.div`
+  border-width: 2px;
+  border-style: solid;
+  border-color: #0066ff;
+  border-radius: 10px;
+  padding: 10px
+`
+
+export { Button, Greeting, NavBar, ClientWindow };

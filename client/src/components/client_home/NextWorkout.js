@@ -6,12 +6,14 @@ export const NextWorkout = () => {
   const [user] = useContext(UserContext)
   const navigate = useNavigate()
 
-  const{title, completed} =  user.workouts.filter((wrkt)=>wrkt.completed===false)[0]
-
+  const {title, completed, blocks} =  user.workouts.filter((wrkt)=>wrkt.completed===false)[0] || user.workouts[user.workouts.length - 1]
+  
   return(
     <>
-    <h3>{title}</h3>
-    {completed ? "Workout completed" : <button onClick={()=>navigate('/warmup')}>Begin workout</button>}
+    <h2>{title}</h2>
+    {completed ? 
+    <p>Workout completed</p> 
+    : <button onClick={()=>navigate('/warmup')}>Begin workout</button>}
     </>
   )
 }

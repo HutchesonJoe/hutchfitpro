@@ -1,19 +1,12 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
 import Exercise from "../cards/Exercise";
 import { useState } from 'react';
-import { UserContext } from "../context/UserContext";
-import { WorkoutConsole } from "./WorkoutConsole";
-import { CurrentWorkoutContext } from "../context/CurrentWorkoutContext";
-
+import { UserContext } from "../context/UserContext"
 
 export const CurrentBlock = ({currentBlock, blockNumber}) => {
 
 const[user] = useContext(UserContext)
-const [clientExercises, setClientExercises] = useState([])
 const [blockExercises, setBlockExercises] = useState([])
-const navigate = useNavigate()
-const workout = useContext(CurrentWorkoutContext)
 
 useEffect(()=>{
   if(currentBlock && currentBlock.id){
@@ -37,7 +30,7 @@ return(
   <>
     <p>Complete all repetitions of each exercise, back to back, then rest...</p>
     <h2>Block {blockNumber}</h2>
-    <h4>{currentBlock.note}</h4>
+    <h4>{currentBlock ? currentBlock.note : ''}</h4>
     {exercises}
   </>
   )
