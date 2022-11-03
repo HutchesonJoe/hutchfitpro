@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { WorkoutTitle, ExerciseName, Instructions, Card } from '../styles/WorkoutStyles';
 
 export const WarmUp = () =>{
 
@@ -39,12 +40,12 @@ export const WarmUp = () =>{
 
   return (
   <>
-    <h1>Get warmed up!</h1>
-    <div>
-      <h2>{exercise.name}</h2>
-      <h3>{exercise.instructions}</h3>
+    <WorkoutTitle>Get warmed up!</WorkoutTitle>
+    <Card>
+      <ExerciseName>{exercise.name}</ExerciseName>
+      <Instructions>{exercise.instructions}</Instructions>
       <button onClick={handleClick} type='button'>Next</button>
-    </div>
+    </Card>
   </>
   )
 }

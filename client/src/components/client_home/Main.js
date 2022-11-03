@@ -1,8 +1,7 @@
 import Logout from "../Logout";
-import { Button, Greeting, NavBar } from "../Styles"
+import { Greeting } from "../styles/ClientStyles"
 import { useContext } from 'react'
 import { UserContext } from "../context/UserContext";
-
 export const Main = () => {
   const [user] = useContext(UserContext)
 

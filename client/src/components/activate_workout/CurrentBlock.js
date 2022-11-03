@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 import Exercise from "../cards/Exercise";
 import { useState } from 'react';
-import { UserContext } from "../context/UserContext"
+import { UserContext } from "../context/UserContext";
+import { WorkoutTitle, Instructions, Card, BlockNumber, RepsAndSets } from "../styles/WorkoutStyles";
 
-export const CurrentBlock = ({currentBlock, blockNumber}) => {
+export const CurrentBlock = ({currentBlock, blockNumber, workoutTitle}) => {
 
 const[user] = useContext(UserContext)
 const [blockExercises, setBlockExercises] = useState([])
@@ -27,12 +28,14 @@ if(blockExercises){
 }
 
 return(
-  <>
-    <p>Complete all repetitions of each exercise, back to back, then rest...</p>
-    <h2>Block {blockNumber}</h2>
-    <h4>{currentBlock ? currentBlock.note : ''}</h4>
+  <Card>
+    <WorkoutTitle>{workoutTitle}</WorkoutTitle>
+    <Instructions>Complete all repetitions of each exercise, back to back, then rest.</Instructions>
+    <BlockNumber>Block {blockNumber}</BlockNumber>
+    <RepsAndSets>{currentBlock.count}, {currentBlock.sets}</RepsAndSets>
+    {currentBlock ? currentBlock.note : ''}
     {exercises}
-  </>
+  </Card>
   )
 
 }

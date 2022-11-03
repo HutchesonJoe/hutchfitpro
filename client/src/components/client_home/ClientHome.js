@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 
 import { NavLink } from "react-router-dom"
 import { NavRoutes } from "../Routes";
-import { Button, NavBar, ClientWindow} from "../Styles"
+import { Button, NavBar, ClientWindow} from "../styles/ClientStyles"
 
 
 

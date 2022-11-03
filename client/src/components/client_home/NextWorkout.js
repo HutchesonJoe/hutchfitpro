@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
+import { WorkoutTitle, BeginWorkoutButton } from '../styles/WorkoutStyles'
 
 export const NextWorkout = () => {
   const [user] = useContext(UserContext)
@@ -10,10 +11,10 @@ export const NextWorkout = () => {
   
   return(
     <>
-    <h2>{title}</h2>
+    <WorkoutTitle>{title}</WorkoutTitle>
     {completed ? 
     <p>Workout completed</p> 
-    : <button onClick={()=>navigate('/warmup')}>Begin workout</button>}
+    : <BeginWorkoutButton onClick={()=>navigate('/warmup')}>Begin workout</BeginWorkoutButton>}
     </>
   )
 }

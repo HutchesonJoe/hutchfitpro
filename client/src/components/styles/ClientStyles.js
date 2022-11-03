@@ -15,6 +15,7 @@ ${props=>
     height: 50px;
     width: 100px;
 `};
+
 `
 
 const NavBar = styled.div`

@@ -1,27 +1,22 @@
-//add exerciserep context here, in order to get the exercises to assign to the client.
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
-import { UserContext } from "../context/UserContext";
+import { ExerciseName, Instructions, Card } from '../styles/WorkoutStyles'
 // import Errors from "../Errors";
 
 function Exercise({clientExercise}){
-  // const[errors, setErrors] = useState([])
   const[instructionsOn, setInstructionsOn] = useState(false)
-  // const[user] = useContext(UserContext)
   const[exerciseRep] = useContext(ExerciseRepContext)
-
   const exercise = exerciseRep.find((ex)=>ex.id===clientExercise.exercise_id)
   
   return(
-    <div className="exercise">
-      <p className="exercise-name">{exercise.name}</p>
-      <p>Category: <em>{exercise.category}</em></p>
+    <Card>
+      <ExerciseName>{exercise.name}</ExerciseName>
       <p onClick={()=>setInstructionsOn(!instructionsOn)} style={{color:"red"}}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</p>
-      {instructionsOn ? exercise.instructions : null}
-      <h5>current resistance level: {clientExercise.weight} lbs</h5>
-      {/* <Errors errors={errors}/> */}
-    </div>
+      <Instructions>{instructionsOn ? exercise.instructions : null}</Instructions>
+      <h5>Your current resistance level: {clientExercise.weight} lbs</h5>
+      <Instructions>Category: <em>{exercise.category}</em></Instructions>
+    </Card>
   )
 }
 

@@ -50,7 +50,7 @@ export const ActivateWorkout = () => {
   }
   
   useEffect(()=>{
-  console.log(workout.blocks.length, index)
+ 
   let display 
     if (workout.blocks.length===index){
 
@@ -63,7 +63,7 @@ export const ActivateWorkout = () => {
     } else {
       display = (
         <>
-          <CurrentBlock currentBlock={currentBlock} blockNumber={blockNumber}/>
+          <CurrentBlock currentBlock={currentBlock} blockNumber={blockNumber} workoutTitle={workout.title}/>
           <p>Set {setNumber} of {numberOfSets}</p>
           <RestTimer setNumber = {setNumber} setSetNumber = {setSetNumber}/> 
         </>
