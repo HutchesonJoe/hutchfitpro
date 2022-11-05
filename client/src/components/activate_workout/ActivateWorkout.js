@@ -4,17 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { CurrentBlock } from "./CurrentBlock";
 import { RestTimer } from "./RestTimer";
+import { SetCount, Console } from '../styles/WorkoutStyles'
+import { CurrentWorkoutContext } from "../context/CurrentWorkoutContext";
 
 export const ActivateWorkout = () => {
   const [user] = useContext(UserContext)
   const [workout, setWorkout] = useState(user.workouts.filter((wrkt)=>wrkt.completed===false)[0] || user.workouts[user.workouts.length - 1])
   const [index, setIndex] = useState(0)
-  const [currentBlock, setCurrentBlock] = useState(workout.blocks[index])
+  const [currentBlock, setCurrentBlock] = useState(workout && workout.blocks[index])
   const [blockNumber, setBlockNumber] = useState(1)
   const [setNumber, setSetNumber] = useState(1)
   const[numberOfSets, setNumberOfSets] = useState(currentBlock && parseInt(currentBlock.sets.split(' ')[0]))
   const [returnDisplay, setReturnDisplay] = useState("Loading")
   const navigate = useNavigate()
+  
   
   useEffect(()=>{
     if(setNumber === numberOfSets + 1){
@@ -24,11 +27,11 @@ export const ActivateWorkout = () => {
   },[setNumber])
 
   useEffect(()=>{
-    setCurrentBlock(workout.blocks[index])
-    setSetNumber(1)
-    if(workout.blocks[index]){
-      setNumberOfSets(parseInt(workout.blocks[index].sets.split(' ')[0]))
-    }
+      setCurrentBlock(workout.blocks[index])
+      setSetNumber(1)
+      if(workout.blocks[index]){
+        setNumberOfSets(parseInt(workout.blocks[index].sets.split(' ')[0]))
+      }
   },[index])
 
   const markComplete = () => {
@@ -44,15 +47,14 @@ export const ActivateWorkout = () => {
         .then(r=>r.json())
         .then(wkout=>{
           setWorkout(wkout)
-          navigate('/')
+          navigate("/main")
         })
-    
   }
   
   useEffect(()=>{
  
   let display 
-    if (workout.blocks.length===index){
+    if (workout && workout.blocks.length===index){
 
       display = (
         <>
@@ -64,8 +66,10 @@ export const ActivateWorkout = () => {
       display = (
         <>
           <CurrentBlock currentBlock={currentBlock} blockNumber={blockNumber} workoutTitle={workout.title}/>
-          <p>Set {setNumber} of {numberOfSets}</p>
+          <Console>
+          <SetCount>Set {setNumber} of {numberOfSets}</SetCount>
           <RestTimer setNumber = {setNumber} setSetNumber = {setSetNumber}/> 
+          </Console>
         </>
       )
     }

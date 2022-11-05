@@ -1,7 +1,7 @@
 
 import { useContext, useState } from "react";
 import { ExerciseRepContext } from "../context/ExerciseRepContext";
-import { ExerciseName, Instructions, Card } from '../styles/WorkoutStyles'
+import { ExerciseName, Instructions, ExerciseCard, RepsAndSets } from '../styles/WorkoutStyles'
 // import Errors from "../Errors";
 
 function Exercise({clientExercise}){
@@ -10,13 +10,13 @@ function Exercise({clientExercise}){
   const exercise = exerciseRep.find((ex)=>ex.id===clientExercise.exercise_id)
   
   return(
-    <Card>
+    <ExerciseCard>
       <ExerciseName>{exercise.name}</ExerciseName>
-      <p onClick={()=>setInstructionsOn(!instructionsOn)} style={{color:"red"}}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</p>
       <Instructions>{instructionsOn ? exercise.instructions : null}</Instructions>
-      <h5>Your current resistance level: {clientExercise.weight} lbs</h5>
+      <RepsAndSets>Your current resistance level: {clientExercise.weight} lbs</RepsAndSets>
       <Instructions>Category: <em>{exercise.category}</em></Instructions>
-    </Card>
+      <Instructions onClick={()=>setInstructionsOn(!instructionsOn)} style={{color:"red"}}>{instructionsOn ? "Close Instructions" : "Click for Instructions"}</Instructions>
+    </ExerciseCard>
   )
 }
 

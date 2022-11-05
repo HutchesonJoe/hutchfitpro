@@ -31,26 +31,25 @@ const ExerciseName = styled.div`
   color: #0066ff;
   font-size: x-large;
   font-weight: bold;
-  display: flex;
-  align-items: center;
 `
 
 const BlockNumber = styled.p`
   color: #0066ff;
   font-weight: bold;
   font-size: x-large;
+  margin: 0px;
 `
 
 const Instructions = styled.p`
   font-size: large;
   color: black;
-  padding: 5px;
   
 `
 const RepsAndSets = styled.p`
   color: black;
   font-weight: bold;
-  font-size: large
+  font-size: large;
+  margin: 0px;
 `
 const Card = styled.div`
   background-color: white;
@@ -61,5 +60,26 @@ const Card = styled.div`
   border-width: 2px;
   border-color: blue;
 `
+const Console = styled.div`
+background-color: white;
+border-radius: 10px;
+padding: 10px;
+color: #0066ff;
+text-align: center;
+margin: 10px
+`
+const Timer = styled.div`
+  
+  
+`
+const SetCount = styled.div`
+ 
+`
+const ExerciseCard = styled.div`
+  background-color: #e0e0eb;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+`
 
-export {ExerciseName, WorkoutTitle, BeginWorkoutButton, Instructions, Card, BlockNumber, RepsAndSets}
+export {ExerciseName, WorkoutTitle, BeginWorkoutButton, Instructions, Card, ExerciseCard, BlockNumber, RepsAndSets, Timer, SetCount, Console}

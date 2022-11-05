@@ -8,7 +8,8 @@ import { WarmUp } from './activate_workout/WarmUp'
 export const NavRoutes = () =>{
   return (
   <Routes>
-    <Route path="/" element={<Main/>}/>
+    <Route path='/' element={<Main/>}/>
+    <Route path="/main" element={<Main/>}/>
     <Route path="/workouthistory" element={<WorkoutHistory/>}/>
     <Route path="/nextworkout" element={<NextWorkout/>}/>
     <Route path="/activateworkout" element={<ActivateWorkout/>}/>

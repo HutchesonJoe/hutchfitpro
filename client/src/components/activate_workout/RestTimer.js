@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { Timer } from '../styles/WorkoutStyles'
 
 export const RestTimer = ({setNumber, setSetNumber, secondsLeft = 30}) => {
   const[seconds, setSeconds] = useState(secondsLeft)
@@ -24,8 +25,8 @@ export const RestTimer = ({setNumber, setSetNumber, secondsLeft = 30}) => {
   },[seconds, timerOn])
 
   return(
-    <div>
+    <Timer>
       {!timerOn ? <button onClick={()=>setTimerOn(true)}>Complete Set</button> : <p>Rest :{seconds} seconds< button onClick = {newSet} >Skip Rest</button></p>}
-    </div>
+    </Timer>
   )
 }

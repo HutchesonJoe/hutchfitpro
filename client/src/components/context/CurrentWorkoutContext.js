@@ -10,8 +10,14 @@ const CurrentWorkoutProvider = ({children})=>{
  
   useEffect(()=>{
     const workouts = user.workouts.filter((wrkt)=>wrkt.completed===false)
-    setWorkout(workouts[0])
+    if(workouts.length!==0){
+      setWorkout(workouts[0])
+    } else {
+      setWorkout(user.workouts[user.workouts.length - 1])
+    }
+    
   },[user])
+
   return <CurrentWorkoutContext.Provider value={[workout, setWorkout]}>{children}</CurrentWorkoutContext.Provider>
 }
 
